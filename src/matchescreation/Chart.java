@@ -8,7 +8,9 @@ package matchescreation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import jdk.nashorn.internal.objects.NativeArray;
@@ -19,6 +21,8 @@ import jdk.nashorn.internal.objects.NativeArray;
  */
 public class Chart {
 
+    
+
        
     class Node {
         public Node(){
@@ -27,26 +31,31 @@ public class Chart {
         public Node(Integer id){
             this.athleteID = id;
         }
+        public Node(Person p){
+            this.athlete = p;
+        }
         Node aka;
         Node shiro;
         Node parent;
         
         Integer athleteID;
+        Person athlete;
+        
         Integer chartLvl;
 
         @Override
         public String toString() {
             //String ret = new String("");
-            String a = (this.aka   == null || this.aka.athleteID == -1 ? " " : Integer.toString(this.aka.athleteID));
-            String b = (this.shiro == null || this.shiro.athleteID==-1 ? " " : Integer.toString(this.shiro.athleteID));
+            String a = (this.aka   == null || this.aka.athlete == null ? " " : this.aka.athlete.toString());
+            String b = (this.shiro == null || this.shiro.athlete == null ? " " : this.shiro.athlete.toString());
             
-            return a+"-"+b; //To change body of generated methods, choose Tools | Templates.
+            return a+" - "+b; //To change body of generated methods, choose Tools | Templates.
         }
         
         public Node hasOneAthlete(){
-            if(!(aka==null||aka.athleteID==-1||shiro==null||shiro.athleteID==-1))
+            if(!(aka==null||aka.athlete==null||shiro==null||shiro.athlete==null))
                 return null;
-            if(aka!=null&&aka.athleteID!=-1)
+            if(aka!=null&&aka.athlete!=null)
                 return aka;
             else return shiro;
         }
@@ -61,9 +70,15 @@ public class Chart {
     }
     public Chart(int x){
         ArrayList <Node> athletes = new ArrayList<>();
-        int amount = x;
-        for(int i=1; i<= amount; i++)
-            athletes.add(new Node(i));
+        
+        Athletes a = new Athletes();
+        
+        int amount = a.getCompetitors().size();
+        for(int i=0; i< amount; i++)
+            athletes.add(new Node(a.getCompetitors().get(i)));
+        
+        //mix list
+        randomizeList(athletes, 4);
         
         //list should be already mixed with priviliged athletes on top positions
         InitializeMatches(athletes);
@@ -98,7 +113,7 @@ public class Chart {
         }
         
         //order matches
-        firstMatches = orderMatches(firstMatches);
+        if(firstMatches.size()>1) firstMatches = orderMatches(firstMatches);
         this.matches = new LinkedList<>();
         this.matches.addAll(firstMatches);
       
@@ -107,12 +122,12 @@ public class Chart {
 
         
         
-        for(int i=0;i<firstDepthMatches;i++)
-            System.out.println(firstMatches.get(i).toString());
-        
+//        for(int i=0;i<firstDepthMatches;i++)
+//            System.out.println(firstMatches.get(i).toString());
+//        
         
         //create the rest of a chart
-        this.matches.addAll(generateWholeChart(firstMatches));
+        if(firstMatches.size()>1) this.matches.addAll(generateWholeChart(firstMatches));
         this.winner = this.matches.getLast();
         
         //fulfill empty matches
@@ -124,6 +139,20 @@ public class Chart {
         
     }
     
+    /**
+     * Shuffles the list of competitors without first 'favoured' athletes which were saved as winners from the previous tournament
+     * @param athletes
+     * @param favored 
+     */
+    private void randomizeList(ArrayList<Node> athletes, int favored) {
+        
+        List<Node> toshuffle = athletes.subList(favored, athletes.size()-1);
+        athletes = new ArrayList<Node>(athletes.subList(0, favored-1));
+        
+        Collections.shuffle(toshuffle);
+        athletes.addAll(toshuffle);
+        
+    }
     
     
     private ArrayList<Node> orderMatches(ArrayList<Node> matches) {
@@ -174,7 +203,7 @@ public class Chart {
         int size = (int) Math.pow(2, this.matches.get(0).chartLvl);
         for(int i=0; i<size; i++){
             if(this.matches.get(i).hasOneAthlete()!=null)
-                this.matches.get(i).athleteID = this.matches.get(i).hasOneAthlete().athleteID;
+                this.matches.get(i).athlete = this.matches.get(i).hasOneAthlete().athlete;
         }
     }
     

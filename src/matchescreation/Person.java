@@ -19,18 +19,21 @@ public class Person {
     private Character gender;
     private Integer year;
     private Integer degree; //1kyu=1, 1Dan=-1
+    private String club;
     
-    public Person(String _name, String _surname, Character _gender, Integer _year, Integer _degree){
+    public Person(String _name, String _surname, Character _gender, Integer _year, Integer _degree, String _club){
         name    = _name;
         surname = _surname;
         gender  = _gender;
         year    = _year;
         degree  = _degree;
+        club    = _club;
     }
     
     public void setId(Integer _id){
         id = _id;
     }
+    
 
     public String getName() {
         return name;
@@ -70,6 +73,19 @@ public class Person {
 
     public void setDegree(Integer degree) {
         this.degree = degree;
+    }
+    
+    public String getClub() {
+        return club;
+    }
+
+    public void setClub(String club) {
+        this.club = club;
+    }
+
+    @Override
+    public String toString() {
+        return name+" "+surname+" ("+club+")";
     }
     
     

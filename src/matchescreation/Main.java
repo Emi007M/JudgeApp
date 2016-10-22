@@ -37,7 +37,8 @@ public class Main extends Application {
         showChartMaker();
         
 
-        currentChart = new Chart();
+        //currentChart = new Chart();
+        updateCurrentMatch();
     }
     
     public void initRootLayout() {
@@ -68,10 +69,13 @@ public class Main extends Application {
             // Give the controller access to the main app.
         ChartMakerController controller = loader.getController();
         controller.setMainApp(this);
+        controller.reloadChart();
+        
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+   
 
     /**
      * @param args the command line arguments

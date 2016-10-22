@@ -4,12 +4,38 @@
     
 }
 
-.label {
-    -fx-pref-width: 100;
+#chartBox .label {
+    -fx-min-width: 500;
+    
     -fx-padding: 10;
     -fx-margin: 5;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
     -fx-alignment: TOP_CENTER;
     
     -fx-background-color: white;
     -fx-font-size: 17;
+}
+
+.button {
+        -fx-cursor:hand;
+        -fx-border-width: 2;
+}
+.button:hover {
+    -fx-border-width: 3;
+}
+
+#shiroBtn {
+    -fx-background-color: white;
+    -fx-background-insets: 5;
+    -fx-background-radius: 0;
+
+}
+
+#akaBtn {
+    -fx-background-color: #d50000;
+
+    -fx-border-color: #000;
+    
 }

@@ -5,6 +5,7 @@
  */
 package matchescreation.view;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.beans.EventHandler;
 import java.net.URL;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import matchescreation.Chart;
 import matchescreation.Main;
 
@@ -24,15 +26,29 @@ import matchescreation.Main;
  */
 public class ChartMakerController implements Initializable{
     
-    @FXML
-    private Label chart;
+    
+ 
     @FXML
     private HBox box;
     @FXML
-    private HBox chartBox;
+    private VBox chartBox;
     
     @FXML
     private TextField athletesNo;
+    
+    @FXML
+    private Label currentShiro;
+    @FXML
+    private Label currentAka;
+    @FXML
+    private Label currentShiroClub;
+    @FXML
+    private Label currentAkaClub;
+    
+    @FXML
+    private Button shiroBtn;
+    @FXML
+    private Button akaBtn;
     
 
     
@@ -43,24 +59,47 @@ public class ChartMakerController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        chart.setText("gotIT!");
+        //chart.setText("gotIT!");
         
-        box.getChildren().add(new Button("Java Button"));
+        //box.getChildren().add(new Button("Java Button"));
+        
+        
+        
+        
     }
     
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
 
-        chart.setText(mainApp.getMatches());
+        //chart.setText(mainApp.getMatches());
     }
     
     @FXML
     private void handleButtonAction(javafx.event.ActionEvent event) {
         System.out.println("You clicked me!");
-        int amount = Integer.parseInt( athletesNo.getText());
-        if(amount<=0) amount = 8;
+        //int amount = Integer.parseInt( athletesNo.getText());
+        //if(amount<=0) amount = 8;
         
-        mainApp.currentChart = new Chart(amount);
+        mainApp.currentChart = new Chart();
+        reloadChart();
+    }
+    
+    @FXML
+    private void handleShiroBtnAction(javafx.event.ActionEvent event){
+        System.out.println("SHIRO");
+    }
+    
+    @FXML
+    private void handleAkaBtnAction(javafx.event.ActionEvent event){
+        System.out.println("AKA");
+    }
+    
+    
+    public void reloadChart(){
+        
+        if(mainApp.currentChart==null)
+            mainApp.currentChart = new Chart();
+        
         
         int lvls = mainApp.currentChart.getMaxLvl();
         
@@ -70,5 +109,10 @@ public class ChartMakerController implements Initializable{
             chartBox.getChildren().add(new Label(mainApp.currentChart.getLvl(i)));
         }
     }
+    
+     
+    public void updateCurrentMatch(){
+      //TODO  
+    } 
     
 }
