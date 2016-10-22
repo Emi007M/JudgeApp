@@ -1,0 +1,15 @@
+
+
+.root {
+    
+}
+
+.label {
+    -fx-pref-width: 100;
+    -fx-padding: 10;
+    -fx-margin: 5;
+    -fx-alignment: TOP_CENTER;
+    
+    -fx-background-color: white;
+    -fx-font-size: 17;
+}
