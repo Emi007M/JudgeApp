@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.Double?>
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -9,6 +11,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.view.ChartMakerController">
@@ -25,21 +29,21 @@
          </children></HBox>
       <AnchorPane fx:id="currentMatch" layoutX="100.0" layoutY="462.0" prefHeight="69.0" prefWidth="700.0">
          <children>
-            <Label fx:id="currentShiro" layoutX="14.0" layoutY="17.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="shiro">
+            <Label fx:id="currentShiro" layoutX="14.0" layoutY="17.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="shiro">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="currentAka" alignment="CENTER_RIGHT" layoutX="386.0" layoutY="17.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="aka">
+            <Label fx:id="currentAka" alignment="CENTER_RIGHT" layoutX="443.0" layoutY="17.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="aka">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="currentShiroClub" layoutX="14.0" layoutY="51.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="shiro club" textFill="#515151">
+            <Label fx:id="currentShiroClub" layoutX="14.0" layoutY="51.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="shiro club" textFill="#515151">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label fx:id="currentAkaClub" alignment="CENTER_RIGHT" layoutX="386.0" layoutY="51.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="aka club" textFill="#515151">
+            <Label fx:id="currentAkaClub" alignment="CENTER_RIGHT" layoutX="443.0" layoutY="51.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="aka club" textFill="#515151">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -52,10 +56,76 @@
                </padding>
             </Button>
             <Button id="akaBtn" fx:id="akaBtn" layoutX="386.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAkaBtnAction" onMouseClicked="#handleAkaBtnSubtract" prefHeight="60.0" prefWidth="60.0" text="0" />
+            <Label layoutX="341.0" layoutY="38.0" styleClass="vs" text="vs" />
          </children>
       </AnchorPane>
       <Button fx:id="startBtn" layoutX="295.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleStartBtnAction" text="Start matches" />
       <Button fx:id="applyBtn" layoutX="422.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleNextBtnAction" text="&gt;" />
+      <Label fx:id="currLvl" layoutX="418.0" layoutY="430.0" text="- LVL - ">
+         <styleClass>
+            <String fx:value="lvl" />
+            <String fx:value="currentMatch" />
+         </styleClass>
+      </Label>
+      <Label fx:id="nextLvl" layoutX="415.0" layoutY="580.0" text="- LVL - ">
+         <styleClass>
+            <String fx:value="lvl" />
+            <String fx:value="currentMatch" />
+         </styleClass>
+      </Label>
+      <AnchorPane fx:id="nextMatch" layoutX="100.0" layoutY="605.0" prefHeight="69.0" prefWidth="700.0">
+         <children>
+            <Label layoutX="341.0" layoutY="34.0" styleClass="vs" text="vs" />
+            <Rectangle id="borderShiro" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="67.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" styleClass="border" width="314.0" />
+            <Rectangle id="borderAka" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="67.0" layoutX="386.0" layoutY="13.0" stroke="BLACK" strokeType="INSIDE" styleClass="border" width="314.0" />
+            <Label fx:id="nextShiro" layoutX="14.0" layoutY="17.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="shiro">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shiro" />
+                  <String fx:value="nextShiro" />
+               </styleClass>
+            </Label>
+            <Label fx:id="nextAka" alignment="CENTER_RIGHT" layoutX="386.0" layoutY="17.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="aka">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="aka" />
+                  <String fx:value="nextAka" />
+               </styleClass>
+            </Label>
+            <Label fx:id="nextShiroClub" layoutX="14.0" layoutY="44.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="shiro club" textFill="#515151">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shiroClub" />
+                  <String fx:value="nextShiro" />
+               </styleClass>
+            </Label>
+            <Label fx:id="nextAkaClub" alignment="CENTER_RIGHT" layoutX="386.0" layoutY="43.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="aka club" textFill="#515151">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="akaClub" />
+                  <String fx:value="nextAka" />
+               </styleClass>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Polygon id="arrowMatch" fill="WHITE" layoutX="450.0" layoutY="573.0" scaleX="0.2" scaleY="-0.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+        <points>
+          <Double fx:value="-50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="0.0" />
+          <Double fx:value="-60.0" />
+        </points>
+      </Polygon>
     </children>
    <stylesheets>
       <URL value="@ChartMakerLayout.css" />

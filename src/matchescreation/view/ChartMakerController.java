@@ -45,6 +45,9 @@ public class ChartMakerController implements Initializable{
     @FXML
     private TextField athletesNo;
     
+    
+    @FXML
+    private Label currLvl;
     @FXML
     private Label currentShiro;
     @FXML
@@ -53,6 +56,18 @@ public class ChartMakerController implements Initializable{
     private Label currentShiroClub;
     @FXML
     private Label currentAkaClub;
+    //--
+    @FXML
+    private Label nextLvl;
+    @FXML
+    private Label nextShiro;
+    @FXML
+    private Label nextAka;
+    @FXML
+    private Label nextShiroClub;
+    @FXML
+    private Label nextAkaClub;
+    
     
     @FXML
     private Button shiroBtn;
@@ -196,22 +211,82 @@ public class ChartMakerController implements Initializable{
       Node match = mainApp.currentChart.getFirstMatch();
       if(match !=null){
           
+          this.currLvl.setText(Integer.toString(match.getChartLvl()));
+          
+          //if there are both athletes
+          if(match.hasOneAthlete()==null){
+            this.akaBtn.setText("0");
+            this.shiroBtn.setText("0");
+
+            this.currentAka.setText(match.getAka().getAthlete().getFullName());
+            this.currentShiro.setText(match.getShiro().getAthlete().getFullName());
+            this.currentAkaClub.setText(match.getAka().getAthlete().getClub());
+            this.currentShiroClub.setText(match.getShiro().getAthlete().getClub());
+
+
+
+            updateNextMatch();
+
+          }
+          else {//if there is only one athlete
+            this.akaBtn.setText("0");
+            this.shiroBtn.setText("0");
+
+            this.currentAka.setText("-");
+            this.currentShiro.setText("-");
+            this.currentAkaClub.setText("");
+            this.currentShiroClub.setText("");
+          }
+      }//if there is no match
+      else {
           this.akaBtn.setText("0");
           this.shiroBtn.setText("0");
           
-          this.currentAka.setText(match.getAka().getAthlete().getFullName());
-          this.currentShiro.setText(match.getShiro().getAthlete().getFullName());
-          this.currentAkaClub.setText(match.getAka().getAthlete().getClub());
-          this.currentShiroClub.setText(match.getShiro().getAthlete().getClub());
+          this.currentAka.setText("-");
+          this.currentShiro.setText("-");
+          this.currentAkaClub.setText("");
+          this.currentShiroClub.setText("");
           
-          
- 
-          
-          
+          this.currLvl.setText("");
       }
       
       
-    } 
+    }
+    
+    public void updateNextMatch(){
+      Node match = mainApp.currentChart.getWaitingMatch();
+      if(match !=null ){
+        
+        this.nextLvl.setText(Integer.toString(match.getChartLvl()));
+        
+        //if there are both athletes
+        if(match.hasOneAthlete()==null){
+          
+          this.nextAka.setText(match.getAka().getAthlete().getFullName());
+          this.nextShiro.setText(match.getShiro().getAthlete().getFullName());
+          this.nextAkaClub.setText(match.getAka().getAthlete().getClub());
+          this.nextShiroClub.setText(match.getShiro().getAthlete().getClub());
+        } 
+        else {//if there is only one athlete
+            this.nextAka.setText("");
+          this.nextShiro.setText("");
+          this.nextAkaClub.setText("");
+          this.nextShiroClub.setText("");
+        }
+               
+
+      }
+      else {//if there is no match
+          this.nextAka.setText("");
+          this.nextShiro.setText("");
+          this.nextAkaClub.setText("");
+          this.nextShiroClub.setText("");
+          
+          this.nextLvl.setText("");
+      }
+      
+      
+    }
 
     public void setChartRoot(AnchorPane root) {
         this.root = root;
