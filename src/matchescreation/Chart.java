@@ -24,43 +24,6 @@ public class Chart {
     
 
        
-    class Node {
-        public Node(){
-            this.athleteID = -1;
-        }
-        public Node(Integer id){
-            this.athleteID = id;
-        }
-        public Node(Person p){
-            this.athlete = p;
-        }
-        Node aka;
-        Node shiro;
-        Node parent;
-        
-        Integer athleteID;
-        Person athlete;
-        
-        Integer chartLvl;
-
-        @Override
-        public String toString() {
-            //String ret = new String("");
-            String a = (this.aka   == null || this.aka.athlete == null ? " " : this.aka.athlete.toString());
-            String b = (this.shiro == null || this.shiro.athlete == null ? " " : this.shiro.athlete.toString());
-            
-            return a+" - "+b; //To change body of generated methods, choose Tools | Templates.
-        }
-        
-        public Node hasOneAthlete(){
-            if(!(aka==null||aka.athlete==null||shiro==null||shiro.athlete==null))
-                return null;
-            if(aka!=null&&aka.athlete!=null)
-                return aka;
-            else return shiro;
-        }
-        
-    }
     
     Node winner;
     LinkedList<Node> matches;
@@ -250,7 +213,25 @@ public class Chart {
         return matches.get(0).chartLvl;
     }
     
+    /**
+     * 
+     * @return first not played match from all matches 
+     */
+    public Node getFirstMatch(){
+        for(Node m: matches){
+            if(m.athlete==null) return m;
+        }
+        return null;
+    }
     
+    public Node getWaitingMatch(){
+        boolean firstMatch = false;
+        for(Node m: matches){
+            if(m.athlete==null && !firstMatch) firstMatch=true;
+            else if(m.athlete==null && firstMatch) return m;
+        }
+        return null;
+    }
     
     
 }

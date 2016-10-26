@@ -87,6 +87,10 @@ public class Person {
     public String toString() {
         return name+" "+surname+" ("+club+")";
     }
+
+    public String getFullName() {
+        return name+" "+surname;
+    }
     
     
     

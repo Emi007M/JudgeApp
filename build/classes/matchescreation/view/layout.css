@@ -1,5 +1,6 @@
 .root {
 	-fx-background-color: #1f41bf;
+         -fx-background-color: radial-gradient(center 50% 25% , radius 90% , #1f41bf, #0f117f);
 }
 .btn-login {
 -fx-background-color: rgba(0,0,0,0);

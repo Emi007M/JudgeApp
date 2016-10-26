@@ -18,24 +18,33 @@
     -fx-font-size: 17;
 }
 
-.button {
-        -fx-cursor:hand;
-        -fx-border-width: 2;
+#currentMatch {
+    -fx-background-color: rgba(255,255,255,0.7);
 }
-.button:hover {
+
+#currentMatch .button {
+        -fx-cursor:hand;
+        -fx-border-color: #000;
+        -fx-border-width: 2;
+        -fx-background-insets: 2;
+        -fx-background-radius: 0;
+        -fx-font-size: 36;
+        -fx-font-weight: bold;
+        -fx-effects: none;
+        -fx-padding: 1;
+}
+#currentMatch .button:hover {
     -fx-border-width: 3;
 }
 
 #shiroBtn {
     -fx-background-color: white;
-    -fx-background-insets: 5;
-    -fx-background-radius: 0;
+    -fx-text-fill: black;
 
 }
 
 #akaBtn {
     -fx-background-color: #d50000;
-
-    -fx-border-color: #000;
+    -fx-text-fill: white;
     
 }

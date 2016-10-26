@@ -26,9 +26,12 @@
         -fx-cursor:hand;
         -fx-border-color: #000;
         -fx-border-width: 2;
-        -fx-font-size: 20;
+        -fx-background-insets: 2;
+        -fx-background-radius: 0;
+        -fx-font-size: 36;
         -fx-font-weight: bold;
         -fx-effects: none;
+        -fx-padding: 1;
 }
 #currentMatch .button:hover {
     -fx-border-width: 3;

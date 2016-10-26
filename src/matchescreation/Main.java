@@ -22,7 +22,7 @@ import matchescreation.view.ChartMakerController;
 public class Main extends Application {
     
     private Stage primaryStage;
-    private BorderPane rootLayout;
+    public BorderPane rootLayout;
     
     public Chart currentChart;
     
@@ -38,7 +38,7 @@ public class Main extends Application {
         
 
         //currentChart = new Chart();
-        updateCurrentMatch();
+        //updateCurrentMatch();
     }
     
     public void initRootLayout() {
@@ -48,6 +48,7 @@ public class Main extends Application {
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
+            primaryStage.setTitle("Tournament Manager");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -69,6 +70,7 @@ public class Main extends Application {
             // Give the controller access to the main app.
         ChartMakerController controller = loader.getController();
         controller.setMainApp(this);
+        controller.setChartRoot(chartMaker);
         controller.reloadChart();
         
         } catch (IOException e) {
