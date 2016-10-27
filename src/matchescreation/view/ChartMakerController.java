@@ -17,12 +17,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import matchescreation.Chart;
 import matchescreation.Main;
@@ -41,6 +43,8 @@ public class ChartMakerController implements Initializable{
     private HBox box;
     @FXML
     private VBox chartBox;
+    @FXML
+    private VBox matchesBox;
     
     @FXML
     private TextField athletesNo;
@@ -179,6 +183,7 @@ public class ChartMakerController implements Initializable{
         
         reloadChart();
         updateCurrentMatch();
+        updateMatchesBox();
     }
     
     public void reloadChart(){
@@ -204,6 +209,8 @@ public class ChartMakerController implements Initializable{
    
         chartBox.getChildren().setAll(labels);
         
+        updateMatchesBox();
+        
     }
     
      
@@ -211,7 +218,7 @@ public class ChartMakerController implements Initializable{
       Node match = mainApp.currentChart.getFirstMatch();
       if(match !=null){
           
-          this.currLvl.setText(Integer.toString(match.getChartLvl()));
+          this.currLvl.setText(mainApp.currentChart.getLvlToString(match.getChartLvl()));
           
           //if there are both athletes
           if(match.hasOneAthlete()==null){
@@ -257,7 +264,7 @@ public class ChartMakerController implements Initializable{
       Node match = mainApp.currentChart.getWaitingMatch();
       if(match !=null ){
         
-        this.nextLvl.setText(Integer.toString(match.getChartLvl()));
+        this.nextLvl.setText(mainApp.currentChart.getLvlToString(match.getChartLvl()));
         
         //if there are both athletes
         if(match.hasOneAthlete()==null){
@@ -286,6 +293,29 @@ public class ChartMakerController implements Initializable{
       }
       
       
+    }
+    
+    public void updateMatchesBox(){
+        ArrayList<Node> matches = mainApp.currentChart.getMatches();
+        ArrayList<Control> elements = new ArrayList<>();
+        
+        Node current = mainApp.currentChart.getFirstMatch();
+        
+        int lvl = -1;
+        
+        for(Node m: matches){
+            if(lvl != m.getChartLvl()) {
+                lvl = m.getChartLvl();
+                Label l = new Label(mainApp.currentChart.getLvlToString(lvl));
+                l.getStyleClass().add("lvl");
+                elements.add(l);
+            }
+            Label l = new Label(m.toString());
+            if(m.equals(current)) l.getStyleClass().add("current");
+            elements.add(l);
+        }
+        
+        this.matchesBox.getChildren().setAll(elements);
     }
 
     public void setChartRoot(AnchorPane root) {

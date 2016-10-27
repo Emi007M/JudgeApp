@@ -233,5 +233,29 @@ public class Chart {
         return null;
     }
     
+    public ArrayList<Node> getMatches(){
+        ArrayList<Node> list = new ArrayList<>();
+        
+        matches.stream().filter((m) -> (m.hasTwoAthletes())).forEachOrdered((m) -> {
+            list.add(m);
+        });
+        
+        return list;
+        
+    }
+    
+    public String getLvlToString(int i){
+        switch(i){
+            case 0: return "Final";
+            case 1: return "Semi-final";
+            case 2: return "Quarter-final";
+            case 3: return "Eliminations 16s";
+            case 4: return "Eliminations 32s";
+            case 5: return "Eliminations 64s";
+            default: return "Eliminations";
+        }
+               
+    }
+    
     
 }

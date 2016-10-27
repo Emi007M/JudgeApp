@@ -52,6 +52,11 @@ public class Node {
                 return aka;
             else return shiro;
         }
+        
+        public boolean hasTwoAthletes(){
+            return !(this.aka == null || this.aka.athlete == null)
+                    && !(this.shiro == null || this.shiro.athlete == null);
+        }
 
     public Node getAka() {
         return aka;
