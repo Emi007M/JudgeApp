@@ -5,7 +5,10 @@
  */
 package matchescreation;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,11 +29,17 @@ public class Main extends Application {
     
     public Chart currentChart;
     
+//    public Locale locale;
+//    public ResourceBundle messages;
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
         
+        //Internationalization        
+        new Dictionary();
+        
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle(Dictionary.getString("window-title"));
 
         initRootLayout();
 
@@ -48,7 +57,6 @@ public class Main extends Application {
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
-            primaryStage.setTitle("Tournament Manager");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -88,8 +96,4 @@ public class Main extends Application {
        
     }
 
-    public String getMatches() {
-        return "1-2 3-4 5-6";
-    }
-    
 }

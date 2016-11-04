@@ -27,6 +27,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import matchescreation.Chart;
+import matchescreation.Dictionary;
 import matchescreation.Main;
 import matchescreation.Node;
 
@@ -167,9 +168,9 @@ public class ChartMakerController implements Initializable{
         
         if(scoreAka==scoreShiro) {
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Draw warning");
-            alert.setHeaderText("Draw");
-            alert.setContentText("Correct scores, draw cannot occur!");
+            alert.setTitle(Dictionary.getString("draw-warning"));
+            alert.setHeaderText(Dictionary.getString("draw"));
+            alert.setContentText(Dictionary.getString("draw-text"));
 
             alert.showAndWait();
             return;

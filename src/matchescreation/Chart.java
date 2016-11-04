@@ -246,13 +246,12 @@ public class Chart {
     
     public String getLvlToString(int i){
         switch(i){
-            case 0: return "Final";
-            case 1: return "Semi-final";
-            case 2: return "Quarter-final";
-            case 3: return "Eliminations 16s";
-            case 4: return "Eliminations 32s";
-            case 5: return "Eliminations 64s";
-            default: return "Eliminations";
+            case 0: return Dictionary.getString("final");
+            case 1: return Dictionary.getString("semi-finals");
+            case 2: return Dictionary.getString("quarter-finals");
+            case 3: return Dictionary.getString("eliminations") + " 16";
+            case 4: return Dictionary.getString("eliminations") + " 32";
+            default: return Dictionary.getString("eliminations");
         }
                
     }
