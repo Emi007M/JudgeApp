@@ -96,7 +96,6 @@ public class BracketChart extends Region {
         
         
         
-        
         //distances
         int distY = 50;
         int distClub = 20;
