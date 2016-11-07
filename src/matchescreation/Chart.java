@@ -244,6 +244,10 @@ public class Chart {
         
     }
     
+    public ArrayList<Node> getBracketMatches(){
+        return new ArrayList<Node>(matches);
+    }
+    
     public String getLvlToString(int i){
         switch(i){
             case 0: return Dictionary.getString("final");

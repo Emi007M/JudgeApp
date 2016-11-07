@@ -4,6 +4,9 @@
     
 }
 
+.label {
+    -fx-font-family: 'Ebrima';
+}
 #chartBox .label {
     -fx-min-width: 500;
     
@@ -114,4 +117,37 @@
     -fx-padding: 5;
     -fx-alignment: center;
     -fx-background-color: transparent;
+}
+
+
+
+
+#bracket-chart {
+    -fx-border-color:#d50000;
+    -fx-border-width: 4;
+    
+}
+
+#bracket-chart .label {
+    
+    -fx-font-size: 16;
+    -fx-text-fill: rgb(222,222,222);
+    -fx-background-color: transparent;
+    -fx-min-width: 100;
+    -fx-alignment: BASELINE_LEFT;
+}
+    
+#bracket-chart .label.club {
+    -fx-font-size: 13;
+}
+    
+#bracket-chart .label.score {
+    -fx-font-size: 16;
+    -fx-alignment: TOP_RIGHT;
+    -fx-min-width: 10;
+}
+
+#bracket-chart .line {
+    -fx-stroke: rgb(125,125,125);
+    -fx-stroke-width: 2;
 }

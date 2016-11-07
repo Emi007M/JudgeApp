@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import matchescreation.view.ChartMakerController;
 
@@ -29,8 +30,6 @@ public class Main extends Application {
     
     public Chart currentChart;
     
-//    public Locale locale;
-//    public ResourceBundle messages;
     
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -51,6 +50,8 @@ public class Main extends Application {
     }
     
     public void initRootLayout() {
+      
+        
         try {
             // Load root layout from fxml file.
             rootLayout = (BorderPane) FXMLLoader.load(getClass().getResource("view/RootLayout.fxml"));

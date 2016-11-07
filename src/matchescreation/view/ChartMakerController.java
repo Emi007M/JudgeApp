@@ -11,21 +11,29 @@ import java.beans.EventHandler;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.VPos;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.TextAlignment;
 import matchescreation.Chart;
 import matchescreation.Dictionary;
 import matchescreation.Main;
@@ -209,7 +217,7 @@ public class ChartMakerController implements Initializable{
             labels.add(new Label(mainApp.currentChart.getLvl(i)));
    
         chartBox.getChildren().setAll(labels);
-        
+        showBrackets();
         updateMatchesBox();
         
     }
@@ -322,5 +330,63 @@ public class ChartMakerController implements Initializable{
     public void setChartRoot(AnchorPane root) {
         this.root = root;
     }
+    
+    
+    public void showBrackets() {
+//        Canvas canvas = new Canvas(800, 500);
+//        GraphicsContext gc = canvas.getGraphicsContext2D();
+//        
+        chartBox.setStyle("-fx-background-color: #222");
+        BracketChart chart = new BracketChart();
+        
+        ArrayList<Node> matches = mainApp.currentChart.getBracketMatches();
+        ArrayList<Control> elements = new ArrayList<>();
+        
+        
+        
+        Node current = mainApp.currentChart.getFirstMatch();
+        
+//        int lvl = -1;
+//        
+//        for(Node m: matches){
+//            if(lvl != m.getChartLvl()) {
+//                lvl = m.getChartLvl();
+//                Label l = new Label(mainApp.currentChart.getLvlToString(lvl));
+//                l.getStyleClass().add("lvl");
+//                elements.add(l);
+//            }
+//            Label l = new Label(m.toString());
+//            if(m.equals(current)) l.getStyleClass().add("current");
+//            elements.add(l);
+//        }
+//        
+//        gc.fillText(
+//            "Text centered on your Canvas", 
+//            Math.round(canvas.getWidth()  / 2), 
+//            Math.round(canvas.getHeight() / 2)
+//        );
+
+    int lvl = matches.get(0).getChartLvl();
+    int cur_lvl = lvl;
+    int m_amount = matches.size();
+    int j = 0;
+    for(int i = 0; i< m_amount;i++){
+        if(cur_lvl>matches.get(i).getChartLvl()){
+            cur_lvl = matches.get(i).getChartLvl();
+            j=0;
+        }
+        int tmp = lvl-cur_lvl;
+        int posX = (tmp)*300+10; //horizontal distance
+        int posY = (int) (Math.pow(2,tmp)*50 + j++*100*(Math.pow(2, tmp))); //top shift + vertical distance
+        chart.addMatch(matches.get(i), posX, posY);
+        
+    }
+        
+        
+        
+        chartBox.getChildren().add(chart);
+    }
+    
+    
     
 }
