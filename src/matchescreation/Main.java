@@ -72,6 +72,7 @@ public class Main extends Application {
             loader.setLocation(Main.class.getResource("view/ChartMaker.fxml"));
             AnchorPane chartMaker = (AnchorPane) loader.load();
            // AnchorPane chartMaker = (AnchorPane) FXMLLoader.load(getClass().getResource("view/ChartMaker.fxml"));
+           
 
             // Set it into the center of root layout.
             rootLayout.setCenter(chartMaker);

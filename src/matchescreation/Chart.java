@@ -248,7 +248,7 @@ public class Chart {
         return new ArrayList<Node>(matches);
     }
     
-    public String getLvlToString(int i){
+    public static String getLvlToString(int i){
         switch(i){
             case 0: return Dictionary.getString("final");
             case 1: return Dictionary.getString("semi-finals");

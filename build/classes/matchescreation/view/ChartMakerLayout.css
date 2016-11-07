@@ -125,7 +125,7 @@
 #bracket-chart {
     -fx-border-color:#d50000;
     -fx-border-width: 4;
-    
+ 
 }
 
 #bracket-chart .label {
@@ -150,4 +150,39 @@
 #bracket-chart .line {
     -fx-stroke: rgb(125,125,125);
     -fx-stroke-width: 2;
+}
+#bracket-chart .line.dotted-line {
+    -fx-stroke: rgba(125,125,125,0.2);
+}
+
+#bracket-chart .current-match {
+    -fx-stroke: rgb(0,114,188);
+    -fx-stroke-width: 2;
+    -fx-fill: rgba(0,114,188,0.2); 
+}
+#bracket-chart .current-match-text {
+    -fx-text-fill: rgb(0,114,188);
+    -fx-font-size: 10;
+    -fx-alignment: TOP_CENTER;
+    
+    -fx-font-weight: bold;
+}
+
+
+#bracket-chart .lvl {
+    -fx-text-fill: #161719;
+    -fx-font-size: 20;
+    -fx-alignment: TOP_CENTER;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(111,111,111,0.4);
+    -fx-padding: 10;
+}
+#bracket-chart .lvl.lvl-2 {
+    -fx-background-color: rgba(111,111,111,0.6);
+}
+#bracket-chart .lvl.lvl-1 {
+    -fx-background-color: rgba(111,111,111,0.8);
+}
+#bracket-chart .lvl.lvl-0 {
+    -fx-background-color: rgba(111,111,111,1.0);
 }

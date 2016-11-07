@@ -4,6 +4,7 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -17,26 +18,30 @@
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.view.ChartMakerController">
     <children>
-      <ScrollPane layoutX="100.0" layoutY="14.0" prefHeight="302.0" prefWidth="729.0">
+      <ScrollPane id="BracketScrollPane" fx:id="bracketScrollPane" layoutX="100.0" layoutY="14.0" prefHeight="388.0" prefWidth="1149.0">
          <content>
-            <VBox id="chartBox" fx:id="chartBox" />
+            <Group id="bracketZoomGroup" fx:id="bracketZoomGroup">
+               <children>
+                  <VBox id="chartBox" fx:id="chartBox" />
+               </children>
+            </Group>
          </content>
       </ScrollPane>
-      <ScrollPane id="matchesBoxContainer" layoutX="896.0" layoutY="14.0" prefHeight="279.0" prefWidth="400.0">
+      <ScrollPane id="matchesBoxContainer" layoutX="914.0" layoutY="465.0" prefHeight="201.0" prefWidth="400.0">
          <content>
             <VBox id="matchesBox" fx:id="matchesBox" />
          </content>
       </ScrollPane>
-      <HBox fx:id="box" layoutY="318.0" prefHeight="100.0" prefWidth="273.0">
+      <HBox fx:id="box" layoutX="632.0" layoutY="417.0" prefHeight="50.0" prefWidth="184.0">
          <children>
             <Button id="button-generate" fx:id="generateBtn" mnemonicParsing="false" onAction="#handleButtonAction" text="generate" />
             <TextField fx:id="athletesNo" prefHeight="31.0" prefWidth="94.0" text="4" />
          </children></HBox>
-      <AnchorPane fx:id="currentMatch" layoutX="100.0" layoutY="462.0" prefHeight="69.0" prefWidth="700.0">
+      <AnchorPane fx:id="currentMatch" layoutX="100.0" layoutY="475.0" prefHeight="69.0" prefWidth="700.0">
          <children>
             <Label fx:id="currentShiro" layoutX="14.0" layoutY="17.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="shiro">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="Corbel Bold" size="24.0" />
                </font>
             </Label>
             <Label fx:id="currentAka" alignment="CENTER_RIGHT" layoutX="443.0" layoutY="17.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="aka">
@@ -64,15 +69,15 @@
             <Label layoutX="341.0" layoutY="38.0" styleClass="vs" text="vs" />
          </children>
       </AnchorPane>
-      <Button fx:id="startBtn" layoutX="295.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleStartBtnAction" text="Start matches" />
-      <Button fx:id="applyBtn" layoutX="422.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleNextBtnAction" text="&gt;" />
-      <Label fx:id="currLvl" layoutX="418.0" layoutY="430.0" text="- LVL - ">
+      <Button fx:id="startBtn" layoutX="100.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleStartBtnAction" text="Start matches" />
+      <Button fx:id="applyBtn" layoutX="218.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleNextBtnAction" text="&gt;" />
+      <Label fx:id="currLvl" layoutX="418.0" layoutY="441.0" text="- LVL - ">
          <styleClass>
             <String fx:value="lvl" />
             <String fx:value="currentMatch" />
          </styleClass>
       </Label>
-      <Label fx:id="nextLvl" layoutX="415.0" layoutY="580.0" text="- LVL - ">
+      <Label fx:id="nextLvl" layoutX="415.0" layoutY="584.0" text="- LVL - ">
          <styleClass>
             <String fx:value="lvl" />
             <String fx:value="currentMatch" />
@@ -121,7 +126,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Polygon id="arrowMatch" fill="WHITE" layoutX="450.0" layoutY="573.0" scaleX="0.2" scaleY="-0.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Polygon id="arrowMatch" fill="WHITE" layoutX="450.0" layoutY="585.0" scaleX="0.2" scaleY="-0.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
         <points>
           <Double fx:value="-50.0" />
           <Double fx:value="40.0" />
