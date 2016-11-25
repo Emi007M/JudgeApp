@@ -10,7 +10,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
@@ -18,26 +18,25 @@
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.view.ChartMakerController">
     <children>
-      <ScrollPane id="BracketScrollPane" fx:id="bracketScrollPane" layoutX="100.0" layoutY="14.0" prefHeight="388.0" prefWidth="1149.0">
+      <ScrollPane id="bracketScrollPane" fx:id="bracketScrollPane" hbarPolicy="ALWAYS" layoutX="23.0" layoutY="14.0" prefHeight="435.0" prefWidth="889.0" vbarPolicy="ALWAYS">
          <content>
-            <Group id="bracketZoomGroup" fx:id="bracketZoomGroup">
+            <Group fx:id="bracketScrollContent">
                <children>
-                  <VBox id="chartBox" fx:id="chartBox" />
+                  <StackPane fx:id="bracketZoomGroup" alignment="TOP_LEFT">
+                     <children>
+                        <VBox id="chartBox" fx:id="chartBox" />
+                     </children>
+                  </StackPane>
                </children>
             </Group>
          </content>
       </ScrollPane>
-      <ScrollPane id="matchesBoxContainer" layoutX="914.0" layoutY="465.0" prefHeight="201.0" prefWidth="400.0">
+      <ScrollPane id="matchesBoxContainer" layoutX="925.0" layoutY="14.0" prefHeight="388.0" prefWidth="456.0">
          <content>
             <VBox id="matchesBox" fx:id="matchesBox" />
          </content>
       </ScrollPane>
-      <HBox fx:id="box" layoutX="632.0" layoutY="417.0" prefHeight="50.0" prefWidth="184.0">
-         <children>
-            <Button id="button-generate" fx:id="generateBtn" mnemonicParsing="false" onAction="#handleButtonAction" text="generate" />
-            <TextField fx:id="athletesNo" prefHeight="31.0" prefWidth="94.0" text="4" />
-         </children></HBox>
-      <AnchorPane fx:id="currentMatch" layoutX="100.0" layoutY="475.0" prefHeight="69.0" prefWidth="700.0">
+      <AnchorPane fx:id="currentMatch" layoutX="341.0" layoutY="513.0" prefHeight="69.0" prefWidth="700.0">
          <children>
             <Label fx:id="currentShiro" layoutX="14.0" layoutY="17.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="shiro">
                <font>
@@ -69,21 +68,21 @@
             <Label layoutX="341.0" layoutY="38.0" styleClass="vs" text="vs" />
          </children>
       </AnchorPane>
-      <Button fx:id="startBtn" layoutX="100.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleStartBtnAction" text="Start matches" />
-      <Button fx:id="applyBtn" layoutX="218.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleNextBtnAction" text="&gt;" />
-      <Label fx:id="currLvl" layoutX="418.0" layoutY="441.0" text="- LVL - ">
+      <Button fx:id="startBtn" layoutX="23.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleStartBtnAction" text="Start matches" />
+      <Button fx:id="applyBtn" layoutX="23.0" layoutY="557.0" mnemonicParsing="false" onAction="#handleNextBtnAction" text="&gt;" />
+      <Label fx:id="currLvl" layoutX="659.0" layoutY="479.0" text="- LVL - ">
          <styleClass>
             <String fx:value="lvl" />
             <String fx:value="currentMatch" />
          </styleClass>
       </Label>
-      <Label fx:id="nextLvl" layoutX="415.0" layoutY="584.0" text="- LVL - ">
+      <Label fx:id="nextLvl" layoutX="656.0" layoutY="622.0" text="- LVL - ">
          <styleClass>
             <String fx:value="lvl" />
             <String fx:value="currentMatch" />
          </styleClass>
       </Label>
-      <AnchorPane fx:id="nextMatch" layoutX="100.0" layoutY="605.0" prefHeight="69.0" prefWidth="700.0">
+      <AnchorPane fx:id="nextMatch" layoutX="341.0" layoutY="643.0" prefHeight="69.0" prefWidth="700.0">
          <children>
             <Label layoutX="341.0" layoutY="34.0" styleClass="vs" text="vs" />
             <Rectangle id="borderShiro" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="67.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" styleClass="border" width="314.0" />
@@ -126,7 +125,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Polygon id="arrowMatch" fill="WHITE" layoutX="450.0" layoutY="585.0" scaleX="0.2" scaleY="-0.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Polygon id="arrowMatch" fill="WHITE" layoutX="450.0" layoutY="634.0" scaleX="0.2" scaleY="-0.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
         <points>
           <Double fx:value="-50.0" />
           <Double fx:value="40.0" />
@@ -136,6 +135,8 @@
           <Double fx:value="-60.0" />
         </points>
       </Polygon>
+      <Button id="button-generate" fx:id="generateBtn" layoutX="23.0" layoutY="654.0" mnemonicParsing="false" onAction="#handleButtonAction" text="generate" />
+      <TextField fx:id="athletesNo" layoutX="23.0" layoutY="693.0" prefHeight="31.0" prefWidth="79.0" text="4" />
     </children>
    <stylesheets>
       <URL value="@ChartMakerLayout.css" />

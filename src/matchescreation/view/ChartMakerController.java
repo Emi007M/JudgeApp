@@ -33,6 +33,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -62,7 +63,9 @@ public class ChartMakerController implements Initializable{
     @FXML
     private ScrollPane bracketScrollPane;
     @FXML
-    private Group bracketZoomGroup;
+    private Group bracketScrollContent;
+    @FXML
+    private StackPane bracketZoomGroup;
     
     @FXML
     private TextField athletesNo;
@@ -115,7 +118,7 @@ public class ChartMakerController implements Initializable{
         
         //box.getChildren().add(new Button("Java Button"));
  
-         bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup));
+       //  bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup,));
         
         
         
@@ -326,12 +329,14 @@ public class ChartMakerController implements Initializable{
                 lvl = m.getChartLvl();
                 Label l = new Label(mainApp.currentChart.getLvlToString(lvl));
                 l.getStyleClass().add("lvl");
+                elements.add(new Label());
                 elements.add(l);
             }
             Label l = new Label(m.toString());
             if(m.equals(current)) l.getStyleClass().add("current");
             elements.add(l);
         }
+        elements.add(new Label());
         
         this.matchesBox.getChildren().setAll(elements);
     }
@@ -342,7 +347,8 @@ public class ChartMakerController implements Initializable{
     
     
     public void showBrackets() {
-        
+
+        bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup,chartBox));
         chartBox.setStyle("-fx-background-color: #222");
         
         
@@ -355,6 +361,14 @@ public class ChartMakerController implements Initializable{
         
         
         chartBox.getChildren().setAll(chart);
+      //  bracketScrollContent = new Group(bracketZoomGroup);
+        //bracketScrollPane.getChildrenUnmodifiable().setAll(bracketScrollContent);
+        
+        chart.setScrollFixed(bracketScrollPane, bracketScrollContent,bracketZoomGroup);
+        
+        
+        
+    
     }
     
     

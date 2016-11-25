@@ -6,12 +6,24 @@
 package matchescreation.view;
 
 import java.util.ArrayList;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
+import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -50,7 +62,7 @@ public class BracketChart extends Region {
         int j = 0;
         
         
-        addLvlNames();
+        
         
         
         for(int i = 0; i< m_amount;i++){
@@ -71,7 +83,11 @@ public class BracketChart extends Region {
                 addJoining(posX, posY, (int) ((Math.pow(2, tmp-1))*vert_gap));
         }
         
+        
+        
         addDottedLine(lvl*300+30, (int) (Math.pow(2,lvl)*vert_gap));
+        
+        addLvlNames();
         
     }
     
@@ -179,6 +195,8 @@ public class BracketChart extends Region {
         this.getChildren().addAll(l_top, l_bottom, l_middle, l_vert);
     }
     
+    private Pane lvlNames = new Pane();
+    
     private void addLvlNames(){
         int i = matches.get(0).getChartLvl();
         int j=0;
@@ -193,7 +211,10 @@ public class BracketChart extends Region {
             labels.add(l);
         }
         
-        this.getChildren().addAll(labels);
+        lvlNames = new Pane();
+        lvlNames.getChildren().addAll(labels);
+        this.getChildren().addAll(lvlNames);
+        
     }
     
     private void addDottedLine(int posX, int posY){
@@ -203,5 +224,133 @@ public class BracketChart extends Region {
         l.getStrokeDashArray().addAll(30d, 30d);
         
         this.getChildren().add(l);
+    }
+
+    
+    /**
+     * Sets names of levels for the bracket chart vertically fixed
+     * @param bracketScrollPane 
+     */
+    void setScrollFixed(ScrollPane bracketScrollPane, Group scrollContent, StackPane zoomGroup) {
+        zoomGroup.setMaxHeight(zoomGroup.getHeight());
+        
+        
+        
+        // Allow horizontal scrolling of fixed element:
+        // here we bind circle Y position
+        lvlNames.layoutYProperty().bind(
+                // to vertical scroll shift (which ranges from 0 to 1)
+                bracketScrollPane.vvalueProperty()
+                    // multiplied by (scrollableAreaHeight - visibleViewportHeight)
+                    .multiply(
+                        new ScrollPaneContentHeightBinding(scrollContent)
+                                .multiply(new ZoomBinding(zoomGroup))
+                            .subtract(
+                                new ScrollPaneViewPortHeightBinding(bracketScrollPane))
+                    
+                    ).divide(new ZoomBinding(zoomGroup))
+                    
+        );
+         zoomGroup.setPrefSize(
+      lvlNames.getParent().getParent().getLayoutX(),
+      lvlNames.getParent().getParent().getLayoutY()
+    );
+        
+//        bracketScrollPane.vvalueProperty().addListener( (observable, oldValue, newValue) -> {
+//            updateFixedPos();
+//        });        
+//        zoomGroup.scaleXProperty().addListener( (observable, oldValue, newValue) -> {
+//            updateFixedPos();
+//        });
+
+
+        lvlNames.layoutYProperty().addListener( (observable, oldValue, newValue) -> {
+            System.out.println("pos"+lvlNames.getLayoutY() 
+                    + "\tScale "+zoomGroup.getScaleY()
+                    +"\ttimes  "+bracketScrollPane.getVvalue()
+                    +"\ttimes ("+bracketScrollPane.getContent().getBoundsInLocal().getHeight()
+                    +"\t- " + bracketScrollPane.getBoundsInLocal().getHeight()
+                    +"\t/"+ bracketScrollPane.getHeight()
+                    +"\tb "+bracketScrollPane.getViewportBounds().getHeight()
+                    +")\t="+(bracketScrollPane.getVvalue()*(bracketScrollPane.getContent().getBoundsInLocal().getHeight()-bracketScrollPane.getViewportBounds().getHeight())));
+        });
+        
+        zoomGroup.setMinSize(230.0, 230.0);
+      //  zoomGroup.setPrefSize(USE_PREF_SIZE, USE_PREF_SIZE);
+   // zoomGroup.setPrefSize(20,20);
+        
+        bracketScrollPane.viewportBoundsProperty().addListener(
+  new ChangeListener<Bounds>() {
+  @Override 
+  public void changed(ObservableValue<? extends Bounds> observableValue, Bounds oldBounds, Bounds newBounds) {
+    zoomGroup.setPrefSize(
+      lvlNames.getParent().getParent().getLayoutX(),
+      lvlNames.getParent().getParent().getLayoutY()
+    );
+  }
+  });
+
+         
+        
+    }
+    
+//    private void updateFixedPos(ScrollPane sp, Group g){
+//        lvlNames.setLayoutX(sp.vvalueProperty()
+//                    // multiplied by (scrollableAreaHeight - visibleViewportHeight)
+//                    .multiply(
+//                        lvlNames.heightProperty()
+//                            .subtract(
+//                                new ScrollPaneViewPortHeightBinding(sp))
+//                    
+//                    ).multiply(g.getScaleY()));
+//    }
+    
+     private static class ScrollPaneContentHeightBinding extends DoubleBinding {
+
+        private final Group content;
+        //private final DoubleProperty contentHeight;
+
+        public ScrollPaneContentHeightBinding(Group content) {
+            this.content = content;
+         //   contentHeight = new SimpleDoubleProperty(root.getContent().getBoundsInLocal().getHeight());
+       //     super.bind(content.boundsInLocalProperty());
+        }
+
+        @Override
+        protected double computeValue() {
+            System.out.println("contentHeight "+content.getBoundsInLocal().getHeight());         
+            return content.getBoundsInLocal().getHeight();
+        }
+    }
+      private static class ScrollPaneViewPortHeightBinding extends DoubleBinding {
+
+        private final ScrollPane root;
+
+        public ScrollPaneViewPortHeightBinding(ScrollPane root) {
+            this.root = root;
+            super.bind(root.viewportBoundsProperty());
+        }
+
+        @Override
+        protected double computeValue() {
+            System.out.println("viewportHeight "+root.getViewportBounds().getHeight());         
+            return root.getViewportBounds().getHeight();
+        }
+    }
+     
+        private static class ZoomBinding extends DoubleBinding {
+
+         private final StackPane zoomGroup;
+      
+        public ZoomBinding(StackPane zoomGroup) {
+            this.zoomGroup = zoomGroup;
+            super.bind(zoomGroup.scaleYProperty());
+        }
+
+        @Override
+        protected double computeValue() {
+            System.out.println("zoom "+zoomGroup.getScaleY());         
+            return zoomGroup.getScaleY();
+        }
     }
 }

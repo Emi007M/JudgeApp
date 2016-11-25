@@ -102,24 +102,25 @@
     -fx-background-color: transparent;
 }
 
-#matchesBox .lvl {
-    -fx-font-size :16;
-    -fx-text-fill: black;    
-    -fx-font-style: italic;
-    
-    -fx-padding: 15 5 5 5;
-    -fx-border-color: blue;
-    -fx-border-width: 0 0 1 0;
-}
+
 
 #matchesBox .label {
-    -fx-min-width: 500px;
-    -fx-padding: 5;
+    -fx-min-width: 430px;
+        -fx-text-fill: white;  
+    -fx-padding: 5 5 10 5;
     -fx-alignment: center;
     -fx-background-color: transparent;
 }
 
-
+#matchesBox .label.lvl {
+    -fx-font-size: 24;
+    -fx-text-fill: white;    
+    -fx-font-style: italic;
+    
+    -fx-padding: 15 5 5 5; 
+    -fx-border-color: blue;
+    -fx-border-width: 1 0 0 0;
+}
 
 
 #bracket-chart {
@@ -186,3 +187,35 @@
 #bracket-chart .lvl.lvl-0 {
     -fx-background-color: rgba(111,111,111,1.0);
 }
+
+#bracketScrollPane, #matchesBoxContainer {
+    -fx-background-color: rgba(0,111,0,0.0);
+}
+
+.scroll-bar {
+    -fx-background-color:transparent;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 10,0,0,1 );
+}
+
+.scroll-bar .track {
+     -fx-background-color: #282828;
+     -fx-border-color: #222;
+     -fx-background-radius: 0em;
+}
+.scroll-bar .thumb {
+     -fx-background-color: #353535;
+     -fx-border-color: #222;
+     -fx-background-radius: 0em;
+}
+.scroll-bar .thumb:hover {
+    -fx-background-color: #444;
+}
+.scroll-pane .corner {
+    -fx-background-color: #333;
+}
+
+.scroll-bar .decrement-button:hover, 
+.scroll-bar .increment-button:hover {
+    -fx-background-color: #444;
+} 
