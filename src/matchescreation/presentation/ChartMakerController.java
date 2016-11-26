@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matchescreation.view;
+package matchescreation.presentation;
 
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -38,11 +38,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.TextAlignment;
-import matchescreation.Chart;
-import matchescreation.Dictionary;
+import matchescreation.model.Chart;
+import matchescreation.model.Dictionary;
 import matchescreation.Main;
-import matchescreation.Node;
-import matchescreation.ZoomHandler;
+import matchescreation.model.Node;
+import matchescreation.model.ZoomHandler;
 
 
 /**
@@ -136,7 +136,7 @@ public class ChartMakerController implements Initializable{
         //int amount = Integer.parseInt( athletesNo.getText());
         //if(amount<=0) amount = 8;
         
-        mainApp.currentChart = new Chart();
+        mainApp.currentChart = new Chart(4);
         reloadChart();
     }
     
@@ -348,22 +348,19 @@ public class ChartMakerController implements Initializable{
     
     public void showBrackets() {
 
-        bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup,chartBox));
-        chartBox.setStyle("-fx-background-color: #222");
+        bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup));
         
         
         ArrayList<Node> matches = mainApp.currentChart.getBracketMatches();
   
         Node current = mainApp.currentChart.getFirstMatch();
         
-        BracketChart chart = new BracketChart(matches, current);
+        BracketView chart = new BracketView(matches, current);
 
         
         
         chartBox.getChildren().setAll(chart);
-      //  bracketScrollContent = new Group(bracketZoomGroup);
-        //bracketScrollPane.getChildrenUnmodifiable().setAll(bracketScrollContent);
-        
+       
         chart.setScrollFixed(bracketScrollPane, bracketScrollContent,bracketZoomGroup);
         
         

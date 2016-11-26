@@ -17,7 +17,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import matchescreation.view.ChartMakerController;
+import matchescreation.model.Chart;
+import matchescreation.model.Dictionary;
+import matchescreation.presentation.ChartMakerController;
 
 /**
  *
@@ -54,7 +56,7 @@ public class Main extends Application {
         
         try {
             // Load root layout from fxml file.
-            rootLayout = (BorderPane) FXMLLoader.load(getClass().getResource("view/RootLayout.fxml"));
+            rootLayout = (BorderPane) FXMLLoader.load(getClass().getResource("presentation/RootLayout.fxml"));
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
@@ -69,9 +71,9 @@ public class Main extends Application {
         try {
             // Load chart maker.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/ChartMaker.fxml"));
+            loader.setLocation(Main.class.getResource("presentation/ChartMaker.fxml"));
             AnchorPane chartMaker = (AnchorPane) loader.load();
-           // AnchorPane chartMaker = (AnchorPane) FXMLLoader.load(getClass().getResource("view/ChartMaker.fxml"));
+           // AnchorPane chartMaker = (AnchorPane) FXMLLoader.load(getClass().getResource("presentation/ChartMaker.fxml"));
            
 
             // Set it into the center of root layout.

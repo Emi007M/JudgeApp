@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matchescreation;
+package matchescreation.model;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -32,6 +32,7 @@ public class Athletes {
         competitors.add(new Person("Tomasz","Wilk",'m',2000,7,"Kumade"));
         
         competitors.add(new Person("Marian","Rokita",'m',2002,7,"Kumade"));
+        competitors.add(new Person("Łukasz","Buc",'m',2002,6,"KK44"));
         
         
     }

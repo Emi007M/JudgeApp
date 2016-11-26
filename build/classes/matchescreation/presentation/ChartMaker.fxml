@@ -16,13 +16,13 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.view.ChartMakerController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.presentation.ChartMakerController">
     <children>
       <ScrollPane id="bracketScrollPane" fx:id="bracketScrollPane" hbarPolicy="ALWAYS" layoutX="23.0" layoutY="14.0" prefHeight="435.0" prefWidth="889.0" vbarPolicy="ALWAYS">
          <content>
             <Group fx:id="bracketScrollContent">
                <children>
-                  <StackPane fx:id="bracketZoomGroup" alignment="TOP_LEFT">
+                  <StackPane id="bracketStack" fx:id="bracketZoomGroup" alignment="TOP_LEFT">
                      <children>
                         <VBox id="chartBox" fx:id="chartBox" />
                      </children>
@@ -125,7 +125,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Polygon id="arrowMatch" fill="WHITE" layoutX="450.0" layoutY="634.0" scaleX="0.2" scaleY="-0.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Polygon id="arrowMatch" fill="WHITE" layoutX="690.0" layoutY="628.0" scaleX="0.2" scaleY="-0.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
         <points>
           <Double fx:value="-50.0" />
           <Double fx:value="40.0" />

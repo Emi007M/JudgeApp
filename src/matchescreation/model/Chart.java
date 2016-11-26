@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matchescreation;
+package matchescreation.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,8 +29,12 @@ public class Chart {
     LinkedList<Node> matches;
     
     public Chart(){
-        this(8);
+        this(4);
     }
+    /**
+     * 
+     * @param x number of favouritized athletes
+     */
     public Chart(int x){
         ArrayList <Node> athletes = new ArrayList<>();
         
@@ -41,7 +45,7 @@ public class Chart {
             athletes.add(new Node(a.getCompetitors().get(i)));
         
         //mix list
-        randomizeList(athletes, 4);
+        randomizeList(athletes, x);
         
         //list should be already mixed with priviliged athletes on top positions
         InitializeMatches(athletes);
@@ -109,7 +113,7 @@ public class Chart {
      */
     private void randomizeList(ArrayList<Node> athletes, int favored) {
         
-        List<Node> toshuffle = athletes.subList(favored, athletes.size()-1);
+        List<Node> toshuffle = athletes.subList(favored, athletes.size());
         athletes = new ArrayList<Node>(athletes.subList(0, favored-1));
         
         Collections.shuffle(toshuffle);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matchescreation.view;
+package matchescreation.presentation;
 
 import java.util.ArrayList;
 import javafx.beans.binding.DoubleBinding;
@@ -28,29 +28,32 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import matchescreation.Chart;
-import matchescreation.Dictionary;
-import matchescreation.Node;
+import matchescreation.model.Chart;
+import matchescreation.model.Dictionary;
+import matchescreation.model.Node;
 
 /**
  *
  * @author Emilia
  */
-public class BracketChart extends Region {
+public class BracketView extends Region {
 
     private ArrayList<Node> matches;
     private Node current;
 
     private int vert_gap;
     private int match_width;
+    private int top_offset;
 
-    BracketChart(ArrayList<Node> matches, Node current) {
+    BracketView(ArrayList<Node> matches, Node current) {
         this.matches = matches;
         this.current = current;
         this.setId("bracket-chart");
 
         vert_gap = 70;
         match_width = 220;
+        
+        top_offset = 50;
 
         initBracket();
     }
@@ -60,6 +63,8 @@ public class BracketChart extends Region {
         int cur_lvl = lvl;
         int m_amount = matches.size();
         int j = 0;
+        
+        boolean currentMarked = false;
 
         for (int i = 0; i < m_amount; i++) {
             if (cur_lvl > matches.get(i).getChartLvl()) {
@@ -68,10 +73,14 @@ public class BracketChart extends Region {
             }
             int tmp = lvl - cur_lvl;
             int posX = (tmp) * 300 + 30; //horizontal distance
-            int posY = (int) (Math.pow(2, tmp) * vert_gap + j++ * 2 * vert_gap * (Math.pow(2, tmp))); // vertical distance + top shift
+            int posY = (int) (Math.pow(2, tmp) * vert_gap + j++ * 2 * vert_gap * (Math.pow(2, tmp)) + top_offset); // vertical distance + top shift
 
             if (matches.get(i).equals(current)) {
                 this.addCurrMatch(matches.get(i), posX, posY);
+                currentMarked = true;
+            } else if (currentMarked && matches.get(i).hasTwoAthletes()) {
+                this.addNextMatch(matches.get(i), posX, posY);
+                currentMarked = false;
             } else {
                 this.addMatch(matches.get(i), posX, posY);
             }
@@ -90,16 +99,16 @@ public class BracketChart extends Region {
     private void addMatch(Node match, int posX, int posY) {
 
         //prepare names
-        String akaName = "-";
-        String akaClub = "-";
+        String akaName = " ";
+        String akaClub = " ";
         if (match.getAka() != null && match.getAka().getAthlete() != null) {
             akaName = match.getAka().getAthlete().getFullName();
             akaClub = match.getAka().getAthlete().getClub();
         }
         String akaScore = (match.getScoreAka() != null) ? match.getScoreAka().toString() : "";
 
-        String shiroName = "-";
-        String shiroClub = "-";
+        String shiroName = " ";
+        String shiroClub = " ";
         if (match.getShiro() != null && match.getShiro().getAthlete() != null) {
             shiroName = match.getShiro().getAthlete().getFullName();
             shiroClub = match.getShiro().getAthlete().getClub();
@@ -115,11 +124,11 @@ public class BracketChart extends Region {
         int textShift = 15;
 
         //competitor color icons
-        ImageView akaIco = new ImageView("matchescreation/view/images/aka.png");
+        ImageView akaIco = new ImageView("matchescreation/presentation/images/aka.png");
         akaIco.setFitWidth(icoSize);
         akaIco.setFitHeight(icoSize);
         akaIco.relocate(posX, posY);
-        ImageView shiroIco = new ImageView("matchescreation/view/images/shiro.png");
+        ImageView shiroIco = new ImageView("matchescreation/presentation/images/shiro.png");
         shiroIco.setFitWidth(icoSize);
         shiroIco.setFitHeight(icoSize);
         shiroIco.relocate(posX, posY + distY);
@@ -160,6 +169,20 @@ public class BracketChart extends Region {
         Label l = new Label(Dictionary.getString("current-match").toUpperCase());
         l.relocate(posX - 15, posY - 35);
         l.getStyleClass().add("current-match-text");
+        l.setStyle("-fx-min-width: " + (match_width + 50) + ";");
+
+        this.getChildren().addAll(rect, l);
+
+        addMatch(match, posX, posY);
+    }
+    
+    private void addNextMatch(Node match, int posX, int posY) {
+        Rectangle rect = new Rectangle(posX - 15, posY - 15, match_width + 50, 100);
+        rect.getStyleClass().add("next-match");
+
+        Label l = new Label(Dictionary.getString("next-match").toUpperCase());
+        l.relocate(posX - 15, posY - 35);
+        l.getStyleClass().add("next-match-text");
         l.setStyle("-fx-min-width: " + (match_width + 50) + ";");
 
         this.getChildren().addAll(rect, l);
@@ -211,8 +234,13 @@ public class BracketChart extends Region {
 
     }
 
+    /**
+     * adds line on bracket chart indicating half of the chart
+     * @param posX
+     * @param posY 
+     */
     private void addDottedLine(int posX, int posY) {
-        Line l = new Line(30, posY + 35, posX - 10, posY + 35);
+        Line l = new Line(30, posY + 35 + top_offset, posX - 10, posY + 35 + top_offset);
         l.getStyleClass().add("line");
         l.getStyleClass().add("dotted-line");
         l.getStrokeDashArray().addAll(30d, 30d);
@@ -260,7 +288,7 @@ public class BracketChart extends Region {
 //                    + ")\t=" + (bracketScrollPane.getVvalue() * (bracketScrollPane.getContent().getBoundsInLocal().getHeight() - bracketScrollPane.getViewportBounds().getHeight())));
 //        });
 
-        zoomGroup.setMinSize(230.0, 230.0);
+        zoomGroup.setMinSize(10.0, 10.0);
 
         //
         //not sure yet if this will have to be 
