@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1381.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.presentation.ChartMakerController">
     <children>
@@ -39,28 +40,33 @@
              <BorderPane layoutX="2.0" prefHeight="168.0" prefWidth="766.0">
                  <left>
                      <VBox prefHeight="58.0" prefWidth="265.0">
-                         <Label fx:id="currentShiro" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="116.0" minWidth="243.0" prefHeight="31.0" prefWidth="269.0" text="shiro shiro 12345 666" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
-                            <font>
-                           <Font name="Microsoft PhagsPa Bold" size="36.0" />
-                        </font>
-                         </Label>
+                         
+                         <Text fx:id="currentShiro" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SHIRO" textAlignment="RIGHT" wrappingWidth="265">       
+                         </Text>
+<!--                         <Label fx:id="currentShiro" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="116.0" minWidth="243.0" prefHeight="31.0" prefWidth="269.0" text="shiro shiro 12345 666" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
+                            <font><Font name="Microsoft PhagsPa Bold" size="36.0" /></font>
+                         </Label>-->
                          <Label fx:id="currentShiroClub" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="150.0" minWidth="243.0" prefHeight="27.0" prefWidth="283.0" text="shiro club" textFill="WHITE">
                             <font><Font size="18.0" /></font>
                          </Label>
+                     
+                     
                      </VBox>
                  </left>
                  <right>
                      <VBox prefHeight="58.0" prefWidth="265.0">
-                         <Label fx:id="currentAka" layoutX="632.0" layoutY="117.0" maxHeight="1.7976931348623157E308" minWidth="243.0" prefHeight="31.0" prefWidth="266.0" text="aka" textFill="WHITE" wrapText="true">
+                         <Text fx:id="currentAka" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="AKA" textAlignment="LEFT" wrappingWidth="265">
+                         </Text>
+<!--                         <Label fx:id="currentAka" layoutX="632.0" layoutY="117.0" maxHeight="1.7976931348623157E308" minWidth="243.0" prefHeight="31.0" prefWidth="266.0" text="aka" textFill="WHITE" wrapText="true">
                             <font><Font name="Microsoft PhagsPa Bold" size="36.0" /></font>
-                         </Label>        
+                         </Label>        -->
                          <Label fx:id="currentAkaClub" layoutX="632.0" layoutY="151.0" minWidth="243.0" prefHeight="27.0" prefWidth="265.0" text="aka club" textFill="WHITE">
                             <font><Font size="18.0" /></font>
                          </Label>
                      </VBox>
                  </right>
                <top>
-                  <Label fx:id="currLvl" alignment="TOP_CENTER" prefHeight="110.0" prefWidth="193.0" text="- LVL - " BorderPane.alignment="CENTER">
+                  <Label fx:id="currLvl" alignment="TOP_CENTER" prefHeight="98.0" prefWidth="193.0" text="- LVL - " BorderPane.alignment="CENTER">
                      <styleClass>
                         <String fx:value="lvl" />
                         <String fx:value="currentMatch" />

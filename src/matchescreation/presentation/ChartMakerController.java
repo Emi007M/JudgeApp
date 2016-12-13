@@ -37,6 +37,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import matchescreation.model.Chart;
 import matchescreation.model.Dictionary;
@@ -74,9 +75,9 @@ public class ChartMakerController implements Initializable{
     @FXML
     private Label currLvl;
     @FXML
-    private Label currentShiro;
+    private Text currentShiro;
     @FXML
-    private Label currentAka;
+    private Text currentAka;
     @FXML
     private Label currentShiroClub;
     @FXML

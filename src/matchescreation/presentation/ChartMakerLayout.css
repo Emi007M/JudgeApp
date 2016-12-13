@@ -47,6 +47,11 @@
     -fx-background-repeat: no-repeat;
 }
 
+#currentAka, #currentShiro {
+    -fx-line-spacing: -0.3em;
+    -fx-font-size: 34;
+    -fx-font-weight: bold;
+}
 #currentAka, #currentAkaClub {
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,-2,2 ); 
 }
