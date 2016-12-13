@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.Double?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -10,13 +9,12 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.presentation.ChartMakerController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1381.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.presentation.ChartMakerController">
     <children>
       <ScrollPane id="bracketScrollPane" fx:id="bracketScrollPane" hbarPolicy="ALWAYS" layoutX="23.0" layoutY="14.0" prefHeight="435.0" prefWidth="889.0" vbarPolicy="ALWAYS">
          <content>
@@ -36,105 +34,120 @@
             <VBox id="matchesBox" fx:id="matchesBox" />
          </content>
       </ScrollPane>
-      <AnchorPane fx:id="currentMatch" layoutX="341.0" layoutY="513.0" prefHeight="69.0" prefWidth="700.0">
+      <AnchorPane id="score_container" fx:id="currentMatch" layoutX="236.0" layoutY="452.0" prefHeight="346.0" prefWidth="766.0">
          <children>
-            <Label fx:id="currentShiro" layoutX="14.0" layoutY="17.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="shiro">
-               <font>
-                  <Font name="Corbel Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="currentAka" alignment="CENTER_RIGHT" layoutX="443.0" layoutY="17.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="aka">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="currentShiroClub" layoutX="14.0" layoutY="51.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="shiro club" textFill="#515151">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Label fx:id="currentAkaClub" alignment="CENTER_RIGHT" layoutX="443.0" layoutY="51.0" minWidth="243.0" prefHeight="36.0" prefWidth="243.0" text="aka club" textFill="#515151">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Button id="shiroBtn" fx:id="shiroBtn" layoutX="254.0" layoutY="14.0" maxHeight="60.0" mnemonicParsing="false" onAction="#handleShiroBtnAction" onMouseClicked="#handleShiroBtnSubtract" prefHeight="60.0" prefWidth="60.0" text="0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
+             <BorderPane layoutX="2.0" prefHeight="168.0" prefWidth="766.0">
+                 <left>
+                     <VBox prefHeight="58.0" prefWidth="265.0">
+                         <Label fx:id="currentShiro" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="116.0" minWidth="243.0" prefHeight="31.0" prefWidth="269.0" text="shiro shiro 12345 666" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
+                            <font>
+                           <Font name="Microsoft PhagsPa Bold" size="36.0" />
+                        </font>
+                         </Label>
+                         <Label fx:id="currentShiroClub" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="150.0" minWidth="243.0" prefHeight="27.0" prefWidth="283.0" text="shiro club" textFill="WHITE">
+                            <font><Font size="18.0" /></font>
+                         </Label>
+                     </VBox>
+                 </left>
+                 <right>
+                     <VBox prefHeight="58.0" prefWidth="265.0">
+                         <Label fx:id="currentAka" layoutX="632.0" layoutY="117.0" maxHeight="1.7976931348623157E308" minWidth="243.0" prefHeight="31.0" prefWidth="266.0" text="aka" textFill="WHITE" wrapText="true">
+                            <font><Font name="Microsoft PhagsPa Bold" size="36.0" /></font>
+                         </Label>        
+                         <Label fx:id="currentAkaClub" layoutX="632.0" layoutY="151.0" minWidth="243.0" prefHeight="27.0" prefWidth="265.0" text="aka club" textFill="WHITE">
+                            <font><Font size="18.0" /></font>
+                         </Label>
+                     </VBox>
+                 </right>
+               <top>
+                  <Label fx:id="currLvl" alignment="TOP_CENTER" prefHeight="110.0" prefWidth="193.0" text="- LVL - " BorderPane.alignment="CENTER">
+                     <styleClass>
+                        <String fx:value="lvl" />
+                        <String fx:value="currentMatch" />
+                     </styleClass>
+                  </Label>
+               </top>      
+             </BorderPane>
+            <Label id="colon" layoutX="378.0" layoutY="131.0" text=":" textFill="#9e9e9e" />
+                
+            <Button id="shiroBtn" fx:id="shiroBtn" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" layoutX="284.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleShiroBtnAction" onMouseClicked="#handleShiroBtnSubtract" prefHeight="211.0" prefWidth="61.0" text="0" textAlignment="RIGHT">
                <padding>
-                  <Insets top="-1.0" />
-               </padding>
-            </Button>
-            <Button id="akaBtn" fx:id="akaBtn" layoutX="386.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAkaBtnAction" onMouseClicked="#handleAkaBtnSubtract" prefHeight="60.0" prefWidth="60.0" text="0" />
-            <Label layoutX="341.0" layoutY="38.0" styleClass="vs" text="vs" />
+                  <Insets right="15.0" />
+               </padding></Button>
+            <Button id="akaBtn" fx:id="akaBtn" alignment="BASELINE_LEFT" ellipsisString="" layoutX="383.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleAkaBtnAction" onMouseClicked="#handleAkaBtnSubtract" prefHeight="60.0" prefWidth="60.0" text="0">
+               <padding>
+                  <Insets left="15.0" />
+               </padding></Button>
+            
+            
+            <BorderPane layoutX="66.0" layoutY="254.0" prefHeight="95.0" prefWidth="634.0">
+               <bottom>
+                  <Label fx:id="nextLvl" alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="208.0" text="- LVL - " BorderPane.alignment="CENTER">
+                     <styleClass>
+                        <String fx:value="lvl" />
+                        <String fx:value="currentMatch" />
+                     </styleClass>
+                  </Label>
+               </bottom>
+               <left>
+                  <VBox prefHeight="63.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="nextShiro" alignment="CENTER_RIGHT" minWidth="218.0" prefHeight="40.0" prefWidth="260.0" text="shiro">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="shiro" />
+                              <String fx:value="nextShiro" />
+                           </styleClass>
+                        </Label>
+                        <Label fx:id="nextShiroClub" alignment="CENTER_RIGHT" minWidth="211.0" prefHeight="32.0" prefWidth="279.0" text="shiro club" textFill="#515151">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="shiroClub" />
+                              <String fx:value="nextShiro" />
+                           </styleClass>
+                        </Label>
+                     </children>
+                  </VBox>
+               </left>
+               <right>
+                  <VBox alignment="TOP_RIGHT" prefHeight="63.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="nextAka" minWidth="246.0" prefHeight="40.0" prefWidth="260.0" text="aka">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="aka" />
+                              <String fx:value="nextAka" />
+                           </styleClass>
+                        </Label>
+                        <Label fx:id="nextAkaClub" minWidth="236.0" prefHeight="32.0" prefWidth="260.0" text="aka club" textFill="#515151">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="akaClub" />
+                              <String fx:value="nextAka" />
+                           </styleClass>
+                        </Label>
+                     </children>
+                  </VBox>
+               </right>
+               <center>
+                  <Label alignment="TOP_CENTER" styleClass="vs" text="vs" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         
+            <Button id="nextBtn" fx:id="applyBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="357.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleNextBtnAction" prefHeight="77.0" prefWidth="58.0" />
+
+         
          </children>
       </AnchorPane>
       <Button fx:id="startBtn" layoutX="23.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleStartBtnAction" text="Start matches" />
-      <Button fx:id="applyBtn" layoutX="23.0" layoutY="557.0" mnemonicParsing="false" onAction="#handleNextBtnAction" text="&gt;" />
-      <Label fx:id="currLvl" layoutX="659.0" layoutY="479.0" text="- LVL - ">
-         <styleClass>
-            <String fx:value="lvl" />
-            <String fx:value="currentMatch" />
-         </styleClass>
-      </Label>
-      <Label fx:id="nextLvl" layoutX="656.0" layoutY="622.0" text="- LVL - ">
-         <styleClass>
-            <String fx:value="lvl" />
-            <String fx:value="currentMatch" />
-         </styleClass>
-      </Label>
-      <AnchorPane fx:id="nextMatch" layoutX="341.0" layoutY="643.0" prefHeight="69.0" prefWidth="700.0">
-         <children>
-            <Label layoutX="341.0" layoutY="34.0" styleClass="vs" text="vs" />
-            <Rectangle id="borderShiro" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="67.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" styleClass="border" width="314.0" />
-            <Rectangle id="borderAka" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="67.0" layoutX="386.0" layoutY="13.0" stroke="BLACK" strokeType="INSIDE" styleClass="border" width="314.0" />
-            <Label fx:id="nextShiro" layoutX="14.0" layoutY="17.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="shiro">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="shiro" />
-                  <String fx:value="nextShiro" />
-               </styleClass>
-            </Label>
-            <Label fx:id="nextAka" alignment="CENTER_RIGHT" layoutX="386.0" layoutY="17.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="aka">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="aka" />
-                  <String fx:value="nextAka" />
-               </styleClass>
-            </Label>
-            <Label fx:id="nextShiroClub" layoutX="14.0" layoutY="44.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="shiro club" textFill="#515151">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="shiroClub" />
-                  <String fx:value="nextShiro" />
-               </styleClass>
-            </Label>
-            <Label fx:id="nextAkaClub" alignment="CENTER_RIGHT" layoutX="386.0" layoutY="43.0" minWidth="300.0" prefHeight="36.0" prefWidth="300.0" text="aka club" textFill="#515151">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="akaClub" />
-                  <String fx:value="nextAka" />
-               </styleClass>
-            </Label>
-         </children>
-      </AnchorPane>
-      <Polygon id="arrowMatch" fill="WHITE" layoutX="690.0" layoutY="628.0" scaleX="0.2" scaleY="-0.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
-        <points>
-          <Double fx:value="-50.0" />
-          <Double fx:value="40.0" />
-          <Double fx:value="50.0" />
-          <Double fx:value="40.0" />
-          <Double fx:value="0.0" />
-          <Double fx:value="-60.0" />
-        </points>
-      </Polygon>
       <Button id="button-generate" fx:id="generateBtn" layoutX="23.0" layoutY="654.0" mnemonicParsing="false" onAction="#handleButtonAction" text="generate" />
       <TextField fx:id="athletesNo" layoutX="23.0" layoutY="693.0" prefHeight="31.0" prefWidth="79.0" text="4" />
     </children>

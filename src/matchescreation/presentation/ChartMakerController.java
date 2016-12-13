@@ -246,10 +246,10 @@ public class ChartMakerController implements Initializable{
             this.akaBtn.setText("0");
             this.shiroBtn.setText("0");
 
-            this.currentAka.setText(match.getAka().getAthlete().getFullName());
-            this.currentShiro.setText(match.getShiro().getAthlete().getFullName());
-            this.currentAkaClub.setText(match.getAka().getAthlete().getClub());
-            this.currentShiroClub.setText(match.getShiro().getAthlete().getClub());
+            this.currentAka.setText(match.getAka().getAthlete().getFullName().toUpperCase());
+            this.currentShiro.setText(match.getShiro().getAthlete().getFullName().toUpperCase());
+            this.currentAkaClub.setText(match.getAka().getAthlete().getClub().toUpperCase());
+            this.currentShiroClub.setText(match.getShiro().getAthlete().getClub().toUpperCase());
 
 
 
@@ -290,10 +290,10 @@ public class ChartMakerController implements Initializable{
         //if there are both athletes
         if(match.hasOneAthlete()==null){
           
-          this.nextAka.setText(match.getAka().getAthlete().getFullName());
-          this.nextShiro.setText(match.getShiro().getAthlete().getFullName());
-          this.nextAkaClub.setText(match.getAka().getAthlete().getClub());
-          this.nextShiroClub.setText(match.getShiro().getAthlete().getClub());
+          this.nextAka.setText(match.getAka().getAthlete().getFullName().toUpperCase());
+          this.nextShiro.setText(match.getShiro().getAthlete().getFullName().toUpperCase());
+          this.nextAkaClub.setText(match.getAka().getAthlete().getClub().toUpperCase());
+          this.nextShiroClub.setText(match.getShiro().getAthlete().getClub().toUpperCase());
         } 
         else {//if there is only one athlete
             this.nextAka.setText("");

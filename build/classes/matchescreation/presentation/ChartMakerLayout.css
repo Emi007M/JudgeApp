@@ -1,11 +1,10 @@
 
-
 .root {
-    
+    -fx-font-family: TOXIA;
 }
 
-.label {
-    -fx-font-family: 'Ebrima';
+.label, .button {
+    -fx-font-family: 'Microsoft PhagsPa';
 }
 #chartBox .label {
     -fx-min-width: 500;
@@ -22,7 +21,7 @@
 }
 
 #currentMatch {
-    -fx-background-color: rgba(255,255,255,0.7);
+    
 }
 
 #currentMatch .button {
@@ -40,18 +39,72 @@
     -fx-border-width: 3;
 }
 
+
+
+#score_container {
+    -fx-background-image: url('images/score_bg.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+#currentAka, #currentAkaClub {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,-2,2 ); 
+}
+#currentShiro, #currentShiroClub {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2 ); 
+}
+
 #shiroBtn {
-    -fx-background-color: white;
-    -fx-text-fill: black;
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-image: url('images/shiro0.png');
+    -fx-text-fill: #bababa;
+    -fx-pref-width: 99px;
+    -fx-pref-height: 198px;
+    -fx-cursor: hand;
+    -fx-font-size: 40;
+   -fx-font-weight: bold;
 
 }
 
 #akaBtn {
-    -fx-background-color: #d50000;
-    -fx-text-fill: white;
-    
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-image: url('images/aka0.png');
+    -fx-text-fill: #bababa;
+    -fx-pref-width: 99px;
+    -fx-pref-height: 198px;   
+    -fx-cursor: hand; 
+    -fx-font-size: 40;
+ -fx-font-weight: bold;
+ 
 }
 
+#shiroBtn:hover {
+    -fx-background-image: url('images/shiro1.png');
+    -fx-font-size: 42;
+}
+
+#akaBtn:hover {
+    -fx-background-image: url('images/aka1.png'); 
+    -fx-font-size: 42;
+}
+
+#colon {
+    -fx-font-size: 38;
+     -fx-font-weight: bold;
+     -fx-text-fill: #656565;
+}
+
+#nextBtn {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-image: url('images/arrow0.png');
+    -fx-text-fill: #bababa;
+    -fx-pref-width: 41px;
+    -fx-pref-height: 41px;   
+    -fx-cursor: hand; 
+}
+#nextBtn:hover {
+    -fx-background-image: url('images/arrow1.png');
+}
 
 .lvl {
     -fx-font-size: 22;
@@ -62,21 +115,21 @@
 
 .border {
     -fx-fill: rgba(0,0,0,0);
-    -fx-stroke-width: 1;
+    -fx-stroke-width: 0;
 }
-
+/*
 #borderAka {
     -fx-stroke: #d50000;
 }
 #borderShiro {
     -fx-stroke: #fff;
-}
+}*/
 
 .nextShiro {
-    -fx-text-fill: fff;
+    -fx-text-fill: #c7c7c7;
 }
 .nextAka {
-    -fx-text-fill: #fff;
+    -fx-text-fill: #c7c7c7;
 }
 
 .vs {

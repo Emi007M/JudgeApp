@@ -55,6 +55,10 @@ public class Main extends Application {
       
         
         try {
+            
+            Font.loadFont(Main.class.getResource("presentation/resources/Toxia_FRE.ttf").toExternalForm(), 10);
+            Font.loadFont(Main.class.getResource("presentation/resources/phagspa.ttf").toExternalForm(), 10);
+            Font.loadFont(Main.class.getResource("presentation/resources/phagspab.ttf").toExternalForm(), 10);
             // Load root layout from fxml file.
             rootLayout = (BorderPane) FXMLLoader.load(getClass().getResource("presentation/RootLayout.fxml"));
 

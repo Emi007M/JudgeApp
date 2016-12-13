@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/Chart.java</file>
-            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/view/ChartMakerLayout.css</file>
-            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/view/ChartMakerController.java</file>
-            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/view/BracketChart.java</file>
+            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/model/Chart.java</file>
+            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/presentation/ChartMakerController.java</file>
+            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/presentation/ChartMaker.fxml</file>
+            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/presentation/RootLayout.fxml</file>
+            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/model/Athletes.java</file>
+            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/model/ZoomHandler.java</file>
+            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/model/Dictionary.java</file>
             <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/Main.java</file>
+            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/presentation/ChartMakerLayout.css</file>
+            <file>file:/W:/Netbeans%20Projects/MatchesCreation/src/matchescreation/presentation/BracketView.java</file>
         </group>
     </open-files>
 </project-private>

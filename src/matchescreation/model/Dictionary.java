@@ -24,7 +24,7 @@ public final class Dictionary {
         language = "en";
         country = "US";
         locale = new Locale(language, country);
-        //locale = Locale.getDefault();
+        locale = Locale.getDefault();
         
         final String dir = "matchescreation/model/dictionary/MessagesBundle";
         messages = ResourceBundle.getBundle(dir, locale);
