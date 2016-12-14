@@ -33,6 +33,7 @@ public class RootLayoutController implements Initializable{
             tabs.getTabs().add((Tab) FXMLLoader.load(getClass().getResource("startingListsTab/StartingListsTab.fxml")));
             tabs.getTabs().add((Tab) FXMLLoader.load(getClass().getResource("competitorsTab/CompetitorsTab.fxml")));
             tabs.getTabs().add((Tab) FXMLLoader.load(getClass().getResource("tournamentTab/TournamentTab.fxml")));
+            tabs.getTabs().add((Tab) FXMLLoader.load(getClass().getResource("resultsTab/ResultsTab.fxml")));
         
         } catch (IOException ex) {
             Logger.getLogger(RootLayoutController.class.getName()).log(Level.SEVERE, null, ex);

@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" id="AnchorPane" prefHeight="800.0" prefWidth="1381.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.presentation.ChartMakerController">
+<AnchorPane fx:id="root" id="AnchorPane" prefHeight="800.0" prefWidth="1381.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="matchescreation.presentation.tournamentTab.ChartMakerController">
     <children>
       <ScrollPane id="bracketScrollPane" fx:id="bracketScrollPane" hbarPolicy="ALWAYS" layoutX="23.0" layoutY="14.0" prefHeight="435.0" prefWidth="889.0" vbarPolicy="ALWAYS">
          <content>

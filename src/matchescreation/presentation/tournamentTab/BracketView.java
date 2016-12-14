@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matchescreation.presentation;
+package matchescreation.presentation.tournamentTab;
 
 import java.util.ArrayList;
 import javafx.beans.binding.DoubleBinding;

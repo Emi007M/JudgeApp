@@ -19,7 +19,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import matchescreation.model.Chart;
 import matchescreation.model.Dictionary;
-import matchescreation.presentation.ChartMakerController;
+import matchescreation.presentation.tournamentTab.ChartMakerController;
 
 /**
  *
@@ -30,7 +30,7 @@ public class Main extends Application {
     private Stage primaryStage;
     public BorderPane rootLayout;
     
-    public Chart currentChart;
+    //public Chart currentChart;
     
     
     @Override
@@ -44,7 +44,7 @@ public class Main extends Application {
 
         initRootLayout();
 
-        showChartMaker();
+        //showChartMaker();
         
 
         //currentChart = new Chart();
@@ -73,33 +73,33 @@ public class Main extends Application {
         }
     }
     
-    public void showChartMaker() {
-        try {
-            // Load chart maker.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("presentation/ChartMaker.fxml"));
-            
-            AnchorPane chartMaker = (AnchorPane) loader.load();
-           // AnchorPane chartMaker = (AnchorPane) FXMLLoader.load(getClass().getResource("presentation/ChartMaker.fxml"));
-           
-
-            // Set it into the center of root layout.
-            //rootLayout.setCenter(chartMaker);
-            AnchorPane tournamentTab = (AnchorPane) rootLayout.lookup("#tournamentTab");
-            AnchorPane.setTopAnchor(chartMaker, 10.0); 
-            tournamentTab.getChildren().add(chartMaker);
-            
-            // Give the controller access to the main app.
-        ChartMakerController controller = loader.getController();
-        controller.setMainApp(this);
-        controller.setChartRoot(chartMaker);
-        controller.reloadChart();
-        
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-   
+//    public void showChartMaker() {
+//        try {
+//            // Load chart maker.
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setLocation(Main.class.getResource("presentation/ChartMaker.fxml"));
+//            
+//            AnchorPane chartMaker = (AnchorPane) loader.load();
+//           // AnchorPane chartMaker = (AnchorPane) FXMLLoader.load(getClass().getResource("presentation/ChartMaker.fxml"));
+//           
+//
+//            // Set it into the center of root layout.
+//            //rootLayout.setCenter(chartMaker);
+//            AnchorPane tournamentTab = (AnchorPane) rootLayout.lookup("#tournamentTab");
+//            AnchorPane.setTopAnchor(chartMaker, 10.0); 
+//            tournamentTab.getChildren().add(chartMaker);
+//            
+//            // Give the controller access to the main app.
+//        ChartMakerController controller = loader.getController();
+////        controller.setMainApp(this);
+////        controller.setChartRoot(chartMaker);
+//        controller.reloadChart();
+//        
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//   
 
     /**
      * @param args the command line arguments

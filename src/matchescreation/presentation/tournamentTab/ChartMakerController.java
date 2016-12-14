@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matchescreation.presentation;
+package matchescreation.presentation.tournamentTab;
 
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -52,6 +52,7 @@ import matchescreation.model.ZoomHandler;
  */
 public class ChartMakerController implements Initializable{
     
+    @FXML
     private AnchorPane root;
  
     @FXML
@@ -108,7 +109,8 @@ public class ChartMakerController implements Initializable{
     
 
     
-    Main mainApp;
+    //Main mainApp;
+    Chart currentChart;
     
     public ChartMakerController(){
     }
@@ -126,7 +128,7 @@ public class ChartMakerController implements Initializable{
     }
     
     public void setMainApp(Main mainApp) {
-        this.mainApp = mainApp;
+        //this.mainApp = mainApp;
 
         //chart.setText(mainApp.getMatches());
     }
@@ -137,7 +139,7 @@ public class ChartMakerController implements Initializable{
         //int amount = Integer.parseInt( athletesNo.getText());
         //if(amount<=0) amount = 8;
         
-        mainApp.currentChart = new Chart(4);
+        currentChart = new Chart(4);
         reloadChart();
     }
     
@@ -197,7 +199,7 @@ public class ChartMakerController implements Initializable{
             return;
         }
         
-        Node match = mainApp.currentChart.getFirstMatch();
+        Node match = currentChart.getFirstMatch();
         match.setScoreAka(scoreAka);
         match.setScoreShiro(scoreShiro);
         if(scoreAka>scoreShiro) match.setAthlete(match.getAka().getAthlete());
@@ -210,11 +212,11 @@ public class ChartMakerController implements Initializable{
     
     public void reloadChart(){
         
-        if(mainApp.currentChart==null)
-            mainApp.currentChart = new Chart();
+        if(currentChart==null)
+            currentChart = new Chart();
         
         
-        int lvls = mainApp.currentChart.getMaxLvl();
+        int lvls = currentChart.getMaxLvl();
         
         
         //performance minimal notification overhead ->replaced code
@@ -222,12 +224,12 @@ public class ChartMakerController implements Initializable{
 //        chartBox.getChildren().clear();
 //        
 //        for(int i=lvls;i>=0;i--)
-//            chartBox.getChildren().add(new Label(mainApp.currentChart.getLvl(i)));
+//            chartBox.getChildren().add(new Label(currentChart.getLvl(i)));
 //        
 //
 //        List<Label> labels = new ArrayList<>();
 //        for(int i=lvls;i>=0;i--)
-//            labels.add(new Label(mainApp.currentChart.getLvl(i)));
+//            labels.add(new Label(currentChart.getLvl(i)));
    
         //chartBox.getChildren().setAll(labels);
         showBrackets();
@@ -237,10 +239,10 @@ public class ChartMakerController implements Initializable{
     
      
     public void updateCurrentMatch(){
-      Node match = mainApp.currentChart.getFirstMatch();
+      Node match = currentChart.getFirstMatch();
       if(match !=null){
           
-          this.currLvl.setText(mainApp.currentChart.getLvlToString(match.getChartLvl()));
+          this.currLvl.setText(currentChart.getLvlToString(match.getChartLvl()));
           
           //if there are both athletes
           if(match.hasOneAthlete()==null){
@@ -283,10 +285,10 @@ public class ChartMakerController implements Initializable{
     }
     
     public void updateNextMatch(){
-      Node match = mainApp.currentChart.getWaitingMatch();
+      Node match = currentChart.getWaitingMatch();
       if(match !=null ){
         
-        this.nextLvl.setText(mainApp.currentChart.getLvlToString(match.getChartLvl()));
+        this.nextLvl.setText(currentChart.getLvlToString(match.getChartLvl()));
         
         //if there are both athletes
         if(match.hasOneAthlete()==null){
@@ -318,17 +320,17 @@ public class ChartMakerController implements Initializable{
     }
     
     public void updateMatchesBox(){
-        ArrayList<Node> matches = mainApp.currentChart.getMatches();
+        ArrayList<Node> matches = currentChart.getMatches();
         ArrayList<Control> elements = new ArrayList<>();
         
-        Node current = mainApp.currentChart.getFirstMatch();
+        Node current = currentChart.getFirstMatch();
         
         int lvl = -1;
         
         for(Node m: matches){
             if(lvl != m.getChartLvl()) {
                 lvl = m.getChartLvl();
-                Label l = new Label(mainApp.currentChart.getLvlToString(lvl));
+                Label l = new Label(currentChart.getLvlToString(lvl));
                 l.getStyleClass().add("lvl");
                 elements.add(new Label());
                 elements.add(l);
@@ -342,9 +344,9 @@ public class ChartMakerController implements Initializable{
         this.matchesBox.getChildren().setAll(elements);
     }
 
-    public void setChartRoot(AnchorPane root) {
-        this.root = root;
-    }
+//    public void setChartRoot(AnchorPane root) {
+//        this.root = root;
+//    }
     
     
     public void showBrackets() {
@@ -352,9 +354,9 @@ public class ChartMakerController implements Initializable{
         bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup));
         
         
-        ArrayList<Node> matches = mainApp.currentChart.getBracketMatches();
+        ArrayList<Node> matches = currentChart.getBracketMatches();
   
-        Node current = mainApp.currentChart.getFirstMatch();
+        Node current = currentChart.getFirstMatch();
         
         BracketView chart = new BracketView(matches, current);
 

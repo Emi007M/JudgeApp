@@ -42,7 +42,7 @@
 
 
 #score_container {
-    -fx-background-image: url('resources/images/score_bg.png');
+    -fx-background-image: url('../resources/images/score_bg.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
@@ -61,7 +61,7 @@
 
 #shiroBtn {
     -fx-background-color: rgba(0,0,0,0);
-    -fx-background-image: url('resources/images/shiro0.png');
+    -fx-background-image: url('../resources/images/shiro0.png');
     -fx-text-fill: #bababa;
     -fx-pref-width: 99px;
     -fx-pref-height: 198px;
@@ -73,7 +73,7 @@
 
 #akaBtn {
     -fx-background-color: rgba(0,0,0,0);
-    -fx-background-image: url('resources/images/aka0.png');
+    -fx-background-image: url('../resources/images/aka0.png');
     -fx-text-fill: #bababa;
     -fx-pref-width: 99px;
     -fx-pref-height: 198px;   
@@ -84,12 +84,12 @@
 }
 
 #shiroBtn:hover {
-    -fx-background-image: url('resources/images/shiro1.png');
+    -fx-background-image: url('../resources/images/shiro1.png');
     -fx-font-size: 42;
 }
 
 #akaBtn:hover {
-    -fx-background-image: url('resources/images/aka1.png'); 
+    -fx-background-image: url('../resources/images/aka1.png'); 
     -fx-font-size: 42;
 }
 
@@ -101,14 +101,14 @@
 
 #nextBtn {
     -fx-background-color: rgba(0,0,0,0);
-    -fx-background-image: url('resources/images/arrow0.png');
+    -fx-background-image: url('../resources/images/arrow0.png');
     -fx-text-fill: #bababa;
     -fx-pref-width: 41px;
     -fx-pref-height: 41px;   
     -fx-cursor: hand; 
 }
 #nextBtn:hover {
-    -fx-background-image: url('resources/images/arrow1.png');
+    -fx-background-image: url('../resources/images/arrow1.png');
 }
 
 .lvl {

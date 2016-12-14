@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matchescreation.presentation.competitorsTab;
+package matchescreation.presentation.resultsTab;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Emilia
  */
-public class CompetitorsTabController implements Initializable{
+public class ResultsTabController implements Initializable{
     
     @FXML
     private AnchorPane rootPane;
