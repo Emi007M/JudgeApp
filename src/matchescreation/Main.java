@@ -81,7 +81,10 @@ public class Main extends Application {
            
 
             // Set it into the center of root layout.
-            rootLayout.setCenter(chartMaker);
+            //rootLayout.setCenter(chartMaker);
+            AnchorPane tournamentTab = (AnchorPane) rootLayout.lookup("#tournamentTab");
+            AnchorPane.setTopAnchor(chartMaker, 10.0); 
+            tournamentTab.getChildren().add(chartMaker);
             
             // Give the controller access to the main app.
         ChartMakerController controller = loader.getController();
