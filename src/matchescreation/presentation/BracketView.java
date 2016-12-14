@@ -124,11 +124,11 @@ public class BracketView extends Region {
         int textShift = 15;
 
         //competitor color icons
-        ImageView akaIco = new ImageView("matchescreation/presentation/images/aka.png");
+        ImageView akaIco = new ImageView("matchescreation/presentation/resources/images/aka.png");
         akaIco.setFitWidth(icoSize);
         akaIco.setFitHeight(icoSize);
         akaIco.relocate(posX, posY);
-        ImageView shiroIco = new ImageView("matchescreation/presentation/images/shiro.png");
+        ImageView shiroIco = new ImageView("matchescreation/presentation/resources/images/shiro.png");
         shiroIco.setFitWidth(icoSize);
         shiroIco.setFitHeight(icoSize);
         shiroIco.relocate(posX, posY + distY);

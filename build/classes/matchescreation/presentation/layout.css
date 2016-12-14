@@ -1,7 +1,7 @@
 .root {
 	/* -fx-background-color: #1f41bf;
          -fx-background-color: radial-gradient(center 50% 25% , radius 90% , #1f41bf, #0f117f); */
-         -fx-background-image: url('images/bg1.jpg'), url('images/bg2.png');
+         -fx-background-image: url('resources/images/bg1.jpg'), url('resources/images/bg2.png');
          -fx-background-position: center, top right;
          -fx-background-repeat: no-repeat, no-repeat;
          -fx-background-size: auto, auto 100%;
