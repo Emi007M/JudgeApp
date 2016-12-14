@@ -9,11 +9,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import jdk.nashorn.internal.objects.NativeArray;
+
 
 /**
  *
@@ -33,7 +38,7 @@ public class Chart {
     }
     /**
      * 
-     * @param x number of favouritized athletes
+     * @param x number of pre-ranked athletes
      */
     public Chart(int x){
         ArrayList <Node> athletes = new ArrayList<>();
@@ -44,14 +49,18 @@ public class Chart {
         for(int i=0; i< amount; i++)
             athletes.add(new Node(a.getCompetitors().get(i)));
         
-        //mix list
+        //mix list      
         randomizeList(athletes, x);
         
         //list should be already mixed with priviliged athletes on top positions
-        InitializeMatches(athletes);
+        //now generate matches
+        if(x>=4 && a.isTwoThirdPlaces())
+            InitializeMatches(athletes, x, true);
+        else
+            InitializeMatches(athletes, x, true);
     }
     
-    private void InitializeMatches(ArrayList<Node> athletes){
+    private void InitializeMatches(ArrayList<Node> athletes, int preranked, boolean twoThirdPlaces){
         double log = log(athletes.size(),2);
         int height = (int) Math.ceil(log); // deepest lvl of the tree (2^height >= athletes' amount)
         System.out.println(athletes.size());
@@ -61,37 +70,216 @@ public class Chart {
         int firstDepthMatches = (int) Math.pow(2,(height-1)); //for 5-8 athletes there are 4 matches in a first row
         int roundedAthletes = (int) Math.pow(2,(height));    //for 9-16 athletes rounded value is 16
         
+//        if(roundedAthletes > athletes.size()){ //add empty players to the size of the power of 2
+//            int emptys = roundedAthletes-athletes.size();
+//            for(int i=0;i<emptys;i++)
+//                athletes.add(new Node());
+//        }
+        
+        
+        
+        
+        
+        //prepare seed order
+        int[] bracket_order = new int[roundedAthletes];
+        {
+            ArrayList<Integer> bracket_list = new ArrayList<>();
+            for(int i=0; i<roundedAthletes; i++)
+                bracket_list.add(i);
+            
+            for(int i=0;i<roundedAthletes; i++) 
+                    System.out.print((bracket_list.get(i)+1)+" ");
+                System.out.println("");
+            
+            int slice = 1;
+            while(slice<bracket_list.size()/2){
+                ArrayList tmp = new ArrayList(bracket_list);
+                bracket_list.clear();
+
+                while(tmp.size()>0){
+                    bracket_list.addAll(tmp.subList(0, slice)); //add slice amount from the beginning
+                    bracket_list.addAll(tmp.subList(tmp.size()-slice, tmp.size())); //add slice amount from the end
+                    tmp.subList(0, slice).clear();
+                    tmp.subList(tmp.size()-slice, tmp.size()).clear();
+                }
+                slice*=2;
+                for(int i=0;i<roundedAthletes; i++) 
+                    System.out.print((bracket_list.get(i)+1)+" ");
+                System.out.println("");
+            }
+for(int i=0;i<roundedAthletes; i++) 
+            System.out.print((bracket_list.get(i)+1)+" ");
+            System.out.println("");
+
+            for(int i =0;i<roundedAthletes;i++)
+                bracket_order[bracket_list.get(i)] = i;
+            bracket_list.clear();
+        }
+            
+        Node[] athletes_to_bracket = new Node[roundedAthletes];
+        
+        
+        //if there are two players on 3rd position
+        if(preranked > 3 && twoThirdPlaces)
+            if(athletes.get(0).getAthlete().getClub()
+                    .equals(athletes.get(3).getAthlete().getClub())
+                    && !athletes.get(2).getAthlete().getClub()
+                    .equals(athletes.get(3).getAthlete().getClub()))
+            {//and one of them is from the same club as the 1st player, separate them
+                //swap 3rd and 4th players
+                Node tmp = athletes.get(3);
+                athletes.set(3, athletes.get(2));
+                athletes.set(2, tmp);
+          
+            }
+        
+        //fixing positions for pre-ranked competitors
+        for(int i=0;i<preranked;i++){ 
+            athletes_to_bracket[bracket_order[i]] = athletes.get(i);
+        }
+        //adding null competitors
         if(roundedAthletes > athletes.size()){ //add empty players to the size of the power of 2
             int emptys = roundedAthletes-athletes.size();
             for(int i=0;i<emptys;i++)
-                athletes.add(new Node());
+                athletes_to_bracket[bracket_order[roundedAthletes-i-1]] = new Node();
+        }
+        System.out.println("matchescreation.model.Chart.InitializeMatches()");
+
+        
+        for(int i=0;i<roundedAthletes; i++) {
+            System.out.print(i+": ");
+            try{
+            if(athletes_to_bracket[i] != null)
+                System.out.println(athletes_to_bracket[i].getAthlete().toString());
+            else
+                System.out.println(athletes_to_bracket[i]+"- to fulfill");
+            }catch(Exception e){
+                System.out.println("DUMMY "+e.toString());
+            }
         }
         
         
+        for(int i=0;i<preranked;i++)
+            athletes.remove(0);
         
-        //create not ordered first matches
+        /////
+        //adding all the other competitors 
+        //so as to separate ones from the same club as far as possible
+        Map<String, List<Node>> players_over_clubs = new LinkedHashMap<>();
+        
+        for (Node p : athletes) {
+          List<Node> club = players_over_clubs.get(p.getAthlete().getClub());
+          if (club == null) {
+            club = new ArrayList<Node>();
+            players_over_clubs.put(p.getAthlete().getClub(), club);
+          }
+          club.add(p);
+        } 
+        
+
+        //divide into clubs, ordered according to the decreasing amount of players in each
+        ArrayList<List<Node>> ordered_in_clubs = new ArrayList<>(players_over_clubs.values());  
+        ordered_in_clubs.sort((a,b)-> b.size()-a.size());
+        ordered_in_clubs.forEach(node->System.out.println("N: "+node.get(0).getAthlete().getClub()+" "+node.size()));
+        
+        //for each club place players separately
+        for(List<Node> club: ordered_in_clubs){
+            int split = 1;
+            int shift = roundedAthletes/split;
+            ArrayList<Integer> parts = new ArrayList<>();
+            
+            String club_name = club.get(0).getAthlete().getClub();
+            
+            while(!club.isEmpty()){
+                //if step has ended, proceed on step further
+                if(parts.isEmpty()){
+                    split*=2;
+                    shift = roundedAthletes/split;
+                    for(int i=0;i<split;i++)
+                        parts.add(i);
+                    Collections.shuffle(parts);
+                }
+                
+                int part = parts.remove(0);
+                
+                //check if there is no such club in this part already
+                boolean no_such_club = true;
+                for(int i=part*shift; i< part*shift+shift; i++){
+                    try{
+                        if(athletes_to_bracket[i] != null && athletes_to_bracket[i].getAthlete().getClub().equals(club_name)){
+                            no_such_club = false;
+                            break;
+                        }
+                    }catch(Exception e){
+                                //position fixed for being empty
+                            }
+                    
+                }
+                        
+                
+                //if there is none, add on first available position
+                if(no_such_club){
+                    for(int i=part*shift; i< part*shift+shift; i++){
+                        try{
+                            if(athletes_to_bracket[i] == null){
+                                athletes_to_bracket[i] = club.remove(0);
+                                break;
+                            }
+                            }catch(Exception e){
+                                //position fixed for being empty
+                            }
+                        }
+                    
+                    }
+                }
+                
+                
+            }
+            
+        
+        for(int i=0;i<roundedAthletes; i++) {
+            System.out.print(i+": ");
+            try{
+            if(athletes_to_bracket[i] != null)
+                System.out.println(athletes_to_bracket[i].getAthlete().toString());
+            else
+                System.out.println(athletes_to_bracket[i]+"- to fulfill");
+            }catch(Exception e){
+                System.out.println("DUMMY "+e.toString());
+            }
+        }
+        
+        
+        //create blank first matches
         ArrayList<Node> firstMatches = new ArrayList<>();
-        for(int i =0;i<firstDepthMatches;i++){
+        
+        for(int i =0;i<roundedAthletes;i+=2){
             Node match = new Node();
-            match.aka = athletes.get(i);
-            match.shiro = athletes.get(roundedAthletes-i-1);
+            match.aka = athletes_to_bracket[i];
+            match.shiro = athletes_to_bracket[i+1];
             match.chartLvl = height-1;
             firstMatches.add(match);    
-        }
+        }   
         
-        //order matches
-        if(firstMatches.size()>1) firstMatches = orderMatches(firstMatches);
+     //   System.exit(0);
+        
+        
+//        for(int i =0;i<firstDepthMatches;i++){
+//            Node match = new Node();
+//            match.aka = athletes.get(i);
+//            match.shiro = athletes.get(roundedAthletes-i-1);
+//            match.chartLvl = height-1;
+//            firstMatches.add(match);    
+//        }
+//        
+//        //order matches
+//        if(firstMatches.size()>1) firstMatches = orderMatches(firstMatches);
         this.matches = new LinkedList<>();
-        this.matches.addAll(firstMatches);
-      
-        
-        
+        this.matches.addAll(firstMatches); 
 
         
         
-//        for(int i=0;i<firstDepthMatches;i++)
-//            System.out.println(firstMatches.get(i).toString());
-//        
+    
         
         //create the rest of a chart
         if(firstMatches.size()>1) this.matches.addAll(generateWholeChart(firstMatches));

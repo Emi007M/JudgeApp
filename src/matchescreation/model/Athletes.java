@@ -15,7 +15,7 @@ import java.util.Set;
 public class Athletes {
     
     private ArrayList<Person> competitors;
-    
+    boolean twoThirdPlaces;
     
     public Athletes(){
         //get lists from somewhere TODO
@@ -24,22 +24,28 @@ public class Athletes {
         
         competitors.add(new Person("Adam","Kowalski",'m',2000,7,"KS"));
         competitors.add(new Person("Edward","Rogal",'m',2001,6, "ŁKKT"));
-        competitors.add(new Person("Marian","Nowak",'m',2000,7,"KS"));
-        competitors.add(new Person("Marek","Koper",'m',2002,7,"AKK"));
+        competitors.add(new Person("Marian","Nowak",'m',2000,7,"KK"));
+        competitors.add(new Person("Marek","Koper",'m',2002,7,"KS"));
         competitors.add(new Person("Wojciech","Maj",'m',2000,6,"AKK"));
-        competitors.add(new Person("Adam","Wodny",'m',2001,6,"KS"));
+        competitors.add(new Person("Adam","Wodny",'m',2001,6,"AKK"));
         competitors.add(new Person("Tomasz","Kowalski",'m',2001,7,"Kumade"));
         competitors.add(new Person("Tomasz","Wilk",'m',2000,7,"Kumade"));
         
         competitors.add(new Person("Marian","Rokita",'m',2002,7,"Kumade"));
         competitors.add(new Person("Łukasz","Buc",'m',2002,6,"KK44"));
-        
-        
+        competitors.add(new Person("Tomasz","Kowalski",'m',2001,7,"Kumade"));
+        competitors.add(new Person("Tomasz","Wilk",'m',2000,7,"Kumade"));
+        competitors.add(new Person("Marek","Koper",'m',2002,7,"KS"));
+        competitors.add(new Person("Wojciech","Maj",'m',2000,6,"AKK"));
+        twoThirdPlaces = true;
     }
     
     public ArrayList<Person> getCompetitors(){
         return competitors;
     }
     
+    public boolean isTwoThirdPlaces(){
+        return twoThirdPlaces;
+    }
     
 }

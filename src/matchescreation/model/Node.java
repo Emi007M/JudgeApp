@@ -114,7 +114,10 @@ public class Node {
 //        this.chartLvl = chartLvl;
 //    }
         
-        
+       
+    public boolean isNotNull(){
+        return athleteID != -1;
+    }
     
     
 }
