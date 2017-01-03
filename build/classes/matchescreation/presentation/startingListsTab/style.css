@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2016-12-16, 19:57:14
+    Author     : Emilia
+*/
+
+.table-view{
+   -fx-background-color: rgba(255,255,255,0.0);
+   -fx-min-height: 400px;
+   -fx-border-color: white;
+    -fx-border-width: 1 0 1 0;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: black;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-text-size: 20;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+/*    -fx-text-fill: white;*/
+}
+
+#downloadBtn {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-image: url('../resources/images/download.png');
+    -fx-background-size: contain;  
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;   
+    -fx-cursor: hand;  
+    -fx-opacity: 0.4;
+}
+#downloadBtn:hover {
+    -fx-opacity: 0.7;
+}

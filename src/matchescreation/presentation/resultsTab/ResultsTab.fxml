@@ -10,13 +10,10 @@
 <?import javafx.scene.text.Font?>
 
 
-          <Tab id="tabResults" text="RESULTS" xmlns:fx="http://javafx.com/fxml" fx:controller="matchescreation.presentation.resultsTab.ResultsTabController">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" fx:id="rootPane">
-                     <children>
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" fx:id="rootPane" xmlns:fx="http://javafx.com/fxml" fx:controller="matchescreation.presentation.resultsTab.ResultsTabController">
+    <children>
                         
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
+    </children>
+</AnchorPane>
+       
         

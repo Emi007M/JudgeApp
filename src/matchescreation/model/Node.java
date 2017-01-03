@@ -5,11 +5,13 @@
  */
 package matchescreation.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Emilia
  */
-public class Node {
+public class Node implements Serializable{
 
         public Node(){
             this.athleteID = -1;

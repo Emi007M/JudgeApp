@@ -5,11 +5,13 @@
  */
 package matchescreation.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Emilia
  */
-public class Person {
+public class Person implements Serializable{
     
     
     

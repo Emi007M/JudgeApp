@@ -37,7 +37,13 @@ public class Athletes {
         competitors.add(new Person("Tomasz","Wilk",'m',2000,7,"Kumade"));
         competitors.add(new Person("Marek","Koper",'m',2002,7,"KS"));
         competitors.add(new Person("Wojciech","Maj",'m',2000,6,"AKK"));
+        
         twoThirdPlaces = true;
+    }
+    
+    public Athletes(ArrayList<Person> athletes, boolean is){
+        competitors = athletes;
+        setTwoThirdPlaces(is);
     }
     
     public ArrayList<Person> getCompetitors(){
@@ -46,6 +52,10 @@ public class Athletes {
     
     public boolean isTwoThirdPlaces(){
         return twoThirdPlaces;
+    }
+    
+    public void setTwoThirdPlaces(boolean is){
+        twoThirdPlaces = is;
     }
     
 }

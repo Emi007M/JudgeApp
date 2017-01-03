@@ -5,6 +5,7 @@
  */
 package matchescreation.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,8 +25,9 @@ import jdk.nashorn.internal.objects.NativeArray;
  *
  * @author Emilia
  */
-public class Chart {
+public class Chart implements Serializable{
 
+    private static final long serialVersionUID = 2989628431129900660L;
     
 
        
@@ -33,32 +35,78 @@ public class Chart {
     Node winner;
     LinkedList<Node> matches;
     
-    public Chart(){
-        this(4);
-    }
+    //TODO
+    int matchesTotal;
+    int matchesPlayed = 0;
+    
+//    
+//    public Chart(){
+//        this(4);
+//    }
+//    
+    //do usiniecia XXXX, razem z Athletes
     /**
      * 
      * @param x number of pre-ranked athletes
      */
-    public Chart(int x){
+//    public Chart(int x){
+//        ArrayList <Node> athletes = new ArrayList<>();
+//        
+//        Athletes a = new Athletes();
+//        
+//        int amount = a.getCompetitors().size();
+//        for(int i=0; i< amount; i++)
+//            athletes.add(new Node(a.getCompetitors().get(i)));
+//        
+//        //mix list      
+//        randomizeList(athletes, x);
+//        
+//        //list should be already mixed with priviliged athletes on top positions
+//        //now generate matches
+//        if(x>=4 && a.isTwoThirdPlaces())
+//            InitializeMatches(athletes, x, true);
+//        else
+//            InitializeMatches(athletes, x, false);
+//    }
+    
+    public Chart(int x, ArrayList<Person> a, boolean isTwoThirdPlaces){
         ArrayList <Node> athletes = new ArrayList<>();
         
-        Athletes a = new Athletes();
-        
-        int amount = a.getCompetitors().size();
+        int amount = a.size();
         for(int i=0; i< amount; i++)
-            athletes.add(new Node(a.getCompetitors().get(i)));
+            athletes.add(new Node(a.get(i)));
         
         //mix list      
         randomizeList(athletes, x);
         
         //list should be already mixed with priviliged athletes on top positions
         //now generate matches
-        if(x>=4 && a.isTwoThirdPlaces())
+        if(x>=4 && isTwoThirdPlaces)
             InitializeMatches(athletes, x, true);
         else
-            InitializeMatches(athletes, x, true);
+            InitializeMatches(athletes, x, false);
     }
+    
+    public void addPlayerToLockedChart(Person p){
+        //TODO
+        //only do if not started
+    }
+    public void removePlayerFromLockedChart(Person p){
+        //TODO
+        //only do if not started
+    }
+    
+    public int getTotalMatchesAmount(){
+        return matchesTotal;
+    }
+    public int getPlayedMatchesAmount(){
+        return matchesPlayed;
+    }
+    
+    
+    
+    
+    
     
     private void InitializeMatches(ArrayList<Node> athletes, int preranked, boolean twoThirdPlaces){
         double log = log(athletes.size(),2);
@@ -289,6 +337,8 @@ for(int i=0;i<roundedAthletes; i++)
         winEmptyMatches();
         
         
+        //TODO nie prawda
+        this.matchesTotal=this.matches.size();
         
         System.out.println(this.toString());
         

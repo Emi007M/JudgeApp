@@ -44,6 +44,7 @@ import matchescreation.model.Dictionary;
 import matchescreation.Main;
 import matchescreation.model.Node;
 import matchescreation.model.ZoomHandler;
+import matchescreation.model.Serializator;
 
 
 /**
@@ -139,7 +140,8 @@ public class ChartMakerController implements Initializable{
         //int amount = Integer.parseInt( athletesNo.getText());
         //if(amount<=0) amount = 8;
         
-        currentChart = new Chart(4);
+        //currentChart = new Chart(4);
+        currentChart = (Chart) Serializator.readFromFile("test2");
         reloadChart();
     }
     
@@ -174,14 +176,14 @@ public class ChartMakerController implements Initializable{
         this.akaBtn.setText(Integer.toString(score));
     }
     
-    @FXML
-    private void handleStartBtnAction(javafx.event.ActionEvent event){
-        System.out.println("Start");
-        updateCurrentMatch();
-        root.getChildren().remove(this.startBtn); 
-        root.getChildren().remove(this.generateBtn); 
-        
-    }
+//    @FXML
+//    private void handleStartBtnAction(javafx.event.ActionEvent event){
+//        System.out.println("Start");
+//        updateCurrentMatch();
+//        root.getChildren().remove(this.startBtn); 
+//        root.getChildren().remove(this.generateBtn); 
+//        
+//    }
     
     @FXML
     private void handleNextBtnAction(javafx.event.ActionEvent event){
@@ -210,11 +212,13 @@ public class ChartMakerController implements Initializable{
         updateMatchesBox();
     }
     
+    
+    
     public void reloadChart(){
         
-        if(currentChart==null)
-            currentChart = new Chart();
-        
+//        if(currentChart==null)
+//            currentChart = new Chart();
+//        
         
         int lvls = currentChart.getMaxLvl();
         
@@ -234,6 +238,8 @@ public class ChartMakerController implements Initializable{
         //chartBox.getChildren().setAll(labels);
         showBrackets();
         updateMatchesBox();
+        
+        
         
     }
     
