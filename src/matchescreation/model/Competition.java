@@ -45,6 +45,7 @@ public class Competition implements Serializable{
     
     private int boardID;
     
+    
     public Competition(){
         title = "Default title";
         descr = "Default description on the competition";
@@ -67,6 +68,7 @@ public class Competition implements Serializable{
         locked = false;
         notStarted = true;
         finished = false;
+        
     }
     
     public void initProperties(){
@@ -332,6 +334,35 @@ public class Competition implements Serializable{
 
     public void setBoardID(int boardID) {
         this.boardID = boardID;
+    }
+    
+    
+    private ArrayList<String> results;
+    
+    public ArrayList<String> getResults(){
+        return results;
+    }
+    
+    public void setResults(){
+        results = new ArrayList<>();
+        results.add("1. "+chart.winner.getWinner().getAthlete().toString());
+        results.add("2. "+chart.winner.getLooser().getAthlete().toString());
+        
+        if(isTwoThirdPlaces()){
+            results.add("3. "+chart.winner.getWinner().getLooser().getAthlete().toString());
+            results.add("3. "+chart.winner.getLooser().getLooser().getAthlete().toString());
+        }
+        else{ //to nie jest tak -.- dodatkowy mecz wtedy powinien być
+            results.add("3. "+chart.winner.getWinner().getLooser().getAthlete().toString());
+            results.add("4. "+chart.winner.getLooser().getLooser().getAthlete().toString());
+
+        }
+   
+            
+    }
+    
+    public Boolean hasResults(){
+        return results!=null;
     }
     
     

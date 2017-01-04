@@ -17,6 +17,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import matchescreation.Main;
 import matchescreation.model.CurrentTournament;
+import matchescreation.presentation.RootLayoutController;
 
 /**
  *
@@ -27,6 +28,7 @@ public class TournamentTabController implements Initializable{
     @FXML private AnchorPane rootPane;
     
     private ChartMakerController controller;
+    private RootLayoutController rootController;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,6 +61,19 @@ public class TournamentTabController implements Initializable{
         controller.currentChart = CurrentTournament.getCurrentCompetition().getChart();
         controller.reloadChart();
         controller.updateCurrentMatch();
+        controller.setTournamentController(this);
+        
+        if(CurrentTournament.getCurrentCompetition().hasResults())
+            rootController.initResults();
+    }
+
+    void setResults() {
+        CurrentTournament.getCurrentCompetition().setResults();
+        rootController.displayResults();
     }
     
+    public void setRootController(RootLayoutController c){
+        rootController = c;
+        
+    }
 }

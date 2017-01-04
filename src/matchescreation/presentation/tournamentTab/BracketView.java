@@ -296,16 +296,16 @@ public class BracketView extends Region {
                 lvlNames.getParent().getParent().getLayoutX(),
                 lvlNames.getParent().getParent().getLayoutY()
         );
-        bracketScrollPane.viewportBoundsProperty().addListener(
-                new ChangeListener<Bounds>() {
-            @Override
-            public void changed(ObservableValue<? extends Bounds> observableValue, Bounds oldBounds, Bounds newBounds) {
-                zoomGroup.setPrefSize(
-                        lvlNames.getParent().getParent().getLayoutX(),
-                        lvlNames.getParent().getParent().getLayoutY()
-                );
-            }
-        });
+//        bracketScrollPane.viewportBoundsProperty().addListener(
+//                new ChangeListener<Bounds>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Bounds> observableValue, Bounds oldBounds, Bounds newBounds) {
+//                zoomGroup.setPrefSize(
+//                        lvlNames.getParent().getParent().getLayoutX(),
+//                        lvlNames.getParent().getParent().getLayoutY()
+//                );
+//            }
+//        });
 
     }
 

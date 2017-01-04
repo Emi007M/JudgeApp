@@ -89,7 +89,7 @@ public class RootLayoutController implements Initializable {
         
         
         startingListsController.setRootController(this);
-    
+        tournamentController.setRootController(this);
     }
     
     
@@ -97,6 +97,8 @@ public class RootLayoutController implements Initializable {
     public void chooseCompetition(Competition c){
         CurrentTournament.setCurrentCompetition(c);
         System.out.println("Competition chosen root");
+        
+        tabs.getTabs().get(3).setDisable(true);
         
         competitorsController.init();
         tournamentController.init();
@@ -107,6 +109,19 @@ public class RootLayoutController implements Initializable {
         //move to the next tab
         SingleSelectionModel<Tab> selectedTab = tabs.getSelectionModel();
         selectedTab.selectNext();
+        
+    }
+
+    public void displayResults() {
+        initResults();
+        //move to the next tab
+        SingleSelectionModel<Tab> selectedTab = tabs.getSelectionModel();
+        selectedTab.selectNext();
+    }
+    
+    public void initResults() {
+        resultsController.init();  
+        tabs.getTabs().get(3).setDisable(false);    
     }
     
   

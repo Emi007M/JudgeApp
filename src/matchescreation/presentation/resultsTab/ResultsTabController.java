@@ -7,10 +7,18 @@ package matchescreation.presentation.resultsTab;
 
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import matchescreation.model.CurrentTournament;
 
 /**
  *
@@ -19,11 +27,30 @@ import javafx.scene.layout.AnchorPane;
 public class ResultsTabController implements Initializable{
     
     @FXML
-    private AnchorPane rootPane;
+    private BorderPane rootPane;
+    @FXML
+    private ListView list;
+    
+    private ObservableList<String> items;
+    
+    @FXML 
+    private Button sendBtn;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        list.setPadding(new Insets(0, 10, 0, 10));
+
+        items =FXCollections.observableArrayList();
+        list.setItems(items);
+        
+    }
+
+    public void init() {
+        items.clear();
+        
+        for(String r : CurrentTournament.getCurrentCompetition().getResults()){
+            items.add(r);
+        }
     }
     
 }

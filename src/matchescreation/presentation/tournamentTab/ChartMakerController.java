@@ -112,6 +112,7 @@ public class ChartMakerController implements Initializable{
     
     //Main mainApp;
     Chart currentChart;
+    TournamentTabController tournamentController;
     
     public ChartMakerController(){
     }
@@ -133,6 +134,12 @@ public class ChartMakerController implements Initializable{
 
         //chart.setText(mainApp.getMatches());
     }
+    
+    public void setTournamentController(TournamentTabController c){
+        tournamentController = c;
+    }
+  
+    
     
     @FXML
     private void handleButtonAction(javafx.event.ActionEvent event) {
@@ -201,11 +208,20 @@ public class ChartMakerController implements Initializable{
             return;
         }
         
+        
+            
         Node match = currentChart.getFirstMatch();
         match.setScoreAka(scoreAka);
         match.setScoreShiro(scoreShiro);
         if(scoreAka>scoreShiro) match.setAthlete(match.getAka().getAthlete());
         else match.setAthlete(match.getShiro().getAthlete());
+        
+        //if end of the chart
+        if(currentChart.getWinnerNode().getAthlete()!=null){
+            System.out.println("competition finished!");
+            tournamentController.setResults();
+            
+        }
         
         reloadChart();
         updateCurrentMatch();
@@ -376,7 +392,8 @@ public class ChartMakerController implements Initializable{
         
     
     }
-    
+
+
     
     
 }

@@ -12,6 +12,9 @@ import java.io.Serializable;
  * @author Emilia
  */
 public class Node implements Serializable{
+    
+        private static final long serialVersionUID = 275820713282253211L;
+    
 
         public Node(){
             this.athleteID = -1;
@@ -121,5 +124,18 @@ public class Node implements Serializable{
         return athleteID != -1;
     }
     
+    
+    public Node getLooser(){
+        if(getScoreAka()>getScoreShiro())
+            return shiro;
+        else
+            return aka;
+    }
+    public Node getWinner(){
+        if(getScoreAka()<getScoreShiro())
+            return shiro;
+        else
+            return aka;
+    }
     
 }

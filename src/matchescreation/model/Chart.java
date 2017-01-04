@@ -502,5 +502,9 @@ for(int i=0;i<roundedAthletes; i++)
                
     }
     
+    public Node getWinnerNode(){
+        return winner;
+    }
+    
     
 }
