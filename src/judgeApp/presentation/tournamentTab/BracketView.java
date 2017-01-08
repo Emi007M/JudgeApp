@@ -20,9 +20,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import judgeApp.model.Chart;
+import serializable.model.Chart;
 import judgeApp.model.Dictionary;
-import judgeApp.model.Node;
+import serializable.model.Node;
 
 /**
  *

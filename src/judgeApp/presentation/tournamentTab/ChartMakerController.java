@@ -39,12 +39,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import judgeApp.model.Chart;
+import serializable.model.Chart;
 import judgeApp.model.Dictionary;
 import judgeApp.Main;
-import judgeApp.model.Node;
+import serializable.model.Node;
 import judgeApp.model.ZoomHandler;
-import judgeApp.model.Serializator;
+import serializable.model.Serializator;
 
 
 /**

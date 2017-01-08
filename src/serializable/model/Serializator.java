@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package judgeApp.model;
+package serializable.model;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +19,7 @@ import java.util.concurrent.locks.Lock;
  */
 public final class Serializator {
     
-    private static String PATH = "src/judgeApp/model/data/test/";
+    private static String PATH = "src/serializable/model/data/test/";
     private static Object lock = new Object();
     
     private Serializator(){}

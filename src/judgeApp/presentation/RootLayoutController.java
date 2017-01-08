@@ -17,7 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import judgeApp.model.Competition;
+import serializable.model.Competition;
 import judgeApp.model.CurrentTournament;
 import judgeApp.presentation.competitorsTab.CompetitorsTabController;
 import judgeApp.presentation.resultsTab.ResultsTabController;

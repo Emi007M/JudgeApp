@@ -20,7 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import judgeApp.model.Competition;
+import serializable.model.Competition;
 import judgeApp.model.CurrentTournament;
 import judgeApp.presentation.RootLayoutController;
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package judgeApp.model;
+package serializable.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import jdk.nashorn.internal.objects.NativeArray;
+import judgeApp.model.Dictionary;
 
 
 /**
@@ -39,35 +40,7 @@ public class Chart implements Serializable{
     int matchesTotal;
     int matchesPlayed = 0;
     
-//    
-//    public Chart(){
-//        this(4);
-//    }
-//    
-    //do usiniecia XXXX, razem z Athletes
-    /**
-     * 
-     * @param x number of pre-ranked athletes
-     */
-//    public Chart(int x){
-//        ArrayList <Node> athletes = new ArrayList<>();
-//        
-//        Athletes a = new Athletes();
-//        
-//        int amount = a.getCompetitors().size();
-//        for(int i=0; i< amount; i++)
-//            athletes.add(new Node(a.getCompetitors().get(i)));
-//        
-//        //mix list      
-//        randomizeList(athletes, x);
-//        
-//        //list should be already mixed with priviliged athletes on top positions
-//        //now generate matches
-//        if(x>=4 && a.isTwoThirdPlaces())
-//            InitializeMatches(athletes, x, true);
-//        else
-//            InitializeMatches(athletes, x, false);
-//    }
+
     
     public Chart(int x, ArrayList<Person> a, boolean isTwoThirdPlaces){
         ArrayList <Node> athletes = new ArrayList<>();

@@ -22,9 +22,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import judgeApp.model.Competition;
+import serializable.model.Competition;
 import judgeApp.model.CurrentTournament;
-import judgeApp.model.Person;
+import serializable.model.Person;
 import judgeApp.presentation.RootLayoutController;
 
 /**
