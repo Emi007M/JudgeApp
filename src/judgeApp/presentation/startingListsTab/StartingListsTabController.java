@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
@@ -32,8 +33,8 @@ public class StartingListsTabController implements Initializable {
 
 //    @FXML
 //    private AnchorPane rootPane;
-//    @FXML
-//    private Label titleLabel;
+    @FXML
+    private Label titleLabel;
     @FXML
     private TableView<Competition> table;
 
@@ -54,7 +55,8 @@ public class StartingListsTabController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //  titleLabel.setText(CurrentTournament.getTournamentTitle());
+        
+          
         Button dwnBtn = new Button();   
         dwnBtn.setId("downloadBtn");
         dwnBtn.setOnAction(e -> this.handleDownloadButtonAction());
@@ -92,6 +94,8 @@ public class StartingListsTabController implements Initializable {
     }
 
     public void init() {
+        titleLabel.setText(CurrentTournament.getTournamentTitle());
+        
         System.out.println("\033[32m" + CurrentTournament.getTournamentTitle() + "\033[0m");
 //        System.out.println("\033[0m BLACK");
 //        System.out.println("\033[31m RED");
@@ -105,115 +109,44 @@ public class StartingListsTabController implements Initializable {
           TableHeaderRow header = (TableHeaderRow) table.lookup("TableHeaderRow");
         header.setReordering(false);
             header.reorderingProperty().addListener(e->header.setReordering(false));
-//        header.reorderingProperty().addListener(new ChangeListener<Boolean>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-//                header.setReordering(false);
-//            }
-//        });
-//        columnNo.setCellValueFactory(new PropertyValueFactory<Competition,Integer>("idp"));
-//        columnCategory.setCellValueFactory(new PropertyValueFactory<Competition,String>("titlep"));
-//        columnProgress.setCellValueFactory(new MapValueFactory(new String("colProgress")));
-//        columnRefresh.setCellValueFactory(new MapValueFactory(new String("colRefresh")));
-//        columnSent.setCellValueFactory(new MapValueFactory(new String("colSent")));
-//        columnNo.setCellValueFactory(new PropertyValueFactory("IDp"));
-//        columnCategory.setCellValueFactory(new PropertyValueFactory("titlep"));
-//        columnProgress.setCellValueFactory(new MapValueFactory(new String("colProgress")));
-//        columnRefresh.setCellValueFactory(new MapValueFactory(new String("colRefresh")));
-//        columnSent.setCellValueFactory(new MapValueFactory(new String("colSent")));
-//    TableColumn<Competition, Integer> firstNameCol = new TableColumn<>("First Name");
-//    firstNameCol.setCellValueFactory(new PropertyValueFactory<Competition, Integer>("IDp"));
-//    TableColumn<Competition, String> lastNameCol = new TableColumn<>("Last Name");
-//    lastNameCol.setCellValueFactory(new PropertyValueFactory<Competition, String>("titlep"));
-//    table.getColumns().setAll(firstNameCol, lastNameCol);
-//     TableColumn<InvoiceEntry, Integer> firstNameCol = new TableColumn<>("First Name");
-// //   firstNameCol.setCellValueFactory(c->c.getValue().IDpProperty());
-//    TableColumn<InvoiceEntry, String> lastNameCol = new TableColumn<>("Last Name");
-        //lastNameCol.setCellValueFactory(c->c.getValue().titlepProperty());
-//       firstNameCol.setCellValueFactory(new PropertyValueFactory<>("idp"));
-//        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("titlep"));
-//firstNameCol.setCellValueFactory(
-//    new PropertyValueFactory<InvoiceEntry, Integer>("itemId")
-//);
-//lastNameCol.setCellValueFactory(
-//    new PropertyValueFactory<InvoiceEntry,String>("itemName")
-//);
-//
-//table.getColumns().setAll(firstNameCol, lastNameCol);
-        //   fillInTable();
+
     }
 
     public void fillInTable() {
-           ArrayList<Competition> competitions = CurrentTournament.getTournamentCompetitions(0);
+           ArrayList<Competition> competitions = CurrentTournament.getTournamentCompetitions(CurrentTournament.getBoardID());
            for(Competition c : competitions)
             c.initProperties();
-//        
-////        Map<String, String> dataRow = new HashMap<>();
-////        ObservableList<Map> allData = table.getItems();
-//        for(Competition c : competitions){
-//            c.initProperties();
-////            dataRow.put("colNo", c.getID().toString());
-////            dataRow.put("colCategory", c.getTitle());
-////            dataRow.put("colProgress", c.getPlayedMatchesAmount()+"/"+c.getTotalMatchesAmount());
-////            dataRow.put("colRefresh", "refresh");
-////            dataRow.put("colSent", "is sent");
-////            allData.add(dataRow);
-//System.out.println("c"+ c.getTitle());
-//System.out.println("cp"+ c.getTitlep());
-//System.out.println("");
-//        }
-//        
 
+        dataArray.clear();
         dataArray.addAll(competitions);
 
-        //binding list to table
-//        dataArray = FXCollections.observableArrayList();
-//        InvoiceEntry i = new InvoiceEntry();
-//        i.setFirstName("aa");
-//        i.setLastName("bbb");
-//        dataArray.add(i);
-//
-//        InvoiceEntry i2 = new InvoiceEntry();
-//        i2.setFirstName("2aa");
-//        i2.setLastName("2bbb");
-//        dataArray.add(i2);
-//        
-        
-       
-
-   //     dataArray.add(new InvoiceEntry());
-
-        //   table.setItems(dataArray);
-//     
-//        table.refresh();
-//        
-//        Competition c1 = new Competition();
-//
-//        System.out.println(c1.getIdp());
-//        System.out.println(c1.getTitlep());
-
-//        list.add(new Competition());
-//        list.add(new Competition());
-//        list.add(new Competition());
-//        list.add(new Competition());
-        //list.add(c1);
-        //  list.addAll(competitions);
     }
 
     @FXML
     private void handleDownloadButtonAction() {
-        System.out.println("donwloading...");
+        System.out.println("downloading...");
 
         fillInTable();
     }
+    
+    @FXML
+    private void handleReloadButtonAction() {
+        System.out.println("reload...");
+
+        fillInTable();
+    }
+    
 
     
     @FXML
     private void onRowChosen(Competition c){
         descrBox.getChildren().clear();
         
-        Text header = new Text("Description\n");
-        Text descr = new Text(c.getDescr());
+        Label header = new Label("Description");
+        Text descr = new Text("\n"+c.getDescr()+"\n\n");
+        header.getStyleClass().add("descr-header");
+        descr.getStyleClass().add("descr-text");
+        
         Button btn = new Button("Choose");
         btn.setOnAction(i->onChooseBtn(c));
         

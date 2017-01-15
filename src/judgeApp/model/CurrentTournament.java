@@ -37,6 +37,10 @@ public final class CurrentTournament {
         return tournament.getCompetitionsForBoard(boardID);
     }
     
+    public static ArrayList<Competition> getTournamentCompetitions(){
+        return tournament.getCompetitions();
+    }
+    
     
     
     public static void setCurrentCompetition(Competition c){
@@ -56,12 +60,14 @@ public final class CurrentTournament {
     }
     
     
-    public void setBoardID(Integer i){
+    public static void setBoardID(Integer i){
         boardID = i;
         currentCompetition = null;
+        
+        System.out.println("board ID set to "+boardID);
     }
     
-    public Integer getBoardID(){
+    public static Integer getBoardID(){
         return boardID;
     }
 

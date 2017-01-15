@@ -46,3 +46,20 @@ and open the template in the editor.
 #downloadBtn:hover {
     -fx-opacity: 0.7;
 }
+
+
+/*description textflow*/
+
+.descr-header {
+     -fx-font-size: 22;
+     -fx-font-weight: bold;
+     -fx-font-style: italic;
+     -fx-text-fill: rgba(255,255,255,0.8);
+     -fx-pref-height: 50;
+}
+
+.descr-text {
+    
+    -fx-fill: white;
+    
+}

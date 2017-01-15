@@ -15,8 +15,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import judgeApp.model.CurrentTournament;
 import judgeApp.model.Dictionary;
-import judgeApp.model.Tournament;
-import judgeApp.model.Serializator;
+import serializable.model.Tournament;
+import serializable.model.Serializator;
 import judgeApp.presentation.RootLayoutController;
 
 /**
@@ -27,8 +27,6 @@ public class Main extends Application {
 
     private Stage primaryStage;
     public BorderPane rootLayout;
-
-    //public Chart currentChart;
     private RootLayoutController mainController;
 
     @Override
@@ -47,8 +45,7 @@ public class Main extends Application {
 //        t.init();
 //        Serializator.writeToFile(t, "tournaments/tournament1");
         initBoard(0);
-        //currentChart = new Chart();
-        //updateCurrentMatch();
+
     }
 
     public void initRootLayout() {
@@ -79,10 +76,11 @@ public class Main extends Application {
     }
 
     public void initBoard(Integer boardId) {
-        Tournament t = new Tournament("tytuł", new Date(2016,12,12));
-        t.init();
-        Serializator.writeToFile(t,"tournaments/tournament3");
-        CurrentTournament.setTournament((Tournament) Serializator.readFromFile("tournaments/tournament3"));
+//        Tournament t = new Tournament("tytuł ttt", new Date(2016,12,12));
+//        t.init();
+//        Serializator.writeToFile(t,"tournaments/tournament4");
+        CurrentTournament.setTournament((Tournament) Serializator.readFromFile("tournaments/t_2016-06-20"));
+  //      CurrentTournament.setTournament((Tournament) Serializator.readFromFile("tournaments/t_2017-01-20"));
 
 //        FXMLLoader loader = new FXMLLoader();
 //        loader.setLocation(Main.class.getResource("presentation/R.fxml"));
@@ -91,33 +89,6 @@ public class Main extends Application {
 
     }
 
-//    public void showChartMaker() {
-//        try {
-//            // Load chart maker.
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(Main.class.getResource("presentation/ChartMaker.fxml"));
-//            
-//            AnchorPane chartMaker = (AnchorPane) loader.load();
-//           // AnchorPane chartMaker = (AnchorPane) FXMLLoader.load(getClass().getResource("presentation/ChartMaker.fxml"));
-//           
-//
-//            // Set it into the center of root layout.
-//            //rootLayout.setCenter(chartMaker);
-//            AnchorPane tournamentTab = (AnchorPane) rootLayout.lookup("#tournamentTab");
-//            AnchorPane.setTopAnchor(chartMaker, 10.0); 
-//            tournamentTab.getChildren().add(chartMaker);
-//            
-//            // Give the controller access to the main app.
-//        ChartMakerController controller = loader.getController();
-////        controller.setMainApp(this);
-////        controller.setChartRoot(chartMaker);
-//        controller.reloadChart();
-//        
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//   
     /**
      * @param args the command line arguments
      */

@@ -17,4 +17,113 @@
 }
 
 .label {
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view .jfx-list-cell:odd:selected .jfx-list-cell-container,
+.combo-box-popup .list-view .jfx-list-cell:even:selected .jfx-list-cell-container { 
+	-fx-background-color: rgba(0.0,0.0,255.0,0.2);
+}
+.combo-box .label {
+    -fx-text-fill: black;
+    
+}
+.combo-box .list-cell 
+{
+    -fx-background: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 1.66667em; 
+}
+
+.combo-box-popup .list-view 
+{
+    -fx-background-color: white, white;
+    -fx-background-insets: 0, 1;
+}    
+
+.combo-box-popup .list-view .list-cell 
+{
+    -fx-padding: 4 0 4 5;
+
+    /* No alternate highlighting */
+    -fx-background-color: white;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover 
+{
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-selection-bar;
+    -fx-text-fill: black;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover 
+{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.combo-box-base  
+{
+    -fx-skin: "com.sun.javafx.scene.control.skin.ComboBoxBaseSkin";
+    -fx-background-color: rgba(255,255,255,0.7);
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+
+HBox {
+
+    -fx-padding: 10 ;
+}
+
+
+/*tabs look*/
+
+.jfx-tab-pane .tab-header-area .jfx-rippler{
+    -fx-rippler-fill:#173d7a;
+}
+
+.jfx-tab-pane .tab-header-background{
+    -fx-background-color:#111;
+}
+
+.jfx-tab-pane .tab-selected-line {
+    -fx-stroke: #1b57b7;
+    -fx-stroke-width: 3pt;
+}
+.tab .tab-label, .tab:selected .tab-label{
+-fx-text-fill: rgba(255,255,255,1);
+}
+
+.tab:disabled .tab-label {
+-fx-text-fill: rgba(255,255,255,0.3);
+}
+
+.tab {
+-fx-cursor: hand;
+}
+.tab:disabled {
+-fx-cursor: default;
+}
+
+
+/*jfx buttons*/
+.button {
+-fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+
+    -fx-background-color: rgb(77,102,204);
+    -fx-margin: 1em 0em;
+-fx-text-fill: rgba(255,255,255,0.8);
+-fx-font-weight:bold;
+
+-fx-cursor: hand;
+
+
+}
+.button:hover {
+    -fx-background-color: rgb(67,92,194);
 }

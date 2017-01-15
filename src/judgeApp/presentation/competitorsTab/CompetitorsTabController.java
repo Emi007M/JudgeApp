@@ -80,10 +80,7 @@ public class CompetitorsTabController implements Initializable{
             return;
         }
             
-        for(Person p : CurrentTournament.getCurrentCompetition().getPrerankedCompetitors()){
-            items.add("✔ "+p.toString());
-            presence.add(true);
-        }
+        
         for(Person p : CurrentTournament.getCurrentCompetition().getCompetitors()){
             items.add("✔ "+p.toString());
             presence.add(true);

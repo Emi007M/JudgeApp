@@ -5,6 +5,7 @@
  */
 package judgeApp.presentation;
 
+import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,6 +33,9 @@ public class RootLayoutController implements Initializable {
 
     @FXML
     TabPane tabs;
+    
+    @FXML
+    private JFXComboBox boardCombo;
 
     @FXML
     private Tab tabStartingLists;
@@ -50,6 +54,11 @@ public class RootLayoutController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        boardCombo.getItems().addAll(0,1,2,3,4);
+        boardCombo.setOnAction(e->CurrentTournament.setBoardID((Integer) boardCombo.getValue()));
+        boardCombo.setValue(1);
+        
         try {
             FXMLLoader loader0 = new FXMLLoader(getClass().getResource("startingListsTab/StartingListsTab.fxml"));
             tabs.getTabs().get(0).setContent(loader0.load());
