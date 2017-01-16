@@ -6,9 +6,13 @@
 package judgeApp.presentation.startingListsTab;
 
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -127,16 +131,28 @@ public class StartingListsTabController implements Initializable {
     private void handleDownloadButtonAction() {
         System.out.println("downloading...");
 
-        SocketClient.updateTournamentViaServer(null);
-        init();
-        
-        fillInTable();
+        handleReloadButtonAction();
     }
     
     @FXML
     private void handleReloadButtonAction() {
         System.out.println("reload...");
-        SocketClient.updateTournamentViaServer(null);
+        
+        String ip = rootController.getIP();
+        if(ip!=null){ //connect with ip given in textfield
+            InetAddress ipaddr;
+            try {
+                ipaddr = InetAddress.getByName(ip);
+                SocketClient.updateTournamentViaServer(ipaddr);
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(StartingListsTabController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }else { //connect with localhost
+            SocketClient.updateTournamentViaServer(null);
+        }
+        
+        CurrentTournament.getTournament().saveToFile();
         init();
         fillInTable();
     }

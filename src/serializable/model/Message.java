@@ -24,7 +24,7 @@ public class Message implements Serializable{
     }
     
     public void sendCompetition(Competition c){
-        topic = Topic.SendTournament;
+        topic = Topic.SendCompetition;
         object = c;
     }
     

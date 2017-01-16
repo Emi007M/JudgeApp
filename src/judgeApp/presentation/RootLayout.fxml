@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
@@ -40,6 +41,7 @@
    <top>
       <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="100.0" spacing="10" BorderPane.alignment="CENTER">
          <children>
+             <TextField fx:id="ipField" promptText="0.0.0.0" />
             <Label text="Board" textFill="WHITE" HBox.hgrow="ALWAYS" alignment="CENTER"/>
             <JFXComboBox fx:id="boardCombo" HBox.hgrow="ALWAYS" />
          </children>

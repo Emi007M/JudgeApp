@@ -66,6 +66,7 @@ public class TournamentTabController implements Initializable{
     }
 
     void setResults() {
+        CurrentTournament.getCurrentCompetition().setFinished(true);
         CurrentTournament.getCurrentCompetition().setResults();
         rootController.displayResults();
     }

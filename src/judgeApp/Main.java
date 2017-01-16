@@ -13,6 +13,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -40,6 +41,9 @@ public class Main extends Application {
 
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle(Dictionary.getString("window-title"));
+        
+        this.primaryStage.getIcons().add(new Image("file:W:/Netbeans Projects/judgeApp/src/judgeApp/presentation/resources/images/ico128.png"));
+
 
         initRootLayout();
         initBoard(0);
@@ -78,10 +82,12 @@ public class Main extends Application {
         //get tournaments from folder
         ArrayList<Serializable> objs;
         objs = Serializator.readAllFromFolder("tournaments/current");
-        Tournament t = (Tournament) objs.get(0);
+        Tournament t = null;
+        if(objs.size()>0)
+            t = (Tournament) objs.get(0);
         
         if(t!=null) {
-           // CurrentTournament.setTournament( t);
+            CurrentTournament.setTournament( t);
         }
         else
             System.out.println("no tournament on local drive");

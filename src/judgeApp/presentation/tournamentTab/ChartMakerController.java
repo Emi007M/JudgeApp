@@ -42,6 +42,7 @@ import javafx.scene.text.TextAlignment;
 import serializable.model.Chart;
 import judgeApp.model.Dictionary;
 import judgeApp.Main;
+import judgeApp.model.CurrentTournament;
 import serializable.model.Node;
 import judgeApp.model.ZoomHandler;
 import serializable.model.Serializator;
@@ -144,10 +145,9 @@ public class ChartMakerController implements Initializable{
     @FXML
     private void handleButtonAction(javafx.event.ActionEvent event) {
         System.out.println("You clicked me!");
-        //int amount = Integer.parseInt( athletesNo.getText());
-        //if(amount<=0) amount = 8;
         
-        //currentChart = new Chart(4);
+        CurrentTournament.getCurrentCompetition().setLocked(true);
+        
         currentChart = (Chart) Serializator.readFromFile("test2");
         reloadChart();
     }

@@ -32,7 +32,9 @@ public final class CurrentTournament {
         return "";
     }
     public static ArrayList<Competition> getTournamentCompetitions(Integer boardID){
-        return tournament.getCompetitionsForBoard(boardID);
+        ArrayList<Competition> ret = null;
+        ret = tournament.getCompetitionsForBoard(boardID);
+        return ret;
     }
     public static ArrayList<Competition> getTournamentCompetitions(){
         return tournament.getCompetitions();
@@ -86,6 +88,7 @@ public final class CurrentTournament {
                 if(co.getID() == ID){
                     co = c;
                     System.out.println("competition updated");
+                    System.out.println("winner is "+c.getResults().get(0));
                     return;
                 }
             

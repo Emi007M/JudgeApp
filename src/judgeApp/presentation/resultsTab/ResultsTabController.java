@@ -6,6 +6,7 @@
 package judgeApp.presentation.resultsTab;
 
 
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import judgeApp.model.CurrentTournament;
+import judgeApp.model.SocketClient;
 
 /**
  *
@@ -51,6 +53,12 @@ public class ResultsTabController implements Initializable{
         for(String r : CurrentTournament.getCurrentCompetition().getResults()){
             items.add(r);
         }
+    }
+    
+    @FXML
+    public void handleSendBtn(){
+        System.out.println("sending results");
+        SocketClient.sendResultsToServer(CurrentTournament.getCurrentCompetition(), null);
     }
     
 }

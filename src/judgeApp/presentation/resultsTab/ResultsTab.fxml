@@ -7,13 +7,27 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Separator?>
 
 <BorderPane fx:id="rootPane" minHeight="0.0" minWidth="0.0" 
             prefHeight="693.0" prefWidth="983.0" 
             xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" 
             fx:controller="judgeApp.presentation.resultsTab.ResultsTabController">
     <top>
-        <Label fx:id="titleLabel" text="Results" />
+        
+      <VBox prefHeight="115.0" prefWidth="1000.0">
+         <children>
+            <Label fx:id="titleLabel" text="Results">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+         </padding>
+      </VBox>
     </top>
     <center>
         <VBox alignment="TOP_CENTER" 
@@ -22,7 +36,7 @@
             <children>
                 <ListView fx:id="list" 
                           maxWidth="600.0" prefHeight="300.0" prefWidth="400.0" />
-                <Button fx:id="sendBtn" mnemonicParsing="false" text="Send results">
+                <Button fx:id="sendBtn" onAction="#handleSendBtn" text="Send results">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>

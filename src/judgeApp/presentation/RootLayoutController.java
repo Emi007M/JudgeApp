@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import serializable.model.Competition;
 import judgeApp.model.CurrentTournament;
 import judgeApp.presentation.competitorsTab.CompetitorsTabController;
@@ -36,6 +37,8 @@ public class RootLayoutController implements Initializable {
     
     @FXML
     private JFXComboBox boardCombo;
+    @FXML
+    private TextField ipField;
 
     @FXML
     private Tab tabStartingLists;
@@ -56,8 +59,8 @@ public class RootLayoutController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         boardCombo.getItems().addAll(0,1,2,3,4);
-        boardCombo.setOnAction(e->CurrentTournament.setBoardID((Integer) boardCombo.getValue()));
-        boardCombo.setValue(1);
+        boardCombo.setOnAction(e->handleComboBoxAction());
+        boardCombo.setValue(0);
         
         try {
             FXMLLoader loader0 = new FXMLLoader(getClass().getResource("startingListsTab/StartingListsTab.fxml"));
@@ -85,6 +88,7 @@ public class RootLayoutController implements Initializable {
         tabs.getTabs().get(3).setDisable(true);
 
         initialized = true;
+
     }
 
     public void init() {
@@ -131,6 +135,18 @@ public class RootLayoutController implements Initializable {
     public void initResults() {
         resultsController.init();  
         tabs.getTabs().get(3).setDisable(false);    
+    }
+
+    private void handleComboBoxAction() {
+        CurrentTournament.setBoardID((Integer) boardCombo.getValue());
+        startingListsController.fillInTable();
+        
+    }
+    
+    public String getIP(){
+        String ret = null;
+        ret = ipField.getText();
+        return ret;
     }
     
   

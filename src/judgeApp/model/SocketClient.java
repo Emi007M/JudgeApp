@@ -8,11 +8,13 @@ package judgeApp.model;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 import serializable.model.Competition;
 import serializable.model.Message;
 import serializable.model.Tournament;
@@ -26,62 +28,71 @@ import serializable.model.Tournament;
 public class SocketClient {
 
     private static InetAddress host = null;
-
-    public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, InterruptedException {
+    
+    private static void setDefaultAddress(){
         
-        
-        Message received = askServer(new Message(), null);
+        try {
+            host = InetAddress.getByName("10.9.141.124");
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(SocketClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
+
     /**
-     * 
+     *
      * @param address if null, localhost is set
      */
-    public static void updateTournamentViaServer(InetAddress address){
-        
+    public static void updateTournamentViaServer(InetAddress address) {
+
         Message m = new Message();
         m.askForTournament();
         Message answer = askServer(m, address);
-        
-        if(answer.getTopic()==Message.Topic.SendTournament){
-            Tournament t = (Tournament) answer.getObject();   
+
+        if (answer.getTopic() == Message.Topic.SendTournament) {
+            Tournament t = (Tournament) answer.getObject();
             updateTournament(t);
         }
-        
-        
+
     }
 
     /**
-     * 
+     *
      * @param address if null, localhost is set
      */
-    public static void sendResultsToServer(Competition c, InetAddress address){
+    public static void sendResultsToServer(Competition c, InetAddress address) {
+        
+        if(host!= null) address=host;
         
         Message m = new Message();
         m.sendCompetition(c);
         Message answer = askServer(m, address);
-        
-        if(answer.getTopic()==Message.Topic.SendTournament){
-            Tournament t = (Tournament) answer.getObject();   
+
+        if (answer.getTopic() == Message.Topic.SendTournament) {
+            Tournament t = (Tournament) answer.getObject();
             updateTournament(t);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Results sent");
+            alert.setHeaderText("Results sent");
+            alert.setContentText("Results have been succesfully sent to the server.");
+            alert.showAndWait();
         }
-        
+
     }
 
-    
-    private static void updateTournament(Tournament t){
+    private static void updateTournament(Tournament t) {
         //if null tournament from message
-        if(t==null){
+        if (t == null) {
             System.out.println("null tournament from the server.");
-            return;           
-        }
-        //if tournament was not set
-        if(CurrentTournament.getTournament()==null){
-            CurrentTournament.setTournament(t);
             return;
         }
-            
-        //if tournament was set, update not locked competitions
+        //if tournament was not set
+        if (CurrentTournament.getTournament() == null) {
+            CurrentTournament.setTournament(t);
+
+        } else {
+            //if tournament was set, update not locked competitions
 //        
 //        for(Competition c : CurrentTournament.getTournamentCompetitions()){
 //            if(!c.isLocked() && !c.isFinished()){
@@ -95,29 +106,34 @@ public class SocketClient {
 //                CurrentTournament.updateCompetition(toOverride);
 //                        }
 
-  //  }
-        CurrentTournament.setTournament(t);
-        System.out.println("tournament updated.");
+            //  }
+            CurrentTournament.setTournament(t);
+            System.out.println("tournament updated.");
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Data downlooaded");
+        alert.setHeaderText("Data succesfully downloaded");
+        alert.setContentText("All the data has been succesfully synchronized with the server.");
+        alert.showAndWait();
     }
-    
-    
+
     /**
-     * 
+     *
      * @param query prepared Message for the server
      * @param address if null, localhost is set
      * @return answer from the server in form of Message
      */
     private static Message askServer(Message query, InetAddress address) {
         Message received = null;
-        
+
         try {
-            if(address==null)
-                host = InetAddress.getLocalHost();
-            else
+            if (address == null) {
+              ///  host = InetAddress.getLocalHost();
+                setDefaultAddress();
+            } else {
                 host = address;
-            
-            
-            
+            }
+
             Socket socket = null;
             ObjectOutputStream oos = null;
             ObjectInputStream ois = null;
@@ -130,25 +146,22 @@ public class SocketClient {
             // if(i==4)oos.writeObject("exit");
             // else oos.writeObject(""+i);
             oos.writeObject(query);
-            
+
             //read the server response message
             ois = new ObjectInputStream(socket.getInputStream());
             received = (Message) ois.readObject();
             System.out.println("Message received");
-            
-            
-            
+
             //close resources
             ois.close();
             oos.close();
-            
-           
+
         } catch (IOException ex) {
             Logger.getLogger(SocketClient.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SocketClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         return received;
+
+        return received;
     }
 }
