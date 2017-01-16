@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import serializable.model.Competition;
 import judgeApp.model.CurrentTournament;
+import judgeApp.model.SocketClient;
 import judgeApp.presentation.RootLayoutController;
 
 /**
@@ -126,13 +127,17 @@ public class StartingListsTabController implements Initializable {
     private void handleDownloadButtonAction() {
         System.out.println("downloading...");
 
+        SocketClient.updateTournamentViaServer(null);
+        init();
+        
         fillInTable();
     }
     
     @FXML
     private void handleReloadButtonAction() {
         System.out.println("reload...");
-
+        SocketClient.updateTournamentViaServer(null);
+        init();
         fillInTable();
     }
     

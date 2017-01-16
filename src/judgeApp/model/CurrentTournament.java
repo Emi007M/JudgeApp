@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package judgeApp.model;
 
 import serializable.model.Tournament;
@@ -15,7 +11,7 @@ import java.util.ArrayList;
  */
 public final class CurrentTournament {
     
-    private static Tournament tournament;
+    private static Tournament tournament = null;
     private static Integer boardID;
     private static Competition currentCompetition;
     
@@ -31,16 +27,21 @@ public final class CurrentTournament {
         return tournament;
     }
     public static String getTournamentTitle(){
-        return tournament.getTitle();
+        if(tournament!=null)
+            return tournament.getTitle();
+        return "";
     }
     public static ArrayList<Competition> getTournamentCompetitions(Integer boardID){
         return tournament.getCompetitionsForBoard(boardID);
     }
-    
     public static ArrayList<Competition> getTournamentCompetitions(){
         return tournament.getCompetitions();
     }
-    
+    public static Competition getCompetition(Integer id){
+        for(Competition c : tournament.getCompetitions())
+            if(c.getID().equals(id))return c;
+        return null;
+    }
     
     
     public static void setCurrentCompetition(Competition c){
@@ -63,14 +64,34 @@ public final class CurrentTournament {
     public static void setBoardID(Integer i){
         boardID = i;
         currentCompetition = null;
-        
-        System.out.println("board ID set to "+boardID);
     }
     
     public static Integer getBoardID(){
         return boardID;
     }
 
+    /**
+     * method for Socket operations
+     * probably receives locked or locked and finished competition from Client
+     * and not locked from Server
+     * @param ID
+     * @param c 
+     */
+    public static void updateCompetition(Competition c){
+        Integer ID = c.getID();
+        Competition tmp = getCompetition(ID);
+        if(tmp.getTitle().equals(c.getTitle())){
+            
+            for(Competition co : tournament.getCompetitions())
+                if(co.getID() == ID){
+                    co = c;
+                    System.out.println("competition updated");
+                    return;
+                }
+            
+        }
+        System.out.println("competition couldn't be updated");
+    }
 
     
     

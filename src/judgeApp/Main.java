@@ -6,10 +6,13 @@
 package judgeApp;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -39,11 +42,6 @@ public class Main extends Application {
         this.primaryStage.setTitle(Dictionary.getString("window-title"));
 
         initRootLayout();
-
-        //showChartMaker();
-//        Tournament t = new Tournament("Zawody testowe", new Date(2017,2,15));
-//        t.init();
-//        Serializator.writeToFile(t, "tournaments/tournament1");
         initBoard(0);
 
     }
@@ -76,25 +74,25 @@ public class Main extends Application {
     }
 
     public void initBoard(Integer boardId) {
-//        Tournament t = new Tournament("tytuł ttt", new Date(2016,12,12));
-//        t.init();
-//        Serializator.writeToFile(t,"tournaments/tournament4");
-        CurrentTournament.setTournament((Tournament) Serializator.readFromFile("tournaments/t_2016-06-20"));
+        
+        //get tournaments from folder
+        ArrayList<Serializable> objs;
+        objs = Serializator.readAllFromFolder("tournaments/current");
+        Tournament t = (Tournament) objs.get(0);
+        
+        if(t!=null) {
+           // CurrentTournament.setTournament( t);
+        }
+        else
+            System.out.println("no tournament on local drive");
+
+        //CurrentTournament.setTournament((Tournament) Serializator.readFromFile("tournaments/t_2016-06-20"));
   //      CurrentTournament.setTournament((Tournament) Serializator.readFromFile("tournaments/t_2017-01-20"));
 
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(Main.class.getResource("presentation/R.fxml"));
-//        StartingListsTabController c = loader.getController();
         mainController.init();
 
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-
-    }
+   
 
 }
