@@ -3,18 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/model/CurrentTournament.java</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/serializable/model/Message.java</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/presentation/RootLayout.fxml</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/model/SocketClient.java</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/presentation/RootLayoutController.java</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/presentation/resultsTab/ResultsTabController.java</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/presentation/resultsTab/ResultsTab.fxml</file>
             <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/presentation/startingListsTab/StartingListsTab.fxml</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/model/Dictionary.java</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/serializable/model/Tournament.java</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/presentation/startingListsTab/StartingListsTabController.java</file>
-            <file>file:/W:/Netbeans%20Projects/judgeApp/src/serializable/model/Competition.java</file>
+            <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/model/CurrentTournament.java</file>
             <file>file:/W:/Netbeans%20Projects/judgeApp/src/judgeApp/Main.java</file>
         </group>
     </open-files>

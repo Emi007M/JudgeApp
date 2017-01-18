@@ -33,27 +33,27 @@
          <children>
             <TableView fx:id="table" prefHeight="182.0" prefWidth="800.0">
               <columns>
-                  <TableColumn fx:id="colID" prefWidth="37.0" text="ID">
+                  <TableColumn fx:id="colID" prefWidth="70.0" text="ID">
                       <cellValueFactory>
                          <PropertyValueFactory property="idp" />
                         </cellValueFactory>
                   </TableColumn>
-                <TableColumn fx:id="colName" prefWidth="469.0" text="Name">
+                <TableColumn fx:id="colName" prefWidth="510.0" text="Name">
                       <cellValueFactory>
                          <PropertyValueFactory property="titlep" />
                         </cellValueFactory>
                   </TableColumn>
-                  <TableColumn fx:id="colContestants" prefWidth="122.0" text="Contestants Amount">
+                  <TableColumn fx:id="colContestants" prefWidth="150.0" text="Contestants">
                       <cellValueFactory>
                          <PropertyValueFactory property="contestants" />
                         </cellValueFactory>
                   </TableColumn>
-                  <TableColumn fx:id="colProgress" prefWidth="122.0" text="Progress">
+<!--                  <TableColumn fx:id="colProgress" prefWidth="122.0" text="Progress">
                       <cellValueFactory>
                          <PropertyValueFactory property="progress" />
                         </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="colSent" prefWidth="61.0" text="Sent">
+                  </TableColumn>-->
+                  <TableColumn fx:id="colSent" prefWidth="70.0" text="Sent">
                       <cellValueFactory>
                          <PropertyValueFactory property="sent" />
                         </cellValueFactory>

@@ -36,19 +36,12 @@ public class TournamentTabController implements Initializable{
             loader.setLocation(Main.class.getResource("presentation/tournamentTab/ChartMaker.fxml"));
             
             AnchorPane chartMaker = (AnchorPane) loader.load();
-           
-            // Set it into the center of root layout.
-
             
             rootPane.getChildren().add(chartMaker);
             
             // Give the controller access to the main app.
         controller = loader.getController();
-//        controller.setMainApp(this);
-//        controller.setChartRoot(chartMaker);
-      //  controller.reloadChart();
-        
-       
+
         
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,10 +58,18 @@ public class TournamentTabController implements Initializable{
             rootController.initResults();
     }
 
+    /**
+     * (used from ChartMakerController)
+     * sets current competition as finished, generates the results,
+     * then opens the Results tab
+     * and saves tournament to a file
+     */
     void setResults() {
         CurrentTournament.getCurrentCompetition().setFinished(true);
         CurrentTournament.getCurrentCompetition().setResults();
         rootController.displayResults();
+        
+        CurrentTournament.getTournament().saveToFile();
     }
     
     public void setRootController(RootLayoutController c){

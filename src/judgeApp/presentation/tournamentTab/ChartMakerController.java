@@ -127,14 +127,10 @@ public class ChartMakerController implements Initializable{
        //  bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup,));
         
         
+        bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup));
         
     }
     
-    public void setMainApp(Main mainApp) {
-        //this.mainApp = mainApp;
-
-        //chart.setText(mainApp.getMatches());
-    }
     
     public void setTournamentController(TournamentTabController c){
         tournamentController = c;
@@ -183,14 +179,6 @@ public class ChartMakerController implements Initializable{
         this.akaBtn.setText(Integer.toString(score));
     }
     
-//    @FXML
-//    private void handleStartBtnAction(javafx.event.ActionEvent event){
-//        System.out.println("Start");
-//        updateCurrentMatch();
-//        root.getChildren().remove(this.startBtn); 
-//        root.getChildren().remove(this.generateBtn); 
-//        
-//    }
     
     @FXML
     private void handleNextBtnAction(javafx.event.ActionEvent event){
@@ -238,20 +226,7 @@ public class ChartMakerController implements Initializable{
         
         int lvls = currentChart.getMaxLvl();
         
-        
-        //performance minimal notification overhead ->replaced code
-//        
-//        chartBox.getChildren().clear();
-//        
-//        for(int i=lvls;i>=0;i--)
-//            chartBox.getChildren().add(new Label(currentChart.getLvl(i)));
-//        
-//
-//        List<Label> labels = new ArrayList<>();
-//        for(int i=lvls;i>=0;i--)
-//            labels.add(new Label(currentChart.getLvl(i)));
-   
-        //chartBox.getChildren().setAll(labels);
+
         showBrackets();
         updateMatchesBox();
         
@@ -259,7 +234,9 @@ public class ChartMakerController implements Initializable{
         
     }
     
-     
+    /**
+     * updates the Score View (both current and next match)
+     */ 
     public void updateCurrentMatch(){
       Node match = currentChart.getFirstMatch();
       if(match !=null){
@@ -306,7 +283,11 @@ public class ChartMakerController implements Initializable{
       
     }
     
-    public void updateNextMatch(){
+    /**
+     * used from UpdateCurrentMatch
+     * updates part of the Score View
+     */
+    private void updateNextMatch(){
       Node match = currentChart.getWaitingMatch();
       if(match !=null ){
         
@@ -341,6 +322,9 @@ public class ChartMakerController implements Initializable{
       
     }
     
+    /**
+     * initializes/updates the list of matches view
+     */
     public void updateMatchesBox(){
         ArrayList<Node> matches = currentChart.getMatches();
         ArrayList<Control> elements = new ArrayList<>();
@@ -366,15 +350,11 @@ public class ChartMakerController implements Initializable{
         this.matchesBox.getChildren().setAll(elements);
     }
 
-//    public void setChartRoot(AnchorPane root) {
-//        this.root = root;
-//    }
-    
-    
+
     public void showBrackets() {
 
-        bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup));
-        
+//        bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup));
+//        
         
         ArrayList<Node> matches = currentChart.getBracketMatches();
   

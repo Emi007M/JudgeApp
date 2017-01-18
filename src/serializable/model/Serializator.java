@@ -11,13 +11,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.ObjectStreamClass;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.concurrent.locks.Lock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -56,30 +54,7 @@ public final class Serializator {
         Serializable obj = null;
         try {
             FileInputStream fis = new FileInputStream(PATH + fileName + ".ser");
-            ObjectInputStream ois = new ObjectInputStream(fis) {
-//                //for judgeApp synchronization
-//                @Override
-//                protected java.io.ObjectStreamClass readClassDescriptor()
-//                        throws IOException, ClassNotFoundException {
-//                    ObjectStreamClass desc = super.readClassDescriptor();
-//                    if (desc.getName().equals("judgeApp.model.Tournament")) {
-//                        return ObjectStreamClass.lookup(Tournament.class);
-//                    }
-//                    else if (desc.getName().equals("judgeApp.model.Competition")) {
-//                        return ObjectStreamClass.lookup(Competition.class);
-//                    }
-//                    else if (desc.getName().equals("judgeApp.model.Chart")) {
-//                        return ObjectStreamClass.lookup(Chart.class);
-//                    }
-//                    else if (desc.getName().equals("judgeApp.model.Node")) {
-//                        return ObjectStreamClass.lookup(Node.class);
-//                    }
-//                    else if (desc.getName().equals("judgeApp.model.Person")) {
-//                        return ObjectStreamClass.lookup(Person.class);
-//                    }
-//                    return desc;
-//                }
-            };
+            ObjectInputStream ois = new ObjectInputStream(fis);
             obj = (Serializable) ois.readObject();
             ois.close();
             System.out.println("Object succesfully read from " + fileName);
@@ -95,10 +70,9 @@ public final class Serializator {
         try (Stream<Path> paths = Files.walk(Paths.get(PATH + folderName))) {
             paths.forEach(filePath -> {
                 if (Files.isRegularFile(filePath)) {
-                    // System.out.println(filePath.getFileName());
 
                     Serializable obj = null;
-                    
+
                     try {
                         FileInputStream fis = new FileInputStream(filePath.toString());
                         ObjectInputStream ois;
@@ -109,10 +83,11 @@ public final class Serializator {
                     } catch (Exception ex) {
                         Logger.getLogger(Serializator.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
-                    if(obj != null)
+
+                    if (obj != null) {
                         files.add(obj);
-            
+                    }
+
                 }
             });
 

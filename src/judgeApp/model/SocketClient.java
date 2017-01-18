@@ -69,14 +69,15 @@ public class SocketClient {
         Message answer = askServer(m, address);
 
         if (answer.getTopic() == Message.Topic.SendTournament) {
-            Tournament t = (Tournament) answer.getObject();
-            updateTournament(t);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Results sent");
             alert.setHeaderText("Results sent");
             alert.setContentText("Results have been succesfully sent to the server.");
             alert.showAndWait();
+            
+            Tournament t = (Tournament) answer.getObject();
+            updateTournament(t);
         }
 
     }

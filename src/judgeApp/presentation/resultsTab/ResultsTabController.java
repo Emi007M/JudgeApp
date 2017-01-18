@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import judgeApp.model.CurrentTournament;
 import judgeApp.model.SocketClient;
+import serializable.model.Competition;
 
 /**
  *
@@ -50,6 +51,9 @@ public class ResultsTabController implements Initializable{
     public void init() {
         items.clear();
         
+        if(!CurrentTournament.getCurrentCompetition().hasResults())
+            return;
+        
         for(String r : CurrentTournament.getCurrentCompetition().getResults()){
             items.add(r);
         }
@@ -58,7 +62,14 @@ public class ResultsTabController implements Initializable{
     @FXML
     public void handleSendBtn(){
         System.out.println("sending results");
+        Competition current = CurrentTournament.getCurrentCompetition();
+        if(CurrentTournament.getCurrentCompetition().isFinished())
+            System.out.println("finished" ); 
+        else 
+            System.out.println("not finished");  
         SocketClient.sendResultsToServer(CurrentTournament.getCurrentCompetition(), null);
+        
+        CurrentTournament.setCurrentCompetition(current);
     }
     
 }
