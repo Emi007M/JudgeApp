@@ -5,14 +5,10 @@
  */
 package serializable.model;
 
-import judgeApp.model.Dictionary;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -20,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import jdk.nashorn.internal.objects.NativeArray;
+import judgeApp.model.Dictionary;
 
 /**
  *
@@ -41,7 +37,7 @@ public class Chart implements Serializable {
         //seed preranked players and put at front
         ArrayList<Person> preranked = new ArrayList<>();
         ArrayList<Person> a = new ArrayList<>(_a);
-        
+
         System.out.println(a.size());
 
         for (Iterator<Person> it = a.iterator(); it.hasNext();) {

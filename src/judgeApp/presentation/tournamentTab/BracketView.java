@@ -20,8 +20,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import serializable.model.Chart;
 import judgeApp.model.Dictionary;
+import serializable.model.Chart;
 import serializable.model.Node;
 
 /**
@@ -44,7 +44,7 @@ public class BracketView extends Region {
 
         vert_gap = 70;
         match_width = 220;
-        
+
         top_offset = 50;
 
         initBracket();
@@ -55,7 +55,7 @@ public class BracketView extends Region {
         int cur_lvl = lvl;
         int m_amount = matches.size();
         int j = 0;
-        
+
         boolean currentMarked = false;
 
         for (int i = 0; i < m_amount; i++) {
@@ -167,7 +167,7 @@ public class BracketView extends Region {
 
         addMatch(match, posX, posY);
     }
-    
+
     private void addNextMatch(Node match, int posX, int posY) {
         Rectangle rect = new Rectangle(posX - 15, posY - 15, match_width + 50, 100);
         rect.getStyleClass().add("next-match");
@@ -228,8 +228,9 @@ public class BracketView extends Region {
 
     /**
      * adds line on bracket chart indicating half of the chart
+     *
      * @param posX
-     * @param posY 
+     * @param posY
      */
     private void addDottedLine(int posX, int posY) {
         Line l = new Line(30, posY + 35 + top_offset, posX - 10, posY + 35 + top_offset);
@@ -250,10 +251,12 @@ public class BracketView extends Region {
 
         DoubleProperty scrollVvalue = bracketScrollPane.vvalueProperty();
         DoubleProperty contentHeight = new SimpleDoubleProperty();
-        
+
         scrollContent.boundsInLocalProperty().addListener(
                 (ObservableValue<? extends Bounds> observableValue, Bounds bounds, Bounds bounds2)
-                -> {contentHeight.set(bounds2.getHeight());}
+                -> {
+            contentHeight.set(bounds2.getHeight());
+        }
         );
 
         // fix lvlNames vertically
@@ -267,8 +270,6 @@ public class BracketView extends Region {
                         ).divide(zoomGroup.scaleYProperty())//.divide(new ZoomBinding(zoomGroup))
         );
 
-        
-        
 //        lvlNames.layoutYProperty().addListener((observable, oldValue, newValue) -> {
 //            System.out.println("pos" + lvlNames.getLayoutY()
 //                    + "\tScale " + zoomGroup.getScaleY()
@@ -279,7 +280,6 @@ public class BracketView extends Region {
 //                    + "\tb " + bracketScrollPane.getViewportBounds().getHeight()
 //                    + ")\t=" + (bracketScrollPane.getVvalue() * (bracketScrollPane.getContent().getBoundsInLocal().getHeight() - bracketScrollPane.getViewportBounds().getHeight())));
 //        });
-
         zoomGroup.setMinSize(10.0, 10.0);
 
         //
@@ -311,7 +311,7 @@ public class BracketView extends Region {
         }
 
         @Override
-        protected double computeValue() {  
+        protected double computeValue() {
             return root.getViewportBounds().getHeight();
         }
     }

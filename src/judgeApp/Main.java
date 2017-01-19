@@ -8,14 +8,12 @@ package judgeApp;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
@@ -25,10 +23,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import judgeApp.model.CurrentTournament;
 import judgeApp.model.Dictionary;
-import serializable.model.Tournament;
-import serializable.model.Serializator;
 import judgeApp.presentation.RootLayoutController;
-import serializable.model.Competition;
+import serializable.model.Serializator;
+import serializable.model.Tournament;
 
 /**
  *
@@ -39,7 +36,7 @@ public class Main extends Application {
     private Stage primaryStage;
     public BorderPane rootLayout;
     private RootLayoutController mainController;
-    
+
     public static void main(String[] args) throws IOException {
         //needed for buiding .exe file
         Application.launch(Main.class, (java.lang.String[]) null);
@@ -74,10 +71,11 @@ public class Main extends Application {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == buttonTypeOne) {
-                    if(CurrentTournament.getTournament()!=null)
+                    if (CurrentTournament.getTournament() != null) {
                         CurrentTournament.getTournament().saveToFile();
+                    }
                 } else if (result.get() == buttonTypeTwo) {
-                    
+
                 } else {
                     // ... user chose CANCEL or closed the dialog
                     we.consume();

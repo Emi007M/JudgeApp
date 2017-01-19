@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import judgeApp.Main;
 import judgeApp.model.CurrentTournament;
@@ -21,28 +20,28 @@ import judgeApp.presentation.RootLayoutController;
  *
  * @author Emilia
  */
-public class TournamentTabController implements Initializable{
+public class TournamentTabController implements Initializable {
 
-    @FXML private AnchorPane rootPane;
-    
+    @FXML
+    private AnchorPane rootPane;
+
     private ChartMakerController controller;
     private RootLayoutController rootController;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             // Load chart maker.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("presentation/tournamentTab/ChartMaker.fxml"));
-            
-            AnchorPane chartMaker = (AnchorPane) loader.load();
-            
-            rootPane.getChildren().add(chartMaker);
-            
-            // Give the controller access to the main app.
-        controller = loader.getController();
 
-        
+            AnchorPane chartMaker = (AnchorPane) loader.load();
+
+            rootPane.getChildren().add(chartMaker);
+
+            // Give the controller access to the main app.
+            controller = loader.getController();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,27 +52,27 @@ public class TournamentTabController implements Initializable{
         controller.reloadChart();
         controller.updateCurrentMatch();
         controller.setTournamentController(this);
-        
-        if(CurrentTournament.getCurrentCompetition().hasResults())
+
+        if (CurrentTournament.getCurrentCompetition().hasResults()) {
             rootController.initResults();
+        }
     }
 
     /**
-     * (used from ChartMakerController)
-     * sets current competition as finished, generates the results,
-     * then opens the Results tab
-     * and saves tournament to a file
+     * (used from ChartMakerController) sets current competition as finished,
+     * generates the results, then opens the Results tab and saves tournament to
+     * a file
      */
     void setResults() {
         CurrentTournament.getCurrentCompetition().setFinished(true);
         CurrentTournament.getCurrentCompetition().setResults();
         rootController.displayResults();
-        
+
         CurrentTournament.getTournament().saveToFile();
     }
-    
-    public void setRootController(RootLayoutController c){
+
+    public void setRootController(RootLayoutController c) {
         rootController = c;
-        
+
     }
 }

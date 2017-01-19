@@ -25,10 +25,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import serializable.model.Competition;
 import judgeApp.model.CurrentTournament;
 import judgeApp.model.SocketClient;
 import judgeApp.presentation.RootLayoutController;
+import serializable.model.Competition;
 
 /**
  *
@@ -48,32 +48,30 @@ public class StartingListsTabController implements Initializable {
     @FXML
     private TableColumn<Competition, String> colName, colProgress, colSent;
     //, columnProgress, columnRefresh, columnSent;
-    
+
     @FXML
     private TextFlow descrBox;
 
     @FXML
     private ObservableList<Competition> dataArray;
-    
-    
+
     private RootLayoutController rootController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-          
-        Button dwnBtn = new Button();   
+
+        Button dwnBtn = new Button();
         dwnBtn.setId("downloadBtn");
         dwnBtn.setOnAction(e -> this.handleDownloadButtonAction());
         table.setPlaceholder(dwnBtn);
-        
+
         dwnBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent event) {
+            @Override
+            public void handle(ActionEvent event) {
                 handleDownloadButtonAction();
             }
         });
 
-        
         table.setColumnResizePolicy(p -> true);
         table.setSortPolicy(e -> false);
 
@@ -81,26 +79,23 @@ public class StartingListsTabController implements Initializable {
 //        firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
 //        TableColumn<InvoiceEntry, String> lastNameCol = new TableColumn<InvoiceEntry, String>("Last Name");
 //        lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
-
-     //   table.getColumns().setAll(firstNameCol, lastNameCol);
-     
+        //   table.getColumns().setAll(firstNameCol, lastNameCol);
         dataArray = FXCollections.observableArrayList();
         table.setItems(dataArray);
-        
-        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-        if (newSelection != null) {
-            this.onRowChosen(newSelection);
-        }
-        
-});
-      
-    //    fillInTable();
 
+        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                this.onRowChosen(newSelection);
+            }
+
+        });
+
+        //    fillInTable();
     }
 
     public void init() {
         titleLabel.setText(CurrentTournament.getTournamentTitle());
-        
+
         System.out.println("\033[32m" + CurrentTournament.getTournamentTitle() + "\033[0m");
 //        System.out.println("\033[0m BLACK");
 //        System.out.println("\033[31m RED");
@@ -111,16 +106,17 @@ public class StartingListsTabController implements Initializable {
 //        System.out.println("\033[36m CYAN");
 //        System.out.println("\033[37m WHITE");
 
-          TableHeaderRow header = (TableHeaderRow) table.lookup("TableHeaderRow");
+        TableHeaderRow header = (TableHeaderRow) table.lookup("TableHeaderRow");
         header.setReordering(false);
-            header.reorderingProperty().addListener(e->header.setReordering(false));
+        header.reorderingProperty().addListener(e -> header.setReordering(false));
 
     }
 
     public void fillInTable() {
-           ArrayList<Competition> competitions = CurrentTournament.getTournamentCompetitions(CurrentTournament.getBoardID());
-           for(Competition c : competitions)
+        ArrayList<Competition> competitions = CurrentTournament.getTournamentCompetitions(CurrentTournament.getBoardID());
+        for (Competition c : competitions) {
             c.initProperties();
+        }
 
         dataArray.clear();
         dataArray.addAll(competitions);
@@ -133,13 +129,13 @@ public class StartingListsTabController implements Initializable {
 
         handleReloadButtonAction();
     }
-    
+
     @FXML
     private void handleReloadButtonAction() {
         System.out.println("reload...");
-        
+
         String ip = rootController.getIP();
-        if(ip!=null){ //connect with ip given in textfield
+        if (ip != null) { //connect with ip given in textfield
             InetAddress ipaddr;
             try {
                 ipaddr = InetAddress.getByName(ip);
@@ -147,44 +143,40 @@ public class StartingListsTabController implements Initializable {
             } catch (UnknownHostException ex) {
                 Logger.getLogger(StartingListsTabController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        }else { //connect with localhost
+
+        } else { //connect with localhost
             SocketClient.updateTournamentViaServer(null);
         }
-        
+
         CurrentTournament.getTournament().saveToFile();
         init();
         fillInTable();
     }
-    
 
-    
     @FXML
-    private void onRowChosen(Competition c){
+    private void onRowChosen(Competition c) {
         descrBox.getChildren().clear();
-        
+
         Label header = new Label("Description");
-        Text descr = new Text("\n"+c.getDescr()+"\n\n");
+        Text descr = new Text("\n" + c.getDescr() + "\n\n");
         header.getStyleClass().add("descr-header");
         descr.getStyleClass().add("descr-text");
-        
+
         Button btn = new Button("Choose");
-        btn.setOnAction(i->onChooseBtn(c));
-        
+        btn.setOnAction(i -> onChooseBtn(c));
+
         descrBox.getChildren().addAll(header, descr, btn);
-        
-        
+
     }
-    
-    private void onChooseBtn(Competition c){
-        
+
+    private void onChooseBtn(Competition c) {
+
         rootController.chooseCompetition(c);
-        
+
         System.out.println("Competition chosen");
 
     }
-    
-    
+
     public void setRootController(RootLayoutController r) {
         rootController = r;
     }

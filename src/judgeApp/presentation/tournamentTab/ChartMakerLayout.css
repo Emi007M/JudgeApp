@@ -1,6 +1,6 @@
 
 .root {
-     -fx-font-family: 'Microsoft PhagsPa';
+    -fx-font-family: 'Microsoft PhagsPa';
 }
 
 .label, .button {
@@ -8,32 +8,32 @@
 }
 #chartBox .label {
     -fx-min-width: 500;
-    
+
     -fx-padding: 10;
     -fx-margin: 5;
     -fx-padding: 5px;
     -fx-border-insets: 5px;
     -fx-background-insets: 5px;
     -fx-alignment: TOP_CENTER;
-    
+
     -fx-background-color: white;
     -fx-font-size: 17;
 }
 
 #currentMatch {
-    
+
 }
 
 #currentMatch .button {
-        -fx-cursor:hand;
-        -fx-border-color: #000;
-        -fx-border-width: 2;
-        -fx-background-insets: 2;
-        -fx-background-radius: 0;
-        -fx-font-size: 36;
-        -fx-font-weight: bold;
-        -fx-effects: none;
-        -fx-padding: 1;
+    -fx-cursor:hand;
+    -fx-border-color: #000;
+    -fx-border-width: 2;
+    -fx-background-insets: 2;
+    -fx-background-radius: 0;
+    -fx-font-size: 36;
+    -fx-font-weight: bold;
+    -fx-effects: none;
+    -fx-padding: 1;
 }
 #currentMatch .button:hover {
     -fx-border-width: 3;
@@ -67,7 +67,7 @@
     -fx-pref-height: 198px;
     -fx-cursor: hand;
     -fx-font-size: 40;
-   -fx-font-weight: bold;
+    -fx-font-weight: bold;
 
 }
 
@@ -79,8 +79,8 @@
     -fx-pref-height: 198px;   
     -fx-cursor: hand; 
     -fx-font-size: 40;
- -fx-font-weight: bold;
- 
+    -fx-font-weight: bold;
+
 }
 
 #shiroBtn:hover {
@@ -95,8 +95,8 @@
 
 #colon {
     -fx-font-size: 38;
-     -fx-font-weight: bold;
-     -fx-text-fill: #656565;
+    -fx-font-weight: bold;
+    -fx-text-fill: #656565;
 }
 
 #nextBtn {
@@ -164,7 +164,7 @@
 
 #matchesBox .label {
     -fx-min-width: 430px;
-        -fx-text-fill: white;  
+    -fx-text-fill: white;  
     -fx-padding: 5 5 10 5;
     -fx-alignment: center;
     -fx-background-color: transparent;
@@ -174,7 +174,7 @@
     -fx-font-size: 24;
     -fx-text-fill: white;    
     -fx-font-style: italic;
-    
+
     -fx-padding: 15 5 5 5; 
     -fx-border-color: blue;
     -fx-border-width: 1 0 0 0;
@@ -186,18 +186,18 @@
 }
 
 #bracket-chart .label {
-    
+
     -fx-font-size: 16;
     -fx-text-fill: rgb(222,222,222);
     -fx-background-color: transparent;
     -fx-min-width: 100;
     -fx-alignment: BASELINE_LEFT;
 }
-    
+
 #bracket-chart .label.club {
     -fx-font-size: 13;
 }
-    
+
 #bracket-chart .label.score {
     -fx-font-size: 16;
     -fx-alignment: TOP_RIGHT;
@@ -221,7 +221,7 @@
     -fx-text-fill: rgb(0,114,188);
     -fx-font-size: 10;
     -fx-alignment: TOP_CENTER;
-    
+
     -fx-font-weight: bold;
 }
 #bracket-chart .next-match {
@@ -234,7 +234,7 @@
     -fx-text-fill: rgb(0,114,188);
     -fx-font-size: 10;
     -fx-alignment: TOP_CENTER;
-    
+
     -fx-font-weight: bold;
 }
 
@@ -268,14 +268,14 @@
 }
 
 .scroll-bar .track {
-     -fx-background-color: #282828;
-     -fx-border-color: #222;
-     -fx-background-radius: 0em;
+    -fx-background-color: #282828;
+    -fx-border-color: #222;
+    -fx-background-radius: 0em;
 }
 .scroll-bar .thumb {
-     -fx-background-color: #353535;
-     -fx-border-color: #222;
-     -fx-background-radius: 0em;
+    -fx-background-color: #353535;
+    -fx-border-color: #222;
+    -fx-background-radius: 0em;
 }
 .scroll-bar .thumb:hover {
     -fx-background-color: #444;

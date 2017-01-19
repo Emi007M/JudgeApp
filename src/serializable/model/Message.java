@@ -1,4 +1,3 @@
-
 package serializable.model;
 
 import java.io.Serializable;
@@ -7,56 +6,48 @@ import java.io.Serializable;
  *
  * @author Emilia
  */
-public class Message implements Serializable{
-       
-    private Topic topic;  
+public class Message implements Serializable {
+
+    private Topic topic;
     private Serializable object;
-    
-    public Message(){
+
+    public Message() {
         object = null;
     }
-    
-    
+
     /*create questions*/
-    
-    public void askForTournament(){
+    public void askForTournament() {
         topic = Topic.AskForTournament;
     }
-    
-    public void sendCompetition(Competition c){
+
+    public void sendCompetition(Competition c) {
         topic = Topic.SendCompetition;
         object = c;
     }
-    
-    
+
     /*create answers*/
-    
-    public void sendTournament(Tournament t){
+    public void sendTournament(Tournament t) {
         topic = Topic.SendTournament;
         object = t;
     }
-     
-    public void setObject(Serializable o){
+
+    public void setObject(Serializable o) {
         object = o;
     }
-    
-    
+
     /*general methods*/
-    
-    public Serializable getObject(){
+    public Serializable getObject() {
         return object;
     }
-    
-    public Topic getTopic(){
+
+    public Topic getTopic() {
         return topic;
     }
-    
-    
-    
+
     public static enum Topic {
         AskForTournament,
         SendTournament,
         SendCompetition
     }
-    
+
 }

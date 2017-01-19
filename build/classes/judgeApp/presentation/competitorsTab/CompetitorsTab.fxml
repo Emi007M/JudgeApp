@@ -9,26 +9,26 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="rootPane" minHeight="0.0" minWidth="0.0" prefHeight="693.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="judgeApp.presentation.competitorsTab.CompetitorsTabController">
-         <top>
-            <Label fx:id="titleLabel" text="List of contestants">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-         </top>
-   <center>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <ListView fx:id="list" maxWidth="600.0" prefHeight="300.0" prefWidth="400.0" />
-            <Button fx:id="sendBtn" mnemonicParsing="false" text="Ask for absent">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="20.0" top="20.0" />
-         </BorderPane.margin>
-      </VBox>
-   </center>
-      </BorderPane>
+    <top>
+        <Label fx:id="titleLabel" text="List of contestants">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+    </top>
+    <center>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <ListView fx:id="list" maxWidth="600.0" prefHeight="300.0" prefWidth="400.0" />
+                <Button fx:id="sendBtn" mnemonicParsing="false" text="Ask for absent">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="20.0" top="20.0" />
+            </BorderPane.margin>
+        </VBox>
+    </center>
+</BorderPane>

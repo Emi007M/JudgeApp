@@ -9,9 +9,9 @@ and open the template in the editor.
 */
 
 .table-view{
-   -fx-background-color: rgba(255,255,255,0.0);
-   -fx-min-height: 400px;
-   -fx-border-color: white;
+    -fx-background-color: rgba(255,255,255,0.0);
+    -fx-min-height: 400px;
+    -fx-border-color: white;
     -fx-border-width: 1 0 1 0;
     -fx-padding: 5;
 }
@@ -31,7 +31,7 @@ and open the template in the editor.
 }
 
 .table-view .table-cell{
-/*    -fx-text-fill: white;*/
+    /*    -fx-text-fill: white;*/
 }
 
 #downloadBtn {
@@ -51,15 +51,15 @@ and open the template in the editor.
 /*description textflow*/
 
 .descr-header {
-     -fx-font-size: 22;
-     -fx-font-weight: bold;
-     -fx-font-style: italic;
-     -fx-text-fill: rgba(255,255,255,0.8);
-     -fx-pref-height: 50;
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-text-fill: rgba(255,255,255,0.8);
+    -fx-pref-height: 50;
 }
 
 .descr-text {
-    
+
     -fx-fill: white;
-    
+
 }

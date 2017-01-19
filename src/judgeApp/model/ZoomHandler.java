@@ -5,23 +5,20 @@
  */
 package judgeApp.model;
 
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
+
 /**
  *
  * @author Emilia
  */
- 
-
 public class ZoomHandler implements EventHandler<ScrollEvent> {
+
     private static final double MAX_SCALE = 1.0d;
     private static final double MIN_SCALE = 0.5d;
     private final StackPane nodeToZoom;
- 
+
     public ZoomHandler(StackPane nodeToZoom) {
         this.nodeToZoom = nodeToZoom;
     }
@@ -32,8 +29,8 @@ public class ZoomHandler implements EventHandler<ScrollEvent> {
             final double scale = calculateScale(scrollEvent);
             nodeToZoom.setScaleX(scale);
             nodeToZoom.setScaleY(scale);
-            scrollEvent.consume(); 
-      }
+            scrollEvent.consume();
+        }
     }
 
     private double calculateScale(ScrollEvent scrollEvent) {
@@ -47,5 +44,3 @@ public class ZoomHandler implements EventHandler<ScrollEvent> {
         return scale;
     }
 }
-
-

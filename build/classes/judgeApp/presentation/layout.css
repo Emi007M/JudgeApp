@@ -1,19 +1,19 @@
 .root {
-	/* -fx-background-color: #1f41bf;
-         -fx-background-color: radial-gradient(center 50% 25% , radius 90% , #1f41bf, #0f117f); */
-         -fx-background-image: url('resources/images/bg1.jpg'), url('resources/images/bg2.png');
-         -fx-background-position: center, top right;
-         -fx-background-repeat: no-repeat, no-repeat;
-         -fx-background-size: auto, auto 100%;
-          
+    /* -fx-background-color: #1f41bf;
+     -fx-background-color: radial-gradient(center 50% 25% , radius 90% , #1f41bf, #0f117f); */
+    -fx-background-image: url('resources/images/bg1.jpg'), url('resources/images/bg2.png');
+    -fx-background-position: center, top right;
+    -fx-background-repeat: no-repeat, no-repeat;
+    -fx-background-size: auto, auto 100%;
+
 }
 .btn-login {
--fx-background-color: rgba(0,0,0,0);
-  -fx-background-image: url('arrows.png');
-  -fx-background-repeat: no-repeat;
-  -fx-background-position: center;
--fx-font: 40 arial;
--fx-pref-width: 60;
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-image: url('arrows.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-font: 40 arial;
+    -fx-pref-width: 60;
 }
 
 .label {
@@ -22,11 +22,11 @@
 
 .combo-box-popup .list-view .jfx-list-cell:odd:selected .jfx-list-cell-container,
 .combo-box-popup .list-view .jfx-list-cell:even:selected .jfx-list-cell-container { 
-	-fx-background-color: rgba(0.0,0.0,255.0,0.2);
+    -fx-background-color: rgba(0.0,0.0,255.0,0.2);
 }
 .combo-box .label {
     -fx-text-fill: black;
-    
+
 }
 .combo-box .list-cell 
 {
@@ -95,32 +95,32 @@ HBox {
     -fx-stroke-width: 3pt;
 }
 .tab .tab-label, .tab:selected .tab-label{
--fx-text-fill: rgba(255,255,255,1);
+    -fx-text-fill: rgba(255,255,255,1);
 }
 
 .tab:disabled .tab-label {
--fx-text-fill: rgba(255,255,255,0.3);
+    -fx-text-fill: rgba(255,255,255,0.3);
 }
 
 .tab {
--fx-cursor: hand;
+    -fx-cursor: hand;
 }
 .tab:disabled {
--fx-cursor: default;
+    -fx-cursor: default;
 }
 
 
 /*jfx buttons*/
 .button {
--fx-padding: 0.7em 0.57em;
+    -fx-padding: 0.7em 0.57em;
     -fx-font-size: 14px;
 
     -fx-background-color: rgb(77,102,204);
     -fx-margin: 1em 0em;
--fx-text-fill: rgba(255,255,255,0.8);
--fx-font-weight:bold;
+    -fx-text-fill: rgba(255,255,255,0.8);
+    -fx-font-weight:bold;
 
--fx-cursor: hand;
+    -fx-cursor: hand;
 
 
 }

@@ -15,94 +15,84 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import serializable.model.Competition;
 import judgeApp.model.CurrentTournament;
 import serializable.model.Person;
-import judgeApp.presentation.RootLayoutController;
 
 /**
  *
  * @author Emilia
  */
-public class CompetitorsTabController implements Initializable{
-    
+public class CompetitorsTabController implements Initializable {
+
     @FXML
     private BorderPane rootPane;
     @FXML
     private ListView list;
-    
+
     private ObservableList<String> items;
     private ArrayList<Boolean> presence;
-    
-    @FXML 
+
+    @FXML
     private Button sendBtn;
-    
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         list.setPadding(new Insets(0, 10, 0, 10));
 
-        items =FXCollections.observableArrayList();
+        items = FXCollections.observableArrayList();
         list.setItems(items);
-        
-        
+
         list.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent click) {
-            if (click.getClickCount() == 2) {
-               //Use ListView's getSelected Item
-               int index = list.getSelectionModel().getSelectedIndex();
-               
-               presence.set(index, !presence.get(index));
-               System.out.println(".handle() "+index);
-               updateRow(index);
+            @Override
+            public void handle(MouseEvent click) {
+                if (click.getClickCount() == 2) {
+                    //Use ListView's getSelected Item
+                    int index = list.getSelectionModel().getSelectedIndex();
+
+                    presence.set(index, !presence.get(index));
+                    System.out.println(".handle() " + index);
+                    updateRow(index);
+                }
             }
-        }
         });
 
-        
     }
-    
-    public void init(){
+
+    public void init() {
         items.clear();
         presence = new ArrayList<>();
         sendBtn.setVisible(false);
-        
-        if(!CurrentTournament.isCurrentCompetitionSet()){ 
+
+        if (!CurrentTournament.isCurrentCompetitionSet()) {
             return;
         }
-            
-        
-        for(Person p : CurrentTournament.getCurrentCompetition().getCompetitors()){
-            items.add("✔ "+p.toString());
+
+        for (Person p : CurrentTournament.getCurrentCompetition().getCompetitors()) {
+            items.add("✔ " + p.toString());
             presence.add(true);
         }
-        
-        
-   
+
     }
-    
-    private void updateRow(int i){
+
+    private void updateRow(int i) {
         String tmp = items.get(i);
         String sign = "✔";
-        if(!presence.get(i)) sign = "✘";
+        if (!presence.get(i)) {
+            sign = "✘";
+        }
         tmp = sign + tmp.substring(1);
         items.set(i, tmp);
-        
+
         this.updateSendBtn();
     }
-    
-    private void updateSendBtn(){
-        for(Boolean b : presence){
-            if(!b) {
+
+    private void updateSendBtn() {
+        for (Boolean b : presence) {
+            if (!b) {
                 sendBtn.setVisible(true);
                 return;
             }
@@ -110,10 +100,8 @@ public class CompetitorsTabController implements Initializable{
         sendBtn.setVisible(false);
     }
 
-    
-    private void handleSendBtn(){
+    private void handleSendBtn() {
         //TODO send list of absent to admin
     }
-    
-    
+
 }

@@ -8,7 +8,6 @@ package judgeApp.model;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -28,16 +27,15 @@ import serializable.model.Tournament;
 public class SocketClient {
 
     private static InetAddress host = null;
-    
-    private static void setDefaultAddress(){
-        
+
+    private static void setDefaultAddress() {
+
         try {
             host = InetAddress.getByName("10.9.141.124");
         } catch (UnknownHostException ex) {
             Logger.getLogger(SocketClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
     /**
      *
@@ -61,9 +59,11 @@ public class SocketClient {
      * @param address if null, localhost is set
      */
     public static void sendResultsToServer(Competition c, InetAddress address) {
-        
-        if(host!= null) address=host;
-        
+
+        if (host != null) {
+            address = host;
+        }
+
         Message m = new Message();
         m.sendCompetition(c);
         Message answer = askServer(m, address);
@@ -75,7 +75,7 @@ public class SocketClient {
             alert.setHeaderText("Results sent");
             alert.setContentText("Results have been succesfully sent to the server.");
             alert.showAndWait();
-            
+
             Tournament t = (Tournament) answer.getObject();
             updateTournament(t);
         }
@@ -129,7 +129,7 @@ public class SocketClient {
 
         try {
             if (address == null) {
-              ///  host = InetAddress.getLocalHost();
+                ///  host = InetAddress.getLocalHost();
                 setDefaultAddress();
             } else {
                 host = address;

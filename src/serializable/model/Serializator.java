@@ -26,8 +26,8 @@ import java.util.stream.Stream;
  */
 public final class Serializator {
 
-    private static String PATH = "src/serializable/model/data/test/";
-    private static Object lock = new Object();
+    private static final String PATH = "src/serializable/model/data/";
+    private static final Object lock = new Object();
 
     private Serializator() {
     }

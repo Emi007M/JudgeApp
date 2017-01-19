@@ -5,20 +5,12 @@
  */
 package judgeApp.presentation.tournamentTab;
 
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.beans.EventHandler;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.VPos;
 import javafx.scene.Group;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -26,55 +18,47 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import serializable.model.Chart;
-import judgeApp.model.Dictionary;
-import judgeApp.Main;
 import judgeApp.model.CurrentTournament;
-import serializable.model.Node;
+import judgeApp.model.Dictionary;
 import judgeApp.model.ZoomHandler;
+import serializable.model.Chart;
+import serializable.model.Node;
 import serializable.model.Serializator;
-
 
 /**
  *
  * @author Emilia
  */
-public class ChartMakerController implements Initializable{
-    
+public class ChartMakerController implements Initializable {
+
     @FXML
     private AnchorPane root;
- 
+
     @FXML
     private HBox box;
     @FXML
     private VBox chartBox;
     @FXML
     private VBox matchesBox;
-    
+
     @FXML
     private ScrollPane bracketScrollPane;
     @FXML
     private Group bracketScrollContent;
     @FXML
     private StackPane bracketZoomGroup;
-    
+
     @FXML
     private TextField athletesNo;
-    
-    
+
     @FXML
     private Label currLvl;
     @FXML
@@ -96,8 +80,7 @@ public class ChartMakerController implements Initializable{
     private Label nextShiroClub;
     @FXML
     private Label nextAkaClub;
-    
-    
+
     @FXML
     private Button shiroBtn;
     @FXML
@@ -108,85 +91,81 @@ public class ChartMakerController implements Initializable{
     private Button generateBtn;
     @FXML
     private Button applyBtn;
-    
 
-    
     //Main mainApp;
     Chart currentChart;
     TournamentTabController tournamentController;
-    
-    public ChartMakerController(){
+
+    public ChartMakerController() {
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //chart.setText("gotIT!");
-        
+
         //box.getChildren().add(new Button("Java Button"));
- 
-       //  bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup,));
-        
-        
+        //  bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup,));
         bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup));
-        
+
     }
-    
-    
-    public void setTournamentController(TournamentTabController c){
+
+    public void setTournamentController(TournamentTabController c) {
         tournamentController = c;
     }
-  
-    
-    
+
     @FXML
     private void handleButtonAction(javafx.event.ActionEvent event) {
         System.out.println("You clicked me!");
-        
+
         CurrentTournament.getCurrentCompetition().setLocked(true);
-        
+
         currentChart = (Chart) Serializator.readFromFile("test2");
         reloadChart();
     }
-    
+
     @FXML
-    private void handleShiroBtnAction(javafx.event.ActionEvent event){
+    private void handleShiroBtnAction(javafx.event.ActionEvent event) {
         System.out.println("SHIRO");
         int score = Integer.parseInt(this.shiroBtn.getText());
         this.shiroBtn.setText(Integer.toString(++score));
     }
-    
+
     @FXML
-    private void handleAkaBtnAction(javafx.event.ActionEvent event){
+    private void handleAkaBtnAction(javafx.event.ActionEvent event) {
         System.out.println("AKA");
         int score = Integer.parseInt(this.akaBtn.getText());
         this.akaBtn.setText(Integer.toString(++score));
     }
-     @FXML
-    private void handleShiroBtnSubtract(MouseEvent event){
-        if(event.getButton() != MouseButton.SECONDARY) return;
+
+    @FXML
+    private void handleShiroBtnSubtract(MouseEvent event) {
+        if (event.getButton() != MouseButton.SECONDARY) {
+            return;
+        }
         System.out.println("SHIRO");
         int score = Integer.parseInt(this.shiroBtn.getText());
-        score = (score==0)? 0 : score-1;
+        score = (score == 0) ? 0 : score - 1;
         this.shiroBtn.setText(Integer.toString(score));
     }
-    
+
     @FXML
-    private void handleAkaBtnSubtract(MouseEvent event){
-        if(event.getButton() != MouseButton.SECONDARY) return;
+    private void handleAkaBtnSubtract(MouseEvent event) {
+        if (event.getButton() != MouseButton.SECONDARY) {
+            return;
+        }
         System.out.println("AKA");
         int score = Integer.parseInt(this.akaBtn.getText());
-        score = (score==0)? 0 : score-1;
+        score = (score == 0) ? 0 : score - 1;
         this.akaBtn.setText(Integer.toString(score));
     }
-    
-    
+
     @FXML
-    private void handleNextBtnAction(javafx.event.ActionEvent event){
+    private void handleNextBtnAction(javafx.event.ActionEvent event) {
         System.out.println("saving and going to next match");
         int scoreAka = Integer.parseInt(this.akaBtn.getText());
         int scoreShiro = Integer.parseInt(this.shiroBtn.getText());
-        
-        if(scoreAka==scoreShiro) {
+
+        if (scoreAka == scoreShiro) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle(Dictionary.getString("draw-warning"));
             alert.setHeaderText(Dictionary.getString("draw"));
@@ -195,70 +174,72 @@ public class ChartMakerController implements Initializable{
             alert.showAndWait();
             return;
         }
-        
-        
-            
+
         Node match = currentChart.getFirstMatch();
         match.setScoreAka(scoreAka);
         match.setScoreShiro(scoreShiro);
-        if(scoreAka>scoreShiro) match.setAthlete(match.getAka().getAthlete());
-        else match.setAthlete(match.getShiro().getAthlete());
-        
+        if (scoreAka > scoreShiro) {
+            match.setAthlete(match.getAka().getAthlete());
+        } else {
+            match.setAthlete(match.getShiro().getAthlete());
+        }
+
         //if end of the chart
-        if(currentChart.getWinnerNode().getAthlete()!=null){
+        if (currentChart.getWinnerNode().getAthlete() != null) {
             System.out.println("competition finished!");
             tournamentController.setResults();
-            
+
         }
-        
+
         reloadChart();
         updateCurrentMatch();
         updateMatchesBox();
     }
-    
-    
-    
-    public void reloadChart(){
-        
+
+    public void reloadChart() {
+
 //        if(currentChart==null)
 //            currentChart = new Chart();
 //        
-        
         int lvls = currentChart.getMaxLvl();
-        
 
         showBrackets();
         updateMatchesBox();
-        
-        
-        
+
     }
-    
+
     /**
      * updates the Score View (both current and next match)
-     */ 
-    public void updateCurrentMatch(){
-      Node match = currentChart.getFirstMatch();
-      if(match !=null){
-          
-          this.currLvl.setText(currentChart.getLvlToString(match.getChartLvl()));
-          
-          //if there are both athletes
-          if(match.hasOneAthlete()==null){
-            this.akaBtn.setText("0");
-            this.shiroBtn.setText("0");
+     */
+    public void updateCurrentMatch() {
+        Node match = currentChart.getFirstMatch();
+        if (match != null) {
 
-            this.currentAka.setText(match.getAka().getAthlete().getFullName().toUpperCase());
-            this.currentShiro.setText(match.getShiro().getAthlete().getFullName().toUpperCase());
-            this.currentAkaClub.setText(match.getAka().getAthlete().getClub().toUpperCase());
-            this.currentShiroClub.setText(match.getShiro().getAthlete().getClub().toUpperCase());
+            this.currLvl.setText(currentChart.getLvlToString(match.getChartLvl()));
 
+            //if there are both athletes
+            if (match.hasOneAthlete() == null) {
+                this.akaBtn.setText("0");
+                this.shiroBtn.setText("0");
 
+                this.currentAka.setText(match.getAka().getAthlete().getFullName().toUpperCase());
+                this.currentShiro.setText(match.getShiro().getAthlete().getFullName().toUpperCase());
+                this.currentAkaClub.setText(match.getAka().getAthlete().getClub().toUpperCase());
+                this.currentShiroClub.setText(match.getShiro().getAthlete().getClub().toUpperCase());
 
-            updateNextMatch();
+                updateNextMatch();
 
-          }
-          else {//if there is only one athlete
+            } else {//if there is only one athlete
+                this.akaBtn.setText("0");
+                this.shiroBtn.setText("0");
+
+                this.currentAka.setText("-");
+                this.currentShiro.setText("-");
+                this.currentAkaClub.setText("");
+                this.currentShiroClub.setText("");
+            }
+        }//if there is no match
+        else {
             this.akaBtn.setText("0");
             this.shiroBtn.setText("0");
 
@@ -266,75 +247,59 @@ public class ChartMakerController implements Initializable{
             this.currentShiro.setText("-");
             this.currentAkaClub.setText("");
             this.currentShiroClub.setText("");
-          }
-      }//if there is no match
-      else {
-          this.akaBtn.setText("0");
-          this.shiroBtn.setText("0");
-          
-          this.currentAka.setText("-");
-          this.currentShiro.setText("-");
-          this.currentAkaClub.setText("");
-          this.currentShiroClub.setText("");
-          
-          this.currLvl.setText("");
-      }
-      
-      
-    }
-    
-    /**
-     * used from UpdateCurrentMatch
-     * updates part of the Score View
-     */
-    private void updateNextMatch(){
-      Node match = currentChart.getWaitingMatch();
-      if(match !=null ){
-        
-        this.nextLvl.setText(currentChart.getLvlToString(match.getChartLvl()));
-        
-        //if there are both athletes
-        if(match.hasOneAthlete()==null){
-          
-          this.nextAka.setText(match.getAka().getAthlete().getFullName().toUpperCase());
-          this.nextShiro.setText(match.getShiro().getAthlete().getFullName().toUpperCase());
-          this.nextAkaClub.setText(match.getAka().getAthlete().getClub().toUpperCase());
-          this.nextShiroClub.setText(match.getShiro().getAthlete().getClub().toUpperCase());
-        } 
-        else {//if there is only one athlete
-            this.nextAka.setText("");
-          this.nextShiro.setText("");
-          this.nextAkaClub.setText("");
-          this.nextShiroClub.setText("");
-        }
-               
 
-      }
-      else {//if there is no match
-          this.nextAka.setText("");
-          this.nextShiro.setText("");
-          this.nextAkaClub.setText("");
-          this.nextShiroClub.setText("");
-          
-          this.nextLvl.setText("");
-      }
-      
-      
+            this.currLvl.setText("");
+        }
+
     }
-    
+
+    /**
+     * used from UpdateCurrentMatch updates part of the Score View
+     */
+    private void updateNextMatch() {
+        Node match = currentChart.getWaitingMatch();
+        if (match != null) {
+
+            this.nextLvl.setText(currentChart.getLvlToString(match.getChartLvl()));
+
+            //if there are both athletes
+            if (match.hasOneAthlete() == null) {
+
+                this.nextAka.setText(match.getAka().getAthlete().getFullName().toUpperCase());
+                this.nextShiro.setText(match.getShiro().getAthlete().getFullName().toUpperCase());
+                this.nextAkaClub.setText(match.getAka().getAthlete().getClub().toUpperCase());
+                this.nextShiroClub.setText(match.getShiro().getAthlete().getClub().toUpperCase());
+            } else {//if there is only one athlete
+                this.nextAka.setText("");
+                this.nextShiro.setText("");
+                this.nextAkaClub.setText("");
+                this.nextShiroClub.setText("");
+            }
+
+        } else {//if there is no match
+            this.nextAka.setText("");
+            this.nextShiro.setText("");
+            this.nextAkaClub.setText("");
+            this.nextShiroClub.setText("");
+
+            this.nextLvl.setText("");
+        }
+
+    }
+
     /**
      * initializes/updates the list of matches view
      */
-    public void updateMatchesBox(){
+    public void updateMatchesBox() {
         ArrayList<Node> matches = currentChart.getMatches();
         ArrayList<Control> elements = new ArrayList<>();
-        
+
         Node current = currentChart.getFirstMatch();
-        
+
         int lvl = -1;
-        
-        for(Node m: matches){
-            if(lvl != m.getChartLvl()) {
+
+        for (Node m : matches) {
+            if (lvl != m.getChartLvl()) {
                 lvl = m.getChartLvl();
                 Label l = new Label(currentChart.getLvlToString(lvl));
                 l.getStyleClass().add("lvl");
@@ -342,38 +307,30 @@ public class ChartMakerController implements Initializable{
                 elements.add(l);
             }
             Label l = new Label(m.toString());
-            if(m.equals(current)) l.getStyleClass().add("current");
+            if (m.equals(current)) {
+                l.getStyleClass().add("current");
+            }
             elements.add(l);
         }
         elements.add(new Label());
-        
+
         this.matchesBox.getChildren().setAll(elements);
     }
-
 
     public void showBrackets() {
 
 //        bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup));
 //        
-        
         ArrayList<Node> matches = currentChart.getBracketMatches();
-  
+
         Node current = currentChart.getFirstMatch();
-        
+
         BracketView chart = new BracketView(matches, current);
 
-        
-        
         chartBox.getChildren().setAll(chart);
-       
-        chart.setScrollFixed(bracketScrollPane, bracketScrollContent,bracketZoomGroup);
-        
-        
-        
-    
+
+        chart.setScrollFixed(bracketScrollPane, bracketScrollContent, bracketZoomGroup);
+
     }
 
-
-    
-    
 }
