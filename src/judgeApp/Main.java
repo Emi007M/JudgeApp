@@ -24,7 +24,7 @@ import javafx.stage.WindowEvent;
 import judgeApp.model.CurrentTournament;
 import judgeApp.model.Dictionary;
 import judgeApp.presentation.RootLayoutController;
-import serializable.model.Serializator;
+import serializable.model.data.Serializator;
 import serializable.model.Tournament;
 
 /**

@@ -31,7 +31,7 @@ import judgeApp.model.Dictionary;
 import judgeApp.model.ZoomHandler;
 import serializable.model.Chart;
 import serializable.model.Node;
-import serializable.model.Serializator;
+import serializable.model.data.Serializator;
 
 /**
  *
@@ -113,16 +113,7 @@ public class ChartMakerController implements Initializable {
         tournamentController = c;
     }
 
-    @FXML
-    private void handleButtonAction(javafx.event.ActionEvent event) {
-        System.out.println("You clicked me!");
-
-        CurrentTournament.getCurrentCompetition().setLocked(true);
-
-        currentChart = (Chart) Serializator.readFromFile("test2");
-        reloadChart();
-    }
-
+    
     @FXML
     private void handleShiroBtnAction(javafx.event.ActionEvent event) {
         System.out.println("SHIRO");
@@ -183,6 +174,8 @@ public class ChartMakerController implements Initializable {
         } else {
             match.setAthlete(match.getShiro().getAthlete());
         }
+        
+        CurrentTournament.getCurrentCompetition().setLocked(true);
 
         //if end of the chart
         if (currentChart.getWinnerNode().getAthlete() != null) {
