@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package serializable.model;
 
 import java.io.Serializable;
@@ -246,15 +240,7 @@ public class Competition implements Serializable {
      * generates new chart with the use of previously given properties
      */
     public void initChart() {
-        // int preranked = prerankedCompetitors.size();
-
-//        for (Person p : prerankedCompetitors) { //TODO gadza się tylko jeśli wszyscy podani jako preranked mają być wpisani
-//            if (competitors.contains(p)) {
-//                competitors.remove(p);
-//            }
-//        }
-//        ArrayList all = new ArrayList(prerankedCompetitors);
-//        all.addAll(competitors);
+   
         if (!isLocked()) {
             chart = new Chart(competitors, twoThirdPlaces);
         } else {

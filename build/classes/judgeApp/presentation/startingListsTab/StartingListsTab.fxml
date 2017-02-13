@@ -18,7 +18,7 @@
     <children>
         <VBox prefHeight="115.0" prefWidth="1000.0">
             <children>
-                <Label fx:id="titleLabel" text="Tournament title">
+                <Label fx:id="titleLabel" text="-">
                     <font>
                         <Font size="36.0" />
                     </font>
@@ -33,27 +33,27 @@
             <children>
                 <TableView fx:id="table" prefHeight="182.0" prefWidth="800.0">
                     <columns>
-                        <TableColumn fx:id="colID" prefWidth="70.0" text="ID">
+                        <TableColumn fx:id="colID" prefWidth="70.0" text="%t1.id">
                             <cellValueFactory>
                                 <PropertyValueFactory property="idp" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="colName" prefWidth="510.0" text="Name">
+                        <TableColumn fx:id="colName" prefWidth="510.0" text="%t1.name">
                             <cellValueFactory>
                                 <PropertyValueFactory property="titlep" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="colContestants" prefWidth="150.0" text="Contestants">
+                        <TableColumn fx:id="colContestants" prefWidth="150.0" text="%t1.contestants">
                             <cellValueFactory>
                                 <PropertyValueFactory property="contestants" />
                             </cellValueFactory>
                         </TableColumn>
-                        <!--                  <TableColumn fx:id="colProgress" prefWidth="122.0" text="Progress">
+                        <!--                  <TableColumn fx:id="colProgress" prefWidth="122.0" text="%Progress">
                             <cellValueFactory>
                                <PropertyValueFactory property="progress" />
                               </cellValueFactory>
                         </TableColumn>-->
-                        <TableColumn fx:id="colSent" prefWidth="70.0" text="Sent">
+                        <TableColumn fx:id="colSent" prefWidth="70.0" text="%t1.sent">
                             <cellValueFactory>
                                 <PropertyValueFactory property="sent" />
                             </cellValueFactory>
@@ -66,7 +66,7 @@
                 <TextFlow fx:id="descrBox" prefHeight="200.0" prefWidth="300.0" />
             </children>
         </FlowPane>
-        <Button fx:id="refreshBtn" layoutX="1181.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleReloadButtonAction" prefHeight="53.0" prefWidth="70.0" text="Refresh" />
+        <Button fx:id="refreshBtn" layoutX="1181.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleReloadButtonAction" prefHeight="53.0" prefWidth="90.0" text="%t1.refresh" />
     </children>
     <stylesheets>
         <URL value="@style.css" />

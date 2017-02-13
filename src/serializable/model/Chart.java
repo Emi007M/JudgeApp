@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package serializable.model;
 
 import java.io.Serializable;
@@ -121,7 +116,7 @@ public class Chart implements Serializable {
 
             int slice = 1;
             while (slice < bracket_list.size() / 2) {
-                ArrayList tmp = new ArrayList(bracket_list);
+                ArrayList<Integer> tmp = new ArrayList(bracket_list);
                 bracket_list.clear();
 
                 while (tmp.size() > 0) {
@@ -207,9 +202,9 @@ public class Chart implements Serializable {
             club.add(p);
         }
 
-        //divide into clubs, ordered according to the decreasing amount of players in each
+        //divide into clubs, ordered according to the increasing amount of players in each
         ArrayList<List<Node>> ordered_in_clubs = new ArrayList<>(players_over_clubs.values());
-        ordered_in_clubs.sort((a, b) -> b.size() - a.size());
+        ordered_in_clubs.sort((b, a) -> b.size() - a.size());
         ordered_in_clubs.forEach(node -> System.out.println("N: " + node.get(0).getAthlete().getClub() + " " + node.size()));
 
         //for each club place players separately

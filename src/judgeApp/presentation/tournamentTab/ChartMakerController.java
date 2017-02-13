@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package judgeApp.presentation.tournamentTab;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
@@ -18,6 +14,8 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -31,7 +29,6 @@ import judgeApp.model.Dictionary;
 import judgeApp.model.ZoomHandler;
 import serializable.model.Chart;
 import serializable.model.Node;
-import serializable.model.data.Serializator;
 
 /**
  *
@@ -101,7 +98,8 @@ public class ChartMakerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //chart.setText("gotIT!");
+        //click enter to fire the applyBtn
+        applyBtn.setDefaultButton(true);
 
         //box.getChildren().add(new Button("Java Button"));
         //  bracketScrollPane.addEventFilter(ScrollEvent.ANY, new ZoomHandler(bracketZoomGroup,));
@@ -113,7 +111,6 @@ public class ChartMakerController implements Initializable {
         tournamentController = c;
     }
 
-    
     @FXML
     private void handleShiroBtnAction(javafx.event.ActionEvent event) {
         System.out.println("SHIRO");
@@ -158,9 +155,9 @@ public class ChartMakerController implements Initializable {
 
         if (scoreAka == scoreShiro) {
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle(Dictionary.getString("draw-warning"));
-            alert.setHeaderText(Dictionary.getString("draw"));
-            alert.setContentText(Dictionary.getString("draw-text"));
+            alert.setTitle(Dictionary.getString("t3.draw.title"));
+            alert.setHeaderText(Dictionary.getString("t3.draw.info"));
+            alert.setContentText(Dictionary.getString("t3.draw.text"));
 
             alert.showAndWait();
             return;
@@ -174,7 +171,7 @@ public class ChartMakerController implements Initializable {
         } else {
             match.setAthlete(match.getShiro().getAthlete());
         }
-        
+
         CurrentTournament.getCurrentCompetition().setLocked(true);
 
         //if end of the chart

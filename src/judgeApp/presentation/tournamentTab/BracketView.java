@@ -158,7 +158,7 @@ public class BracketView extends Region {
         Rectangle rect = new Rectangle(posX - 15, posY - 15, match_width + 50, 100);
         rect.getStyleClass().add("current-match");
 
-        Label l = new Label(Dictionary.getString("current-match").toUpperCase());
+        Label l = new Label(Dictionary.getString("t3.current-match").toUpperCase());
         l.relocate(posX - 15, posY - 35);
         l.getStyleClass().add("current-match-text");
         l.setStyle("-fx-min-width: " + (match_width + 50) + ";");
@@ -172,7 +172,7 @@ public class BracketView extends Region {
         Rectangle rect = new Rectangle(posX - 15, posY - 15, match_width + 50, 100);
         rect.getStyleClass().add("next-match");
 
-        Label l = new Label(Dictionary.getString("next-match").toUpperCase());
+        Label l = new Label(Dictionary.getString("t3.next-match").toUpperCase());
         l.relocate(posX - 15, posY - 35);
         l.getStyleClass().add("next-match-text");
         l.setStyle("-fx-min-width: " + (match_width + 50) + ";");
@@ -315,19 +315,5 @@ public class BracketView extends Region {
             return root.getViewportBounds().getHeight();
         }
     }
-//
-//    private static class ZoomBinding extends DoubleBinding {
-//
-//        private final StackPane zoomGroup;
-//
-//        public ZoomBinding(StackPane zoomGroup) {
-//            this.zoomGroup = zoomGroup;
-//            super.bind(zoomGroup.scaleYProperty());
-//        }
-//
-//        @Override
-//        protected double computeValue() {   
-//            return zoomGroup.getScaleY();
-//        }
-//    }
+
 }

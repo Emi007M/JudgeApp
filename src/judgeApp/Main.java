@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -49,6 +50,7 @@ public class Main extends Application {
         //Internationalization        
         new Dictionary();
 
+        
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle(Dictionary.getString("window-title"));
 
@@ -92,9 +94,10 @@ public class Main extends Application {
             Font.loadFont(Main.class.getResource("presentation/resources/fonts/Toxia_FRE.ttf").toExternalForm(), 10);
             Font.loadFont(Main.class.getResource("presentation/resources/fonts/phagspa.ttf").toExternalForm(), 10);
             Font.loadFont(Main.class.getResource("presentation/resources/fonts/phagspab.ttf").toExternalForm(), 10);
-
+            
             // Load root layout from fxml file.            
             FXMLLoader loader = new FXMLLoader();
+            loader.setResources(Dictionary.getBundle());
             loader.setLocation(getClass().getResource(
                     "presentation/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();

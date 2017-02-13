@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import judgeApp.Main;
 import judgeApp.model.CurrentTournament;
@@ -23,7 +24,9 @@ import judgeApp.presentation.RootLayoutController;
 public class TournamentTabController implements Initializable {
 
     @FXML
-    private AnchorPane rootPane;
+    private AnchorPane rootPane;    
+    @FXML
+    private ScrollPane rootScrollPane;
 
     private ChartMakerController controller;
     private RootLayoutController rootController;
@@ -37,7 +40,8 @@ public class TournamentTabController implements Initializable {
 
             AnchorPane chartMaker = (AnchorPane) loader.load();
 
-            rootPane.getChildren().add(chartMaker);
+            rootScrollPane.setContent(chartMaker);
+            //.add(chartMaker);
 
             // Give the controller access to the main app.
             controller = loader.getController();

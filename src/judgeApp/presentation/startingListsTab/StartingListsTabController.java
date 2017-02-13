@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package judgeApp.presentation.startingListsTab;
 
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -26,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import judgeApp.model.CurrentTournament;
+import judgeApp.model.Dictionary;
 import judgeApp.model.SocketClient;
 import judgeApp.presentation.RootLayoutController;
 import serializable.model.Competition;
@@ -36,8 +32,7 @@ import serializable.model.Competition;
  */
 public class StartingListsTabController implements Initializable {
 
-//    @FXML
-//    private AnchorPane rootPane;
+    
     @FXML
     private Label titleLabel;
     @FXML
@@ -47,7 +42,6 @@ public class StartingListsTabController implements Initializable {
     private TableColumn<Competition, Integer> colID, colContestants;
     @FXML
     private TableColumn<Competition, String> colName, colProgress, colSent;
-    //, columnProgress, columnRefresh, columnSent;
 
     @FXML
     private TextFlow descrBox;
@@ -75,11 +69,6 @@ public class StartingListsTabController implements Initializable {
         table.setColumnResizePolicy(p -> true);
         table.setSortPolicy(e -> false);
 
-//        TableColumn<InvoiceEntry, String> firstNameCol = new TableColumn<InvoiceEntry, String>("First Name");
-//        firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
-//        TableColumn<InvoiceEntry, String> lastNameCol = new TableColumn<InvoiceEntry, String>("Last Name");
-//        lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
-        //   table.getColumns().setAll(firstNameCol, lastNameCol);
         dataArray = FXCollections.observableArrayList();
         table.setItems(dataArray);
 
@@ -90,7 +79,6 @@ public class StartingListsTabController implements Initializable {
 
         });
 
-        //    fillInTable();
     }
 
     public void init() {
@@ -157,12 +145,12 @@ public class StartingListsTabController implements Initializable {
     private void onRowChosen(Competition c) {
         descrBox.getChildren().clear();
 
-        Label header = new Label("Description");
+        Label header = new Label(Dictionary.getString("t1.description"));
         Text descr = new Text("\n" + c.getDescr() + "\n\n");
         header.getStyleClass().add("descr-header");
         descr.getStyleClass().add("descr-text");
 
-        Button btn = new Button("Choose");
+        Button btn = new Button(Dictionary.getString("t1.choose"));
         btn.setOnAction(i -> onChooseBtn(c));
 
         descrBox.getChildren().addAll(header, descr, btn);

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package judgeApp.presentation;
 
 import com.jfoenix.controls.JFXComboBox;
@@ -63,18 +58,22 @@ public class RootLayoutController implements Initializable {
 
         try {
             FXMLLoader loader0 = new FXMLLoader(getClass().getResource("startingListsTab/StartingListsTab.fxml"));
+            loader0.setResources(resources);
             tabs.getTabs().get(0).setContent(loader0.load());
             startingListsController = loader0.getController();
 
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("competitorsTab/CompetitorsTab.fxml"));
+            loader1.setResources(resources);
             tabs.getTabs().get(1).setContent(loader1.load());
             competitorsController = loader1.getController();
 
             FXMLLoader loader2 = new FXMLLoader(getClass().getResource("tournamentTab/TournamentTab.fxml"));
+            loader2.setResources(resources);
             tabs.getTabs().get(2).setContent(loader2.load());
             tournamentController = loader2.getController();
 
             FXMLLoader loader3 = new FXMLLoader(getClass().getResource("resultsTab/ResultsTab.fxml"));
+            loader3.setResources(resources);
             tabs.getTabs().get(3).setContent(loader3.load());
             resultsController = loader3.getController();
 
